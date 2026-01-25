@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse our premium collection of tiles - Floor, Wall, Bathroom, Kitchen, Parking, and Cool Roof Tiles from leading brands.">
+  <title>Our Products | Shri Selvam Tiles & Granites</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ========== HEADER & NAVIGATION ========== -->
+  <header class="header">
+    <nav class="nav-container">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <i class="fas fa-th"></i>
+        <span>Shri Selvam Tiles</span>
+      </a>
+
+      <!-- Navigation Menu -->
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html" class="active">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <!-- Action Buttons -->
+      <div class="nav-actions">
+        <a href="tel:+919876543210" class="btn-call">
+          <i class="fas fa-phone"></i>
+          <span>Call Now</span>
+        </a>
+        <a href="https://wa.me/919876543210" target="_blank" class="btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <div class="mobile-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========== PAGE HEADER ========== -->
+  <section class="page-header">
+    <h1 class="page-title">Our Premium Collection</h1>
+    <p class="page-subtitle">Explore world-class tiles for every space</p>
+  </section>
+
+  <!-- ========== PRODUCTS PAGE CONTENT ========== -->
+  <section class="products-page">
+    <div class="container">
+      
+      <!-- ========== FILTERS SECTION ========== -->
+      <div class="filters-section" data-aos="fade-down">
+        <div class="filters-grid">
+          <div class="filter-group">
+            <label for="categoryFilter">Category</label>
+            <select id="categoryFilter">
+              <option value="all">All Categories</option>
+              <option value="floor">Floor Tiles</option>
+              <option value="wall">Wall Tiles</option>
+              <option value="bathroom">Bathroom Tiles</option>
+              <option value="kitchen">Kitchen Tiles</option>
+              <option value="parking">Parking Tiles</option>
+              <option value="roof">Cool Roof Tiles</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="brandFilter">Brand</label>
+            <select id="brandFilter">
+              <option value="all">All Brands</option>
+              <option value="kag">KAG Tiles</option>
+              <option value="somany">Somany</option>
+              <option value="kajaria">Kajaria</option>
+              <option value="nitco">Nitco</option>
+              <option value="orient">Orient Bell</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="sizeFilter">Size</label>
+            <select id="sizeFilter">
+              <option value="all">All Sizes</option>
+              <option value="600x600">600 x 600 mm</option>
+              <option value="800x800">800 x 800 mm</option>
+              <option value="300x600">300 x 600 mm</option>
+              <option value="600x1200">600 x 1200 mm</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== PRODUCTS GRID ========== -->
+      <div class="products-grid" id="productsGrid">
+        
+        <!-- Product 1: Marble Finish Floor Tile -->
+        <div class="product-listing-card" data-category="floor" data-brand="kag" data-size="600x600" data-aos="fade-up">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=800&q=80" alt="Marble Finish Floor Tile" loading="lazy">
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Marble Finish Floor Tile</h3>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span class="spec-label">Brand:</span>
+                <span>KAG Tiles</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Size:</span>
+                <span>600 x 600 mm</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Finish:</span>
+                <span>Glossy</span>
+              </div>
+            </div>
+            <div class="product-price">₹85 <span>/ sq.ft</span></div>
+            <button class="btn-enquiry" onclick="openEnquiry('Marble Finish Floor Tile')">
+              <i class="fas fa-envelope"></i> Send Enquiry
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 2: Wooden Texture Floor Tile -->
+        <div class="product-listing-card" data-category="floor" data-brand="somany" data-size="600x1200" data-aos="fade-up" data-aos-delay="100">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80" alt="Wooden Texture Floor Tile" loading="lazy">
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Wooden Texture Floor Tile</h3>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span class="spec-label">Brand:</span>
+                <span>Somany</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Size:</span>
+                <span>600 x 1200 mm</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Finish:</span>
+                <span>Matt</span>
+              </div>
+            </div>
+            <div class="product-price">₹120 <span>/ sq.ft</span></div>
+            <button class="btn-enquiry" onclick="openEnquiry('Wooden Texture Floor Tile')">
+              <i class="fas fa-envelope"></i> Send Enquiry
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 3: Vitrified Floor Tile -->
+        <div class="product-listing-card" data-category="floor" data-brand="kajaria" data-size="800x800" data-aos="fade-up" data-aos-delay="200">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=80" alt="Vitrified Floor Tile" loading="lazy">
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Vitrified Floor Tile</h3>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span class="spec-label">Brand:</span>
+                <span>Kajaria</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Size:</span>
+                <span>800 x 800 mm</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Finish:</span>
+                <span>High Gloss</span>
+              </div>
+            </div>
+            <div class="product-price">₹95 <span>/ sq.ft</span></div>
+            <button class="btn-enquiry" onclick="openEnquiry('Vitrified Floor Tile')">
+              <i class="fas fa-envelope"></i> Send Enquiry
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 4: Designer Wall Tile -->
+        <div class="product-listing-card" data-category="wall" data-brand="nitco" data-size="300x600" data-aos="fade-up">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" alt="Designer Wall Tile" loading="lazy">
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Designer Wall Tile</h3>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span class="spec-label">Brand:</span>
+                <span>Nitco</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Size:</span>
+                <span>300 x 600 mm</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Finish:</span>
+                <span>Glossy</span>
+              </div>
+            </div>
+            <div class="product-price">₹65 <span>/ sq.ft</span></div>
+            <button class="btn-enquiry" onclick="openEnquiry('Designer Wall Tile')">
+              <i class="fas fa-envelope"></i> Send Enquiry
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 5: 3D Pattern Wall Tile -->
+        <div class="product-listing-card" data-category="wall" data-brand="orient" data-size="300x600" data-aos="fade-up" data-aos-delay="100">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80" alt="3D Pattern Wall Tile" loading="lazy">
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">3D Pattern Wall Tile</h3>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span class="spec-label">Brand:</span>
+                <span>Orient Bell</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Size:</span>
+                <span>300 x 600 mm</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Finish:</span>
+                <span>Matt</span>
+              </div>
+            </div>
+            <div class="product-price">₹75 <span>/ sq.ft</span></div>
+            <button class="btn-enquiry" onclick="openEnquiry('3D Pattern Wall Tile')">
+              <i class="fas fa-envelope"></i> Send Enquiry
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 6: Marble Effect Wall Tile -->
+        <div class="product-listing-card" data-category="wall" data-brand="kag" data-size="600x600" data-aos="fade-up" data-aos-delay="200">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&q=80" alt="Marble Effect Wall Tile" loading="lazy">
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Marble Effect Wall Tile</h3>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span class="spec-label">Brand:</span>
+                <span>KAG Tiles</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Size:</span>
+                <span>600 x 600 mm</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Finish:</span>
+                <span>Polished</span>
+              </div>
+            </div>
+            <div class="product-price">₹90 <span>/ sq.ft</span></div>
+            <button class="btn-enquiry" onclick="openEnquiry('Marble Effect Wall Tile')">
+              <i class="fas fa-envelope"></i> Send Enquiry
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 7: Premium Bathroom Tile -->
+        <div class="product-listing-card" data-category="bathroom" data-brand="somany" data-size="300x600" data-aos="fade-up">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80" alt="Premium Bathroom Tile" loading="lazy">
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Premium Bathroom Tile</h3>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span class="spec-label">Brand:</span>
+                <span>Somany</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Size:</span>
+                <span>300 x 600 mm</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Finish:</span>
+                <span>Anti-Slip Glossy</span>
+              </div>
+            </div>
+            <div class="product-price">₹70 <span>/ sq.ft</span></div>
+            <button class="btn-enquiry" onclick="openEnquiry('Premium Bathroom Tile')">
+              <i class="fas fa-envelope"></i> Send Enquiry
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 8: Ceramic Bathroom Tile -->
+        <div class="product-listing-card" data-category="bathroom" data-brand="kajaria" data-size="300x600" data-aos="fade-up" data-aos-delay="100">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&q=80" alt="Ceramic Bathroom Tile" loading="lazy">
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Ceramic Bathroom Tile</h3>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span class="spec-label">Brand:</span>
+                <span>Kajaria</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Size:</span>
+                <span>300 x 600 mm</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Finish:</span>
+                <span>Glossy</span>
+              </div>
+            </div>
+            <div class="product-price">₹55 <span>/ sq.ft</span></div>
+            <button class="btn-enquiry" onclick="openEnquiry('Ceramic Bathroom Tile')">
+              <i class="fas fa-envelope"></i> Send Enquiry
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 9: Kitchen Backsplash Tile -->
+        <div class="product-listing-card" data-category="kitchen" data-brand="nitco" data-size="300x600" data-aos="fade-up" data-aos-delay="200">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1556912998-c57cc6b63cd7?w=800&q=80" alt="Kitchen Backsplash Tile" loading="lazy">
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Kitchen Backsplash Tile</h3>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span class="spec-label">Brand:</span>
+                <span>Nitco</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Size:</span>
+                <span>300 x 600 mm</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Finish:</span>
+                <span>High Gloss</span>
+              </div>
+            </div>
+            <div class="product-price">₹68 <span>/ sq.ft</span></div>
+            <button class="btn-enquiry" onclick="openEnquiry('Kitchen Backsplash Tile')">
+              <i class="fas fa-envelope"></i> Send Enquiry
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 10: Subway Kitchen Tile -->
+        <div class="product-listing-card" data-category="kitchen" data-brand="orient" data-size="300x600" data-aos="fade-up">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?w=800&q=80" alt="Subway Kitchen Tile" loading="lazy">
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Subway Kitchen Tile</h3>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span class="spec-label">Brand:</span>
+                <span>Orient Bell</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Size:</span>
+                <span>300 x 600 mm</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Finish:</span>
+                <span>Glossy</span>
+              </div>
+            </div>
+            <div class="product-price">₹60 <span>/ sq.ft</span></div>
+            <button class="btn-enquiry" onclick="openEnquiry('Subway Kitchen Tile')">
+              <i class="fas fa-envelope"></i> Send Enquiry
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 11: Heavy Duty Parking Tile -->
+        <div class="product-listing-card" data-category="parking" data-brand="kag" data-size="600x600" data-aos="fade-up" data-aos-delay="100">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1590725121839-892b458a74fe?w=800&q=80" alt="Heavy Duty Parking Tile" loading="lazy">
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Heavy Duty Parking Tile</h3>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span class="spec-label">Brand:</span>
+                <span>KAG Tiles</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Size:</span>
+                <span>600 x 600 mm</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Finish:</span>
+                <span>Anti-Slip Matt</span>
+              </div>
+            </div>
+            <div class="product-price">₹78 <span>/ sq.ft</span></div>
+            <button class="btn-enquiry" onclick="openEnquiry('Heavy Duty Parking Tile')">
+              <i class="fas fa-envelope"></i> Send Enquiry
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 12: Cool Roof Tile -->
+        <div class="product-listing-card" data-category="roof" data-brand="somany" data-size="600x600" data-aos="fade-up" data-aos-delay="200">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1632225623126-59cb1a2ee2c3?w=800&q=80" alt="Cool Roof Tile" loading="lazy">
+          </div>
+          <div class="product-details">
+            <h3 class="product-name">Cool Roof Tile</h3>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span class="spec-label">Brand:</span>
+                <span>Somany</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Size:</span>
+                <span>600 x 600 mm</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Finish:</span>
+                <span>Heat Resistant</span>
+              </div>
+            </div>
+            <div class="product-price">₹105 <span>/ sq.ft</span></div>
+            <button class="btn-enquiry" onclick="openEnquiry('Cool Roof Tile')">
+              <i class="fas fa-envelope"></i> Send Enquiry
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- About Column -->
+        <div class="footer-col">
+          <h3>Shri Selvam Tiles & Granites</h3>
+          <p>Your trusted partner for premium tiles and granites. We bring over a decade of excellence in providing world-class flooring and wall solutions.</p>
+        </div>
+
+        <!-- Products Column -->
+        <div class="footer-col">
+          <h4>Our Products</h4>
+          <ul>
+            <li><a href="products.html#floor">Floor Tiles</a></li>
+            <li><a href="products.html#wall">Wall Tiles</a></li>
+            <li><a href="products.html#bathroom">Bathroom Tiles</a></li>
+            <li><a href="products.html#kitchen">Kitchen Tiles</a></li>
+            <li><a href="products.html#parking">Parking Tiles</a></li>
+            <li><a href="products.html#roof">Cool Roof Tiles</a></li>
+          </ul>
+        </div>
+
+        <!-- Quick Links Column -->
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Column -->
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><i class="fas fa-map-marker-alt"></i> 123 Tile Street, Your City, State - 600001</li>
+            <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+            <li><i class="fas fa-envelope"></i> info@shriselvamtiles.com</li>
+            <li><i class="fas fa-clock"></i> Mon - Sat: 9:00 AM - 7:00 PM</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Shri Selvam Tiles & Granites. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SCROLL TO TOP BUTTON ========== -->
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ========== SCRIPTS ========== -->
+  <!-- AOS Animation Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>

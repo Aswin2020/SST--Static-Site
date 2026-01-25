@@ -1,0 +1,85 @@
+# ========================================
+# QUICK START GUIDE
+# Shri Selvam Tiles & Granites Website
+# ========================================
+
+## Step 1: View the Website
+1. Open index.html in your browser
+2. Click through all pages: Home → Products → About → Contact
+
+## Step 2: Add Your Video (Optional)
+1. Place your showroom video at: assets/videos/home-tiles.mp4
+2. Recommended: MP4 format, under 10MB
+3. If no video, website uses online fallback
+
+## Step 3: Setup Email Functionality
+
+### For Python:
+1. Open PowerShell in the 'backend' folder
+2. Run: pip install -r requirements.txt
+3. Copy .env.example to .env
+4. Edit .env with your Gmail credentials
+5. Run: python app.py
+6. Keep terminal open
+
+### For Node.js:
+1. Open PowerShell in the 'backend' folder
+2. Run: npm install
+3. Copy .env.example to .env
+4. Edit .env with your Gmail credentials
+5. Run: npm start
+6. Keep terminal open
+
+## Step 4: Test Contact Form
+1. Open contact.html in browser
+2. Fill the form and submit
+3. Check your email
+
+## Step 5: Customize
+1. Replace phone numbers: Search "+919876543210" in all files
+2. Update business address in footer (all HTML files)
+3. Change Google Maps location in contact.html
+4. Add your product images to assets/images/products/
+
+## ========================================
+## Gmail App Password Setup
+## ========================================
+
+1. Go to: https://myaccount.google.com/
+2. Click "Security"
+3. Enable "2-Step Verification"
+4. Search for "App passwords"
+5. Select "Mail" and "Windows Computer"
+6. Generate password
+7. Copy the 16-character password
+8. Paste in .env file as SMTP_PASSWORD
+
+## ========================================
+## File Structure Reference
+## ========================================
+
+demo-html-site/
+├── index.html         ← Home page (OPEN THIS FIRST)
+├── products.html      ← Products listing
+├── about.html         ← About us
+├── contact.html       ← Contact form
+├── css/style.css      ← All styles
+├── js/main.js         ← All JavaScript
+├── assets/
+│   ├── images/products/  ← Add product images here
+│   └── videos/           ← Add home-tiles.mp4 here
+└── backend/
+    ├── app.py         ← Python server
+    ├── server.js      ← Node.js server
+    └── .env           ← Email credentials (CREATE THIS)
+
+## ========================================
+## Need Help?
+## ========================================
+
+Common Issues:
+1. Form not working → Check backend server is running
+2. Video not showing → Add video file or use online fallback
+3. Email not sending → Verify .env credentials
+
+For detailed guide, see README.md

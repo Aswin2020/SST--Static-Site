@@ -1,0 +1,13 @@
+# Shri Selvam Tiles & Granites - Backend Server Requirements
+
+# Flask web framework
+flask==3.0.0
+
+# CORS support for frontend requests
+flask-cors==4.0.0
+
+# Environment variable management
+python-dotenv==1.0.0
+
+# Email validation (optional but recommended)
+email-validator==2.1.0
