@@ -26,8 +26,8 @@
     <nav class="nav-container">
       <!-- Logo -->
       <a href="index.html" class="logo">
-        <i class="fas fa-th"></i>
-        <span>Shri Selvam Tiles</span>
+        <img src="assets/images/products/logo.jpg" alt="Shri Selvam Tiles" class="logo-image">
+        <span class="shop-name">Shri Selvam Tiles & Granites</span>
       </a>
 
       <!-- Navigation Menu -->
@@ -38,18 +38,6 @@
         <li><a href="contact.html">Contact</a></li>
         <li><a href="tiles-calculator.html">Tiles Calculator</a></li>
       </ul>
-
-      <!-- Action Buttons -->
-      <div class="nav-actions">
-        <a href="tel:+919876543210" class="btn-call">
-          <i class="fas fa-phone"></i>
-          <span>Call Now</span>
-        </a>
-        <a href="https://wa.me/919876543210" target="_blank" class="btn-whatsapp">
-          <i class="fab fa-whatsapp"></i>
-          <span>WhatsApp</span>
-        </a>
-      </div>
 
       <!-- Mobile Toggle -->
       <div class="mobile-toggle">
@@ -84,9 +72,79 @@
   </section>
 
   <!-- ========== PRODUCT CATEGORIES PREVIEW SECTION ========== -->
-  <section class="section products-preview">
+  <section class="section premium-collection">
     <div class="container">
       <h2 class="section-title">Our Premium Collection</h2>
+      <p class="section-subtitle">Discover products that transform spaces into masterpieces</p>
+      
+      <div class="collection-grid">
+        <!-- Card 1: Tiles -->
+        <div class="collection-card" data-aos="fade-up">
+          <div class="card-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" alt="Wall Tiles" class="card-image active">
+            <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=800&q=80" alt="Floor Tiles" class="card-image">
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80" alt="Designer Tiles" class="card-image">
+          </div>
+          <div class="card-label">
+            <h3>Tiles</h3>
+          </div>
+        </div>
+
+        <!-- Card 2: Granite -->
+        <div class="collection-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?w=800&q=80" alt="Polished Granite" class="card-image active">
+            <img src="https://images.unsplash.com/photo-1556912998-c57cc6b63cd7?w=800&q=80" alt="Kitchen Granite" class="card-image">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Dark Granite" class="card-image">
+          </div>
+          <div class="card-label">
+            <h3>Granite</h3>
+          </div>
+        </div>
+
+        <!-- Card 3: Sanitaryware -->
+        <div class="collection-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80" alt="Wash Basins" class="card-image active">
+            <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&q=80" alt="Western Toilets" class="card-image">
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80" alt="Premium Fittings" class="card-image">
+          </div>
+          <div class="card-label">
+            <h3>Sanitaryware</h3>
+          </div>
+        </div>
+
+        <!-- Card 4: Tiles Accessories -->
+        <div class="collection-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="card-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80" alt="Tile Spacers" class="card-image active">
+            <img src="https://images.unsplash.com/photo-1590725121839-892b458a74fe?w=800&q=80" alt="Tile Trims" class="card-image">
+            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80" alt="Leveling Systems" class="card-image">
+          </div>
+          <div class="card-label">
+            <h3>Tiles Accessories</h3>
+          </div>
+        </div>
+
+        <!-- Card 5: Paste, Grout & Epoxy -->
+        <div class="collection-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="card-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1513467535987-fd81bc7d62f8?w=800&q=80" alt="Tile Adhesive" class="card-image active">
+            <img src="https://images.unsplash.com/photo-1604079628040-94301bb21b91?w=800&q=80" alt="Tile Grout" class="card-image">
+            <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&q=80" alt="Epoxy Grout" class="card-image">
+          </div>
+          <div class="card-label">
+            <h3>Paste, Grout & Epoxy</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== OLD PRODUCTS PREVIEW (BACKUP) ========== -->
+  <section class="section products-preview" style="display: none;">
+    <div class="container">
+      <h2 class="section-title">Product Categories</h2>
       <p class="section-subtitle">Discover tiles that transform spaces into masterpieces</p>
       
       <div class="products-grid">
@@ -384,6 +442,33 @@
   <!-- ========== SCRIPTS ========== -->
   <!-- AOS Animation Library -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <!-- Premium Collection Image Rotator -->
+  <script>
+    // Auto-rotate images in premium collection cards
+    function initCollectionRotation() {
+      const cards = document.querySelectorAll('.collection-card');
+      
+      cards.forEach((card, cardIndex) => {
+        const images = card.querySelectorAll('.card-image');
+        let currentIndex = 0;
+        
+        // Rotate images every 3 seconds with offset for each card
+        setInterval(() => {
+          images[currentIndex].classList.remove('active');
+          currentIndex = (currentIndex + 1) % images.length;
+          images[currentIndex].classList.add('active');
+        }, 3000 + (cardIndex * 500)); // Stagger start times
+      });
+    }
+    
+    // Initialize on page load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCollectionRotation);
+    } else {
+      initCollectionRotation();
+    }
+  </script>
   
   <!-- Custom JavaScript -->
   <script src="js/main.js"></script>

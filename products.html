@@ -25,8 +25,8 @@
     <nav class="nav-container">
       <!-- Logo -->
       <a href="index.html" class="logo">
-        <i class="fas fa-th"></i>
-        <span>Shri Selvam Tiles</span>
+        <img src="assets/images/products/logo.jpg" alt="Shri Selvam Tiles" class="logo-image">
+        <span class="shop-name">Shri Selvam Tiles & Granites</span>
       </a>
 
       <!-- Navigation Menu -->
@@ -62,14 +62,45 @@
   <!-- ========== PAGE HEADER ========== -->
   <section class="page-header">
     <h1 class="page-title">Our Premium Collection</h1>
-    <p class="page-subtitle">Explore world-class tiles for every space</p>
+    <p class="page-subtitle">Explore world-class products for every need</p>
+  </section>
+
+  <!-- ========== PRODUCT CATEGORIES ========== -->
+  <section class="product-categories">
+    <div class="container">
+      <div class="category-tabs" data-aos="fade-up">
+        <button class="category-tab active" onclick="showCategory('tiles')">
+          <i class="fas fa-th"></i>
+          <span>Tiles</span>
+        </button>
+        <button class="category-tab" onclick="showCategory('sanitaryware')">
+          <i class="fas fa-toilet"></i>
+          <span>Sanitaryware</span>
+        </button>
+        <button class="category-tab" onclick="showCategory('granites')">
+          <i class="fas fa-gem"></i>
+          <span>Granites</span>
+        </button>
+        <button class="category-tab" onclick="showCategory('accessories')">
+          <i class="fas fa-wrench"></i>
+          <span>Tiles Accessories</span>
+        </button>
+        <button class="category-tab" onclick="showCategory('other')">
+          <i class="fas fa-box"></i>
+          <span>Other Products</span>
+        </button>
+      </div>
+    </div>
   </section>
 
   <!-- ========== PRODUCTS PAGE CONTENT ========== -->
   <section class="products-page">
     <div class="container">
       
-      <!-- ========== FILTERS SECTION ========== -->
+      <!-- ========== TILES CATEGORY ========== -->
+      <div id="tiles-category" class="category-content active">
+        
+        <!-- ========== FILTERS SECTION ========== -->
       <div class="filters-section" data-aos="fade-down">
         <div class="filters-grid">
           <div class="filter-group">
@@ -107,6 +138,14 @@
               <option value="600x1200">600 x 1200 mm</option>
             </select>
           </div>
+
+          <!-- PDF Download Button -->
+          <div class="filter-group pdf-download-wrapper">
+            <label>&nbsp;</label>
+            <a href="assets/images/products/Tiles%20Pdf%201.pdf" onclick="return forceDownloadPDF(event, this.href);" class="btn-pdf-download">
+              <i class="fas fa-file-pdf"></i><span>Download Tiles Catalog PDF</span>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -116,27 +155,19 @@
         <!-- Product 1: Marble Finish Floor Tile -->
         <div class="product-listing-card" data-category="floor" data-brand="kag" data-size="600x600" data-aos="fade-up">
           <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=800&q=80" alt="Marble Finish Floor Tile" loading="lazy">
+            <img src="assets/images/products/Hill creama.png" alt="Hill Creama" loading="lazy">
           </div>
           <div class="product-details">
-            <h3 class="product-name">Marble Finish Floor Tile</h3>
-            <div class="product-specs">
-              <div class="spec-item">
-                <span class="spec-label">Brand:</span>
-                <span>KAG Tiles</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">Size:</span>
-                <span>600 x 600 mm</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">Finish:</span>
-                <span>Glossy</span>
-              </div>
+            <h3 class="product-name">Hill Creama</h3>
+            <p class="product-category">Floor Tiles</p>
+            <p class="product-brand">KAG</p>
+            <p class="product-size">Size: 48x48 inches</p>
+            <div class="product-pricing">
+              <span class="old-price">Rs. 79.00</span>
+              <span class="current-price">Rs. 60.04 / sq ft</span>
             </div>
-            <div class="product-price">₹85 <span>/ sq.ft</span></div>
-            <button class="btn-enquiry" onclick="openEnquiry('Marble Finish Floor Tile')">
-              <i class="fas fa-envelope"></i> Send Enquiry
+            <button class="btn-details" onclick="openProductDetails('hill-creama')">
+              Details
             </button>
           </div>
         </div>
@@ -144,27 +175,19 @@
         <!-- Product 2: Wooden Texture Floor Tile -->
         <div class="product-listing-card" data-category="floor" data-brand="somany" data-size="600x1200" data-aos="fade-up" data-aos-delay="100">
           <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80" alt="Wooden Texture Floor Tile" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80" alt="Wood Grain" loading="lazy">
           </div>
           <div class="product-details">
-            <h3 class="product-name">Wooden Texture Floor Tile</h3>
-            <div class="product-specs">
-              <div class="spec-item">
-                <span class="spec-label">Brand:</span>
-                <span>Somany</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">Size:</span>
-                <span>600 x 1200 mm</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">Finish:</span>
-                <span>Matt</span>
-              </div>
+            <h3 class="product-name">Wood Grain</h3>
+            <p class="product-category">Floor Tiles</p>
+            <p class="product-brand">Somany</p>
+            <p class="product-size">Size: 24x48 inches</p>
+            <div class="product-pricing">
+              <span class="old-price">Rs. 125.00</span>
+              <span class="current-price">Rs. 95.50 / sq ft</span>
             </div>
-            <div class="product-price">₹120 <span>/ sq.ft</span></div>
-            <button class="btn-enquiry" onclick="openEnquiry('Wooden Texture Floor Tile')">
-              <i class="fas fa-envelope"></i> Send Enquiry
+            <button class="btn-details" onclick="openProductDetails('wood-grain')">
+              Details
             </button>
           </div>
         </div>
@@ -172,27 +195,19 @@
         <!-- Product 3: Vitrified Floor Tile -->
         <div class="product-listing-card" data-category="floor" data-brand="kajaria" data-size="800x800" data-aos="fade-up" data-aos-delay="200">
           <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=80" alt="Vitrified Floor Tile" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=80" alt="Polished Vitrified" loading="lazy">
           </div>
           <div class="product-details">
-            <h3 class="product-name">Vitrified Floor Tile</h3>
-            <div class="product-specs">
-              <div class="spec-item">
-                <span class="spec-label">Brand:</span>
-                <span>Kajaria</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">Size:</span>
-                <span>800 x 800 mm</span>
-              </div>
-              <div class="spec-item">
-                <span class="spec-label">Finish:</span>
-                <span>High Gloss</span>
-              </div>
+            <h3 class="product-name">Polished Vitrified</h3>
+            <p class="product-category">Floor Tiles</p>
+            <p class="product-brand">Kajaria</p>
+            <p class="product-size">Size: 32x32 inches</p>
+            <div class="product-pricing">
+              <span class="old-price">Rs. 99.00</span>
+              <span class="current-price">Rs. 75.25 / sq ft</span>
             </div>
-            <div class="product-price">₹95 <span>/ sq.ft</span></div>
-            <button class="btn-enquiry" onclick="openEnquiry('Vitrified Floor Tile')">
-              <i class="fas fa-envelope"></i> Send Enquiry
+            <button class="btn-details" onclick="openProductDetails('polished-vitrified')">
+              Details
             </button>
           </div>
         </div>
@@ -450,6 +465,45 @@
         </div>
 
       </div>
+      </div>
+      <!-- End Tiles Category -->
+
+      <!-- ========== SANITARYWARE CATEGORY ========== -->
+      <div id="sanitaryware-category" class="category-content">
+        <div class="coming-soon">
+          <i class="fas fa-toilet" style="font-size: 4rem; color: var(--color-gold); margin-bottom: 20px;"></i>
+          <h2>Sanitaryware Collection</h2>
+          <p>Coming Soon! Premium bathroom fixtures and fittings.</p>
+        </div>
+      </div>
+
+      <!-- ========== GRANITES CATEGORY ========== -->
+      <div id="granites-category" class="category-content">
+        <div class="coming-soon">
+          <i class="fas fa-gem" style="font-size: 4rem; color: var(--color-gold); margin-bottom: 20px;"></i>
+          <h2>Granites Collection</h2>
+          <p>Coming Soon! Exquisite granite slabs and countertops.</p>
+        </div>
+      </div>
+
+      <!-- ========== ACCESSORIES CATEGORY ========== -->
+      <div id="accessories-category" class="category-content">
+        <div class="coming-soon">
+          <i class="fas fa-wrench" style="font-size: 4rem; color: var(--color-gold); margin-bottom: 20px;"></i>
+          <h2>Tiles Accessories</h2>
+          <p>Coming Soon! Complete range of installation tools and accessories.</p>
+        </div>
+      </div>
+
+      <!-- ========== OTHER PRODUCTS CATEGORY ========== -->
+      <div id="other-category" class="category-content">
+        <div class="coming-soon">
+          <i class="fas fa-box" style="font-size: 4rem; color: var(--color-gold); margin-bottom: 20px;"></i>
+          <h2>Other Products</h2>
+          <p>Coming Soon! Explore our additional product range.</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -516,6 +570,66 @@
   
   <!-- Custom JavaScript -->
   <script src="js/main.js"></script>
+
+  <script>
+  // Product Details Function
+  function openProductDetails(productId) {
+    window.location.href = 'product-details.html?product=' + productId;
+  }
+
+  // Category Switching Function
+  function showCategory(categoryName) {
+    // Hide all category contents
+    const allCategories = document.querySelectorAll('.category-content');
+    allCategories.forEach(cat => cat.classList.remove('active'));
+    
+    // Remove active class from all tabs
+    const allTabs = document.querySelectorAll('.category-tab');
+    allTabs.forEach(tab => tab.classList.remove('active'));
+    
+    // Show selected category
+    const selectedCategory = document.getElementById(categoryName + '-category');
+    if (selectedCategory) {
+      selectedCategory.classList.add('active');
+    }
+    
+    // Add active class to clicked tab
+    event.target.closest('.category-tab').classList.add('active');
+  }
+
+  // Force PDF Download Function
+  function forceDownloadPDF(e, url) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Create a temporary iframe to download the file
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = url;
+    
+    // Set download attribute via iframe
+    iframe.onload = function() {
+      setTimeout(() => {
+        document.body.removeChild(iframe);
+      }, 1000);
+    };
+    
+    document.body.appendChild(iframe);
+    
+    // Also try direct download approach
+    setTimeout(() => {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Tiles_Catalog.pdf';
+      a.target = '_blank';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }, 100);
+    
+    return false;
+  }
+  </script>
 
 </body>
 </html>

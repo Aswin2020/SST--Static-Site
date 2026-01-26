@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Product Details - Shri Selvam Tiles & Granites">
+  <title>Product Details | Shri Selvam Tiles & Granites</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    .product-details-page {
+      padding: 120px 0 80px;
+      background: var(--color-light-grey);
+      min-height: 100vh;
+    }
+
+    .product-details-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--color-gold);
+      font-weight: 600;
+      margin-bottom: 30px;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .back-link:hover {
+      gap: 12px;
+    }
+
+    .product-detail-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      background: var(--color-white);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .images-row {
+      display: grid;
+      grid-template-columns: 35% 65%;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .product-images {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .main-product-image {
+      width: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .main-product-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .additional-product-image {
+      width: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .additional-product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      min-height: 400px;
+    }
+
+    .product-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-info h1 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--color-black);
+      margin-bottom: 8px;
+    }
+
+    .product-info .category {
+      font-size: 0.9rem;
+      color: var(--color-grey);
+      margin-bottom: 4px;
+    }
+
+    .product-info .brand {
+      font-size: 1rem;
+      color: var(--color-black);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .product-info .size {
+      font-size: 0.85rem;
+      color: var(--color-grey);
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--color-light-grey);
+    }
+
+    .pricing-detail {
+      margin-bottom: 30px;
+    }
+
+    .pricing-detail .old-price {
+      font-size: 1rem;
+      color: var(--color-grey);
+      text-decoration: line-through;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .pricing-detail .current-price {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--color-gold);
+      display: block;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .btn-contact {
+      flex: 1;
+      background: var(--color-black);
+      color: var(--color-white);
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-contact:hover {
+      background: var(--color-gold);
+      color: var(--color-black);
+    }
+
+    .btn-whatsapp-detail {
+      flex: 1;
+      background: #25D366;
+      color: var(--color-white);
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-whatsapp-detail:hover {
+      background: #128C7E;
+    }
+
+    @media (max-width: 768px) {
+      .images-row {
+        grid-template-columns: 1fr;
+      }
+
+      .product-detail-grid {
+        padding: 25px;
+      }
+
+      .product-info h1 {
+        font-size: 2rem;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER & NAVIGATION ========== -->
+  <header class="header">
+    <nav class="nav-container">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <img src="assets/images/products/logo.jpg" alt="Shri Selvam Tiles" class="logo-image">
+        <span class="shop-name">Shri Selvam Tiles & Granites</span>
+      </a>
+
+      <!-- Navigation Menu -->
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html" class="active">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="tiles-calculator.html">Tiles Calculator</a></li>
+      </ul>
+
+      <!-- Action Buttons -->
+      <div class="nav-actions">
+        <a href="tel:+919876543210" class="btn-call">
+          <i class="fas fa-phone"></i>
+          <span>Call Now</span>
+        </a>
+        <a href="https://wa.me/919876543210" target="_blank" class="btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <div class="mobile-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========== PRODUCT DETAILS SECTION ========== -->
+  <section class="product-details-page">
+    <div class="product-details-container">
+      <a href="products.html" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Products
+      </a>
+
+      <div class="product-detail-grid">
+        <!-- Images Row -->
+        <div class="images-row">
+          <!-- Image 1 - Small on Left -->
+          <div class="main-product-image">
+            <img id="mainImage" src="" alt="Product Image">
+          </div>
+
+          <!-- Image 2 - Large on Right -->
+          <div class="additional-product-image" id="additionalImageContainer" style="display: none;">
+            <img id="additionalImage" src="" alt="Product Detail Image">
+          </div>
+        </div>
+
+        <!-- Product Information Below -->
+        <div class="product-info">
+          <h1 id="productName"></h1>
+          <p class="category" id="productCategory"></p>
+          <p class="brand" id="productBrand"></p>
+          <p class="size" id="productSize"></p>
+
+          <div class="pricing-detail">
+            <span class="old-price" id="oldPrice"></span>
+            <span class="current-price" id="currentPrice"></span>
+          </div>
+
+          <div class="action-buttons">
+            <a href="tel:+919876543210" class="btn-contact">
+              <i class="fas fa-phone"></i> Call Now
+            </a>
+            <a href="https://wa.me/919876543210" target="_blank" class="btn-whatsapp-detail">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Shri Selvam Tiles & Granites. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="js/main.js"></script>
+
+  <script>
+    // Product data configuration
+    const productData = {
+      'hill-creama': {
+        name: 'Hill Creama',
+        category: 'Floor Tiles',
+        brand: 'KAG',
+        size: 'Size: 48x48 inches',
+        oldPrice: 'Rs. 79.00',
+        currentPrice: 'Rs. 60.04 / sq ft',
+        mainImage: 'assets/images/products/Hill creama.png',
+        additionalImage: 'assets/images/products/HILL CREMA image2.jpeg',
+        description: 'Hill Creama is a premium floor tile featuring a sophisticated cream-toned marble effect. Perfect for creating elegant and timeless living spaces. The natural stone appearance adds luxury to any room while maintaining easy maintenance.',
+        features: [
+          'Premium quality vitrified tiles',
+          'Highly durable and scratch-resistant',
+          'Easy to clean and maintain',
+          'Water and stain resistant',
+          'Suitable for both residential and commercial use',
+          'Low water absorption rate',
+          'Available in large format for seamless look'
+        ]
+      },
+      'wood-grain': {
+        name: 'Wood Grain',
+        category: 'Floor Tiles',
+        brand: 'Somany',
+        size: 'Size: 24x48 inches',
+        oldPrice: 'Rs. 125.00',
+        currentPrice: 'Rs. 95.50 / sq ft',
+        mainImage: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80',
+        additionalImage: null,
+        description: 'Wood Grain tiles offer the natural beauty of wood with the durability of ceramic. Perfect for those who love the warmth of wood flooring without the maintenance concerns.',
+        features: [
+          'Realistic wood texture',
+          'Highly durable ceramic material',
+          'Water resistant',
+          'Easy maintenance',
+          'Suitable for high traffic areas'
+        ]
+      },
+      'polished-vitrified': {
+        name: 'Polished Vitrified',
+        category: 'Floor Tiles',
+        brand: 'Kajaria',
+        size: 'Size: 32x32 inches',
+        oldPrice: 'Rs. 99.00',
+        currentPrice: 'Rs. 75.25 / sq ft',
+        mainImage: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=80',
+        additionalImage: null,
+        description: 'Polished Vitrified tiles with a high-gloss finish that reflects light beautifully, making spaces appear larger and brighter.',
+        features: [
+          'High gloss polished finish',
+          'Low porosity',
+          'Stain resistant',
+          'Durable and long-lasting',
+          'Easy to clean'
+        ]
+      }
+    };
+
+    // Get product ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product');
+
+    // Load product details
+    if (productId && productData[productId]) {
+      const product = productData[productId];
+      
+      document.getElementById('productName').textContent = product.name;
+      document.getElementById('productCategory').textContent = product.category;
+      document.getElementById('productBrand').textContent = product.brand;
+      document.getElementById('productSize').textContent = product.size;
+      document.getElementById('oldPrice').textContent = product.oldPrice;
+      document.getElementById('currentPrice').textContent = product.currentPrice;
+      document.getElementById('mainImage').src = product.mainImage;
+      document.getElementById('mainImage').alt = product.name;
+      
+      // Show additional image if available
+      if (product.additionalImage) {
+        document.getElementById('additionalImageContainer').style.display = 'block';
+        document.getElementById('additionalImage').src = product.additionalImage;
+        document.getElementById('additionalImage').alt = product.name + ' - Detail View';
+      }
+      
+      // Update page title
+      document.title = product.name + ' | Shri Selvam Tiles & Granites';
+    } else {
+      // Product not found, redirect to products page
+      window.location.href = 'products.html';
+    }
+  </script>
+
+</body>
+</html>
