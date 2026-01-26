@@ -1353,15 +1353,28 @@ ul {
     left: -100%;
     width: 100%;
     height: calc(100vh - 80px);
-    background: var(--color-black);
+    background: var(--color-white);
     flex-direction: column;
     justify-content: flex-start;
     padding: 40px 20px;
     transition: left 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    z-index: 999;
   }
 
   .nav-menu.active {
     left: 0;
+  }
+  
+  .nav-menu a {
+    color: var(--color-black);
+    font-size: 1.1rem;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--color-light-grey);
+  }
+  
+  .nav-menu a.active {
+    color: var(--color-gold);
   }
 
   .nav-actions {
