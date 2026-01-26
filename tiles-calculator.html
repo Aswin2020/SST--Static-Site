@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Professional tile calculator for accurate area and box estimation. Calculate tiles needed for your space.">
+<title>Tiles Calculator | Shri Selvam Tiles & Granites</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="css/style.css">
+
+<!-- AOS Animation Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', 'Poppins', sans-serif;
+        background: #1a1a2e;
+        color: #000;
+        overflow: hidden;
+    }
+
+    .calculator-container {
+        padding-top: 70px;
+        height: 100vh;
+        background: #1a1a2e;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .calculator-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        z-index: 0;
+    }
+
+    @keyframes gradientShift {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.8; }
+    }
+
+    .main-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: calc(100vh - 70px);
+        max-width: 100%;
+        gap: 0;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* =============== STEP PANELS =============== */
+    .step-panel {
+        background: transparent;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 24px;
+        padding: 20px;
+        position: relative;
+        overflow-y: hidden;
+        max-height: 100%;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .step-panel:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        border-color: rgba(76, 175, 80, 0.4);
+    }
+
+    .step-panel::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .step-panel::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+
+    .step-panel::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #4CAF50, #45a049);
+        border-radius: 10px;
+    }
+
+    .left-panel {
+        margin-right: 10px;
+        position: relative;
+        background-image: url('assets/images/tiles-background.jpg.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .left-panel::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 24px;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .left-panel > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .right-panel {
+        margin-left: 10px;
+        position: relative;
+        background-image: url('assets/images/tiles-background.jpg.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .right-panel::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 24px;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .right-panel > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .step-header {
+        position: absolute;
+        top: -8px;
+        left: 30px;
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        padding: 12px 28px;
+        font-size: 1.6rem;
+        font-weight: 900;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 16px;
+        box-shadow: 
+            0 8px 20px rgba(76, 175, 80, 0.4),
+            0 4px 12px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        animation: headerGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes headerGlow {
+        0%, 100% { box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3); }
+        50% { box-shadow: 0 8px 30px rgba(76, 175, 80, 0.6), 0 4px 16px rgba(0, 0, 0, 0.4); }
+    }
+
+    .panel-content {
+        margin-top: 25px;
+    }
+
+    /* =============== FORM ELEMENTS =============== */
+    .input-row {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 12px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #FFFFFF !important;
+        margin-bottom: 10px;
+        text-align: center;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        letter-spacing: 0.5px;
+    }
+
+    .form-input {
+        width: 110px;
+        height: 50px;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(76, 175, 80, 0.3);
+        border-radius: 12px;
+        color: #FFFFFF;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-align: center;
+        font-family: 'Inter', sans-serif;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .form-input:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.18);
+        border-color: #4CAF50;
+        box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2), 0 8px 20px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .form-input:read-only {
+        background: rgba(255, 255, 255, 0.95);
+        color: #2c5364;
+        border-color: rgba(255, 255, 255, 0.5);
+        cursor: not-allowed;
+        font-weight: 700;
+    }
+
+    .form-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Tile Size Dropdown */
+    .tile-size-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin: 12px 0;
+    }
+
+    .tile-size-group .form-label {
+        margin-bottom: 0;
+        font-size: 1rem;
+    }
+
+    #tileSize {
+        width: 160px;
+        height: 50px;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(76, 175, 80, 0.3);
+        border-radius: 12px;
+        color: #FFFFFF;
+        font-size: 0.95rem;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    #tileSize:focus {
+        outline: none;
+        border-color: #4CAF50;
+        box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2);
+    }
+
+    #tileSize option {
+        background: #2c5364;
+        color: #FFFFFF;
+        padding: 10px;
+    }
+
+    /* =============== BUTTONS =============== */
+    .btn {
+        padding: 14px 40px;
+        border: none;
+        border-radius: 14px;
+        font-size: 1.05rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-family: 'Inter', sans-serif;
+        margin: 15px auto;
+        display: block;
+        letter-spacing: 0.5px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+
+    .btn:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    .btn-calculate {
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        color: #FFFFFF;
+        box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+    }
+
+    .btn-calculate:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px rgba(76, 175, 80, 0.5);
+    }
+
+    .btn-calculate:active {
+        transform: translateY(-1px);
+    }
+
+    .btn-final {
+        background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        color: #FFFFFF;
+        box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
+    }
+
+    .btn-final:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px rgba(33, 150, 243, 0.5);
+    }
+
+    .btn-final:active {
+        transform: translateY(-1px);
+    }
+
+    .btn-clear {
+        background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+        color: #FFFFFF;
+        box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+    }
+
+    .btn-clear:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px rgba(255, 152, 0, 0.5);
+    }
+
+    .btn-clear:active {
+        transform: translateY(-1px);
+    }
+
+    /* =============== OUTPUT SECTION =============== */
+    .output-section {
+        background: transparent;
+        backdrop-filter: none;
+        border: none;
+        border-radius: 16px;
+        padding: 18px;
+        margin: 18px 0;
+        text-align: center;
+        box-shadow: none;
+        transition: all 0.3s ease;
+    }
+
+    .output-section:hover {
+        background: transparent;
+        border-color: transparent;
+    }
+
+    .output-label {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #FFFFFF;
+        margin-bottom: 12px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        letter-spacing: 1px;
+        background: linear-gradient(135deg, #4CAF50, #2196F3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .output-row {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+        margin-top: 10px;
+    }
+
+    .output-item {
+        flex: 1;
+        text-align: center;
+    }
+
+    .output-item-label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 8px;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        letter-spacing: 0.3px;
+    }
+
+    .total-boxes-section {
+        background: transparent;
+        backdrop-filter: none;
+        border: none;
+        border-radius: 16px;
+        padding: 16px;
+        margin: 15px 0;
+        text-align: center;
+        box-shadow: none;
+        transition: all 0.3s ease;
+    }
+
+    .total-boxes-section:hover {
+        background: transparent;
+        border-color: transparent;
+    }
+
+    .total-boxes-label {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        letter-spacing: 0.8px;
+    }
+
+    /* =============== STEP 2 LAYOUT =============== */
+    .step2-header {
+        position: absolute;
+        top: -8px;
+        right: 30px;
+        background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        padding: 12px 28px;
+        font-size: 1.6rem;
+        font-weight: 900;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 16px;
+        box-shadow: 
+            0 8px 20px rgba(33, 150, 243, 0.4),
+            0 4px 12px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        animation: headerGlow2 3s ease-in-out infinite;
+    }
+
+    @keyframes headerGlow2 {
+        0%, 100% { box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3); }
+        50% { box-shadow: 0 8px 30px rgba(33, 150, 243, 0.6), 0 4px 16px rgba(0, 0, 0, 0.4); }
+    }
+
+    .distribution-grid {
+        display: grid;
+        grid-template-columns: auto 1fr 1fr;
+        gap: 10px;
+        align-items: center;
+        margin: 18px 0;
+        padding: 12px;
+        background: transparent;
+        border-radius: 12px;
+    }
+
+    .row-label {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.95);
+        text-align: right;
+        padding-right: 12px;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+        letter-spacing: 0.5px;
+    }
+
+    .column-header {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.95);
+        text-align: left;
+        background: transparent;
+        backdrop-filter: none;
+        border: none;
+        border-radius: 10px;
+        padding: 8px;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+        letter-spacing: 0.3px;
+    }
+
+    .distribution-input {
+        width: 100%;
+        max-width: 90px;
+        height: 36px;
+        padding: 6px;
+        background: rgba(76, 175, 80, 0.25);
+        backdrop-filter: blur(10px);
+        border: 1.5px solid rgba(76, 175, 80, 0.5);
+        border-radius: 10px;
+        color: #FFFFFF;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .distribution-input:focus {
+        outline: none;
+        background: rgba(76, 175, 80, 0.35);
+        border-color: #4CAF50;
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2), 0 6px 16px rgba(0, 0, 0, 0.3);
+        transform: translateY(-1px);
+    }
+
+    .distribution-output {
+        width: 100%;
+        max-width: 90px;
+        height: 36px;
+        padding: 6px;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1.5px solid rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        color: #2c5364;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        cursor: not-allowed;
+        transition: all 0.3s ease;
+    }
+
+    .summary-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin: 18px 0;
+        padding: 12px;
+        background: transparent;
+        border-radius: 12px;
+    }
+
+    .summary-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .summary-label {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.95);
+        margin-bottom: 6px;
+        text-align: left;
+        background: transparent;
+        backdrop-filter: none;
+        border: none;
+        border-radius: 8px;
+        padding: 6px 8px;
+        width: 100%;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+        letter-spacing: 0.3px;
+    }
+
+    .summary-input {
+        width: 100%;
+        max-width: 90px;
+        height: 36px;
+        padding: 6px;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1.5px solid rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        color: #2c5364;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        cursor: not-allowed;
+        transition: all 0.3s ease;
+    }
+
+    .sqft-section {
+        margin: 12px 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        padding: 12px;
+        background: transparent;
+        border-radius: 12px;
+    }
+
+    .sqft-label {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.95);
+        flex-shrink: 0;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+        letter-spacing: 0.5px;
+    }
+
+    .sqft-input {
+        width: 110px;
+        height: 36px;
+        padding: 6px;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1.5px solid rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        color: #2c5364;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        cursor: not-allowed;
+        transition: all 0.3s ease;
+    }
+
+    /* =============== RESPONSIVE =============== */
+    @media (max-width: 1024px) {
+        .main-container {
+            grid-template-columns: 1fr;
+            height: auto;
+            overflow-y: auto;
+        }
+        
+        .left-panel, .right-panel {
+            margin: 0 0 10px 0;
+        }
+        
+        .calculator-container {
+            height: auto;
+            overflow-y: auto;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .distribution-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .row-label {
+            text-align: center;
+            padding-right: 0;
+        }
+        
+        .summary-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Hide old elements */
+    .center-panel,
+    .tile-selector,
+    .panel-header,
+    .calculator-section {
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- ========== HEADER & NAVIGATION ========== -->
+<header class="header">
+  <nav class="nav-container">
+    <!-- Logo -->
+    <a href="index.html" class="logo">
+      <i class="fas fa-th"></i>
+      <span>Shri Selvam Tiles</span>
+    </a>
+
+    <!-- Navigation Menu -->
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="tiles-calculator.html" class="active">Tiles Calculator</a></li>
+    </ul>
+
+    <!-- Action Buttons -->
+    <div class="nav-actions">
+      <a href="tel:+919876543210" class="btn-call">
+        <i class="fas fa-phone"></i>
+        <span>Call Now</span>
+      </a>
+      <a href="https://wa.me/919876543210" target="_blank" class="btn-whatsapp">
+        <i class="fab fa-whatsapp"></i>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <div class="mobile-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+</header>
+
+<div class="calculator-container">
+<div class="main-container">
+    
+    <!-- =============== STEP 1 - LEFT PANEL =============== -->
+    <div class="left-panel step-panel">
+        <div class="step-header">Step1</div>
+        
+        <div class="panel-content">
+            <!-- Length and Height Inputs -->
+            <div class="input-row">
+                <div class="form-group">
+                    <label class="form-label" style="color: #FFFFFF !important;">Length</label>
+                    <input type="number" id="LenInpBox" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" style="color: #FFFFFF !important;">Height</label>
+                    <input type="number" id="HeiInpBox" class="form-input" placeholder="">
+                </div>
+            </div>
+
+            <!-- Size of Tile Dropdown -->
+            <div class="tile-size-group">
+                <label class="form-label" style="color: #FFFFFF !important;">Size of Tile</label>
+                <select id="tileSize" class="form-input">
+                    <option value="15 * 10">15 * 10</option>
+                    <option value="18 * 12">18 * 12</option>
+                    <option value="24 * 12">24 * 12</option>
+                </select>
+            </div>
+
+            <!-- Calculate Button -->
+            <button class="btn btn-calculate" onclick="executeCalc()">Calculate</button>
+
+            <!-- Output Section -->
+            <div class="output-section">
+                <div class="output-label">Output</div>
+                <div class="output-row">
+                    <div class="output-item">
+                        <div class="output-item-label">Length - Pcs</div>
+                        <input type="text" id="LenPcsOP" class="form-input" readonly>
+                    </div>
+                    <div class="output-item">
+                        <div class="output-item-label">Height - Pcs</div>
+                        <input type="text" id="HeiPcsOP" class="form-input" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Boxes -->
+            <div class="total-boxes-section">
+                <div class="total-boxes-label">Total Boxes</div>
+                <input type="text" id="TotalBox" class="form-input" readonly style="margin-top: 10px; background: #FFFFFF;">
+            </div>
+        </div>
+    </div>
+
+    <!-- =============== STEP 2 - RIGHT PANEL =============== -->
+    <div class="right-panel step-panel">
+        <div class="step2-header">Step2</div>
+        
+        <div class="panel-content">
+            <!-- Distribution Grid -->
+            <div class="distribution-grid">
+                <!-- Header Row -->
+                <div></div>
+                <div class="column-header">Height Adjustment</div>
+                <div class="column-header">Final Box Split up</div>
+
+                <!-- Light Row -->
+                <div class="row-label">Light</div>
+                <input type="number" id="L" class="distribution-input" placeholder="">
+                <input type="text" id="LFinal" class="distribution-output" readonly>
+
+                <!-- HL1 Row -->
+                <div class="row-label">HL1</div>
+                <input type="number" id="HL1" class="distribution-input" placeholder="">
+                <input type="text" id="HL1Final" class="distribution-output" readonly>
+
+                <!-- HL2 Row -->
+                <div class="row-label">HL 2</div>
+                <input type="number" id="HL2" class="distribution-input" placeholder="">
+                <input type="text" id="HL2Final" class="distribution-output" readonly>
+
+                <!-- HL3 Row -->
+                <div class="row-label">HL 3</div>
+                <input type="number" id="HL3" class="distribution-input" placeholder="">
+                <input type="text" id="HL3Final" class="distribution-output" readonly>
+
+                <!-- Dark Row -->
+                <div class="row-label">Dark</div>
+                <input type="number" id="Dark" class="distribution-input" placeholder="">
+                <input type="text" id="DFinal" class="distribution-output" readonly>
+            </div>
+
+            <!-- Summary Grid -->
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-label">Total Height Verification</div>
+                    <input type="text" id="TotalVerf" class="summary-input" readonly>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Total BoxVerification</div>
+                    <input type="text" id="TotalVerfBox1" class="summary-input" readonly>
+                </div>
+            </div>
+
+            <!-- Total Sq Ft -->
+            <div class="sqft-section">
+                <div class="sqft-label">Total Sq Ft</div>
+                <input type="text" id="TotalSqft" class="sqft-input" readonly>
+            </div>
+
+            <!-- Final Calculate and Clear Buttons -->
+            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                <button class="btn btn-final" onclick="finalExecute()" style="flex: 1;">Final Calculate</button>
+                <button class="btn btn-clear" onclick="clearAll()" style="flex: 1;">Clear</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<!-- Footer and Scroll button hidden on calculator page -->
+
+<input type="hidden" id="tileSize" value="15 * 10">
+
+<script>
+// ========================================
+// CALCULATION LOGIC - DO NOT MODIFY
+// ========================================
+
+function executeCalc() {
+    const tileSize = document.getElementById("tileSize").value;
+    const len = Number(document.getElementById("LenInpBox").value);
+    const hei = Number(document.getElementById("HeiInpBox").value);
+
+    let lenPcs, heiPcs, totalBox;
+
+    if (tileSize === "15 * 10") {
+        lenPcs = (len * 12) / 15;
+        heiPcs = (hei * 12) / 10;
+        totalBox = Number((lenPcs * heiPcs).toFixed(2));
+        totalBox = Math.round(totalBox / 8);
+    }
+
+    if (tileSize === "18 * 12") {
+        lenPcs = (len * 12) / 18;
+        heiPcs = (hei * 12) / 12;
+        totalBox = Number((lenPcs * heiPcs).toFixed(2));
+        totalBox = Math.round(totalBox / 6);
+    }
+
+    if (tileSize === "24 * 12") {
+        lenPcs = (len * 12) / 24;
+        heiPcs = (hei * 12) / 12;
+        totalBox = Number((lenPcs * heiPcs).toFixed(2));
+        totalBox = Math.round(totalBox / 5);
+    }
+
+    LenPcsOP.value = lenPcs;
+    HeiPcsOP.value = heiPcs;
+    TotalBox.value = totalBox;
+}
+
+function finalExecute() {
+    const tileSize = tileSizeEl.value;
+    const lenPcs = Number(LenPcsOP.value);
+
+    const L = Number(document.getElementById("L").value);
+    const HL1 = Number(document.getElementById("HL1").value);
+    const HL2 = Number(document.getElementById("HL2").value);
+    const HL3 = Number(document.getElementById("HL3").value);
+    const Dark = Number(document.getElementById("Dark").value);
+
+    let divisor, sqftFactor;
+
+    if (tileSize === "15 * 10") { divisor = 8; sqftFactor = 8.07; }
+    if (tileSize === "18 * 12") { divisor = 6; sqftFactor = 8.72; }
+    if (tileSize === "24 * 12") { divisor = 5; sqftFactor = 9.69; }
+
+    // Calculate individual box values for each category
+    const LFinal = (lenPcs * L) / divisor;
+    const HL1Final = (lenPcs * HL1) / divisor;
+    const HL2Final = (lenPcs * HL2) / divisor;
+    const HL3Final = (lenPcs * HL3) / divisor;
+    const DFinal = (lenPcs * Dark) / divisor;
+
+    const totalVerf = L + HL1 + HL2 + HL3 + Dark;
+    const totalBoxes = LFinal + HL1Final + HL2Final + HL3Final + DFinal;
+
+    // Display individual box values
+    document.getElementById("LFinal").value = LFinal.toFixed(2);
+    document.getElementById("HL1Final").value = HL1Final.toFixed(2);
+    document.getElementById("HL2Final").value = HL2Final.toFixed(2);
+    document.getElementById("HL3Final").value = HL3Final.toFixed(2);
+    document.getElementById("DFinal").value = DFinal.toFixed(2);
+
+    TotalVerf.value = totalVerf;
+    TotalVerfBox1.value = Math.round(totalBoxes);
+    TotalSqft.value = Math.round(totalBoxes) * sqftFactor;
+}
+
+function clearAll() {
+    // Clear all input fields
+    document.getElementById("LenInpBox").value = "";
+    document.getElementById("HeiInpBox").value = "";
+    document.getElementById("L").value = "";
+    document.getElementById("HL1").value = "";
+    document.getElementById("HL2").value = "";
+    document.getElementById("HL3").value = "";
+    document.getElementById("Dark").value = "";
+    
+    // Clear all output fields
+    document.getElementById("LenPcsOP").value = "";
+    document.getElementById("HeiPcsOP").value = "";
+    document.getElementById("TotalBox").value = "";
+    document.getElementById("LFinal").value = "";
+    document.getElementById("HL1Final").value = "";
+    document.getElementById("HL2Final").value = "";
+    document.getElementById("HL3Final").value = "";
+    document.getElementById("DFinal").value = "";
+    document.getElementById("TotalVerf").value = "";
+    document.getElementById("TotalVerfBox1").value = "";
+    document.getElementById("TotalSqft").value = "";
+    
+    // Reset tile size to default
+    document.getElementById("tileSize").value = "15 * 10";
+    updateTileSelection("15 * 10");
+}
+
+const tileSizeEl = document.getElementById("tileSize");
+
+// ========================================
+// UI ENHANCEMENTS - Interactive Features
+// ========================================
+
+// Input validation with visual feedback
+const numberInputs = document.querySelectorAll('input[type="number"]');
+numberInputs.forEach(input => {
+    input.addEventListener('input', function() {
+        if (this.value < 0) {
+            this.style.borderColor = '#ff0000';
+        } else {
+            this.style.borderColor = '#000';
+        }
+    });
+    
+    // Add keyboard accessibility
+    input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const nextInput = this.closest('.form-group')?.nextElementSibling?.querySelector('input');
+            if (nextInput) nextInput.focus();
+        }
+    });
+});
+</script>
+
+<!-- ========== ADDITIONAL SCRIPTS ========== -->
+<!-- AOS Animation Library -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<!-- Custom JavaScript -->
+<script src="js/main.js"></script>
+
+</body>
+</html>
