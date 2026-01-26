@@ -188,7 +188,7 @@ ul {
 .mobile-toggle span {
   width: 25px;
   height: 3px;
-  background: var(--color-gold);
+  background: var(--color-black);
   border-radius: 3px;
   transition: var(--transition);
 }
