@@ -9,7 +9,7 @@ const WhatsAppCart = {
     whatsappNumber: '919942929527',
     storageKey: 'tilesWhatsAppCart',
     // Your website URL - update this when you deploy the site
-    websiteUrl: 'https://yourwebsite.com/'
+    websiteUrl: 'https://shriselvamtiles.netlify.app/'
   },
 
   // Initialize cart
