@@ -118,8 +118,9 @@ const WhatsAppCart = {
       
       if (product.images && product.images.length > 0) {
         product.images.forEach(img => {
-          // Convert relative path to full web URL
-          const fullUrl = this.config.websiteUrl + img;
+          // Encode the image path to handle spaces and special characters
+          const encodedPath = img.split('/').map(part => encodeURIComponent(part)).join('/');
+          const fullUrl = this.config.websiteUrl + encodedPath;
           message += `${fullUrl}\n`;
         });
       }
