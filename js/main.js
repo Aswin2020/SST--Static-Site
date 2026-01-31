@@ -224,7 +224,7 @@ function initEnquiryButtons() {
 // Global function for product enquiries
 function openEnquiry(productName) {
   const message = `Hi, I'm interested in ${productName}. Please provide more details and pricing.`;
-  const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+  const whatsappUrl = `https://wa.me/919942929527?text=${encodeURIComponent(message)}`;
   window.open(whatsappUrl, '_blank');
 }
 

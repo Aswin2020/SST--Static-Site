@@ -659,6 +659,7 @@ ul {
 
 .product-details {
   padding: 25px;
+  padding-bottom: 20px;
 }
 
 .product-name {
@@ -710,20 +711,22 @@ ul {
 
 .btn-details {
   width: 100%;
-  background: var(--color-black);
+  background: #1a1a1a;
   color: var(--color-white);
-  padding: 12px;
+  padding: 14px 20px;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.3s ease;
+  margin-bottom: 12px;
 }
 
 .btn-details:hover {
   background: var(--color-gold);
   color: var(--color-black);
+  transform: scale(1.02);
 }
 
 /* Keep old class for backward compatibility */

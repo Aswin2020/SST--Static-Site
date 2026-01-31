@@ -14,6 +14,7 @@
   
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/whatsapp-cart.css">
   
   <style>
     .product-details-page {
@@ -46,17 +47,17 @@
     .product-detail-grid {
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 20px;
       background: var(--color-white);
       border-radius: 20px;
-      padding: 40px;
+      padding: 30px;
       box-shadow: var(--shadow-lg);
     }
 
     .images-row {
       display: grid;
-      grid-template-columns: 35% 65%;
-      gap: 30px;
+      grid-template-columns: 30% 70%;
+      gap: 20px;
       align-items: start;
     }
 
@@ -71,11 +72,20 @@
       border-radius: 15px;
       overflow: hidden;
       box-shadow: var(--shadow-md);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      aspect-ratio: 3/4;
+    }
+
+    .main-product-image:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     }
 
     .main-product-image img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       display: block;
     }
 
@@ -83,7 +93,15 @@
       width: 100%;
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+
+    .additional-product-image:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     }
 
     .additional-product-image img {
@@ -91,59 +109,125 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      min-height: 400px;
+    }
+
+    /* Lightbox Modal Styles */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .lightbox-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      animation: zoomIn 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      background: none;
+      border: none;
+      padding: 10px 20px;
+    }
+
+    .lightbox-close:hover {
+      color: var(--color-gold);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.5); }
+      to { transform: scale(1); }
     }
 
     .product-info {
       display: flex;
       flex-direction: column;
+      padding: 10px 0;
     }
 
     .product-info h1 {
       font-family: var(--font-heading);
       font-size: 1.8rem;
       color: var(--color-black);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .product-single-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 0;
+      flex-wrap: nowrap;
     }
 
     .product-info .category {
       font-size: 0.9rem;
       color: var(--color-grey);
-      margin-bottom: 4px;
+      white-space: nowrap;
     }
 
     .product-info .brand {
       font-size: 1rem;
       color: var(--color-black);
       font-weight: 600;
-      margin-bottom: 10px;
+      white-space: nowrap;
     }
 
-    .product-info .size {
-      font-size: 0.85rem;
+    .product-info .separator {
       color: var(--color-grey);
-      margin-bottom: 20px;
-      padding-bottom: 20px;
-      border-bottom: 2px solid var(--color-light-grey);
+      font-size: 0.9rem;
+      white-space: nowrap;
     }
 
-    .pricing-detail {
-      margin-bottom: 30px;
-    }
-
-    .pricing-detail .old-price {
+    .product-info .old-price {
       font-size: 1rem;
       color: var(--color-grey);
       text-decoration: line-through;
-      display: block;
-      margin-bottom: 6px;
+      white-space: nowrap;
     }
 
-    .pricing-detail .current-price {
+    .product-info .current-price {
       font-size: 1.6rem;
       font-weight: 700;
       color: var(--color-gold);
-      display: block;
+      white-space: nowrap;
     }
 
     .action-buttons {
@@ -201,7 +285,8 @@
 
     @media (max-width: 768px) {
       .images-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: 25% 75%;
+        gap: 15px;
       }
 
       .product-detail-grid {
@@ -240,11 +325,11 @@
 
       <!-- Action Buttons -->
       <div class="nav-actions">
-        <a href="tel:+919876543210" class="btn-call">
+        <a href="tel:+919942929527" class="btn-call">
           <i class="fas fa-phone"></i>
           <span>Call Now</span>
         </a>
-        <a href="https://wa.me/919876543210" target="_blank" class="btn-whatsapp">
+        <a href="https://wa.me/919942929527" target="_blank" class="btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
           <span>WhatsApp</span>
         </a>
@@ -269,13 +354,13 @@
       <div class="product-detail-grid">
         <!-- Images Row -->
         <div class="images-row">
-          <!-- Image 1 - Small on Left -->
-          <div class="main-product-image">
+          <!-- Image 1 - Left -->
+          <div class="main-product-image" onclick="openLightbox('mainImage')">
             <img id="mainImage" src="" alt="Product Image">
           </div>
 
-          <!-- Image 2 - Large on Right -->
-          <div class="additional-product-image" id="additionalImageContainer" style="display: none;">
+          <!-- Image 2 - Right -->
+          <div class="additional-product-image" id="additionalImageContainer" style="display: none;" onclick="openLightbox('additionalImage')">
             <img id="additionalImage" src="" alt="Product Detail Image">
           </div>
         </div>
@@ -283,27 +368,32 @@
         <!-- Product Information Below -->
         <div class="product-info">
           <h1 id="productName"></h1>
-          <p class="category" id="productCategory"></p>
-          <p class="brand" id="productBrand"></p>
-          <p class="size" id="productSize"></p>
-
-          <div class="pricing-detail">
+          <div class="product-single-line">
+            <span class="category" id="productCategory"></span>
+            <span class="separator">-</span>
+            <span class="brand" id="productBrand"></span>
+            <span class="separator">-</span>
             <span class="old-price" id="oldPrice"></span>
             <span class="current-price" id="currentPrice"></span>
           </div>
 
-          <div class="action-buttons">
-            <a href="tel:+919876543210" class="btn-contact">
-              <i class="fas fa-phone"></i> Call Now
-            </a>
-            <a href="https://wa.me/919876543210" target="_blank" class="btn-whatsapp-detail">
-              <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-          </div>
+          <!-- Add to WhatsApp Cart Button -->
+          <button class="btn-add-to-whatsapp" onclick="addCurrentProductToCart()">
+            <i class="fab fa-whatsapp"></i>
+            Add to WhatsApp Cart
+          </button>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Lightbox Modal -->
+  <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <img id="lightboxImage" src="" alt="Full Screen Image">
+    </div>
+  </div>
 
   <!-- ========== FOOTER ========== -->
   <footer class="footer">
@@ -312,17 +402,34 @@
     </div>
   </footer>
 
+  <!-- WhatsApp Cart Floating Button -->
+  <button class="whatsapp-cart-floating whatsapp-cart-btn" title="View WhatsApp Cart">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-cart-badge" style="display: none;">0</span>
+  </button>
+
   <!-- ========== SCRIPTS ========== -->
   <script src="js/main.js"></script>
+  <script src="js/whatsapp-cart.js"></script>
 
   <script>
+    // Function to add current product to WhatsApp cart
+    function addCurrentProductToCart() {
+      const product = WhatsAppCart.getCurrentProduct();
+      if (product) {
+        WhatsAppCart.addToCart(product);
+      } else {
+        WhatsAppCart.showNotification('Unable to add product', 'warning');
+      }
+    }
+
     // Product data configuration
     const productData = {
       'hill-creama': {
         name: 'Hill Creama',
-        category: 'Floor Tiles',
+        category: 'Floor Tiles - Size: 48x48 inches',
         brand: 'KAG',
-        size: 'Size: 48x48 inches',
+        size: '',
         oldPrice: 'Rs. 79.00',
         currentPrice: 'Rs. 60.04 / sq ft',
         mainImage: 'assets/images/products/Hill creama.png',
@@ -340,9 +447,9 @@
       },
       'wood-grain': {
         name: 'Wood Grain',
-        category: 'Floor Tiles',
+        category: 'Floor Tiles - Size: 24x48 inches',
         brand: 'Somany',
-        size: 'Size: 24x48 inches',
+        size: '',
         oldPrice: 'Rs. 125.00',
         currentPrice: 'Rs. 95.50 / sq ft',
         mainImage: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80',
@@ -358,9 +465,9 @@
       },
       'polished-vitrified': {
         name: 'Polished Vitrified',
-        category: 'Floor Tiles',
+        category: 'Floor Tiles - Size: 32x32 inches',
         brand: 'Kajaria',
-        size: 'Size: 32x32 inches',
+        size: '',
         oldPrice: 'Rs. 99.00',
         currentPrice: 'Rs. 75.25 / sq ft',
         mainImage: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=80',
@@ -387,7 +494,6 @@
       document.getElementById('productName').textContent = product.name;
       document.getElementById('productCategory').textContent = product.category;
       document.getElementById('productBrand').textContent = product.brand;
-      document.getElementById('productSize').textContent = product.size;
       document.getElementById('oldPrice').textContent = product.oldPrice;
       document.getElementById('currentPrice').textContent = product.currentPrice;
       document.getElementById('mainImage').src = product.mainImage;
@@ -406,6 +512,31 @@
       // Product not found, redirect to products page
       window.location.href = 'products.html';
     }
+
+    // Lightbox functions
+    function openLightbox(imageId) {
+      const img = document.getElementById(imageId);
+      const lightbox = document.getElementById('lightboxModal');
+      const lightboxImg = document.getElementById('lightboxImage');
+      
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightboxModal');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close lightbox on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
   </script>
 
 </body>
