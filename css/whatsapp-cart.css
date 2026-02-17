@@ -371,7 +371,7 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .whatsapp-cart-floating {
-    bottom: 70px;
+    bottom: 80px;
     right: 15px;
     width: 55px;
     height: 55px;
@@ -382,6 +382,7 @@
     right: 15px;
     left: 15px;
     min-width: auto;
+    bottom: 90px;
   }
 
   .btn-add-to-whatsapp {
@@ -411,4 +412,154 @@
     width: 50px;
     height: 50px;
   }
+}
+/* ========================================
+   Product Listing Cart Checkbox Styles
+   ======================================== */
+
+.cart-checkbox-wrapper {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
+.cart-checkbox-wrapper input[type="checkbox"] {
+  display: none;
+}
+
+.cart-checkbox-wrapper label {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border: 3px solid #ddd;
+  position: relative;
+}
+
+/* Tooltip on hover */
+.cart-checkbox-wrapper label::after {
+  content: 'Add to WhatsApp Cart';
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cart-checkbox-wrapper label:hover::after {
+  opacity: 1;
+  visibility: visible;
+  right: 55px;
+}
+
+.cart-checkbox-wrapper label:hover {
+  background: rgba(37, 211, 102, 0.1);
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  transform: scale(1.1);
+  border-color: #25D366;
+}
+
+.cart-checkbox-wrapper label::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid #25D366;
+  border-radius: 4px;
+  background: white;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Checked state */
+.cart-checkbox-wrapper input[type="checkbox"]:checked + label {
+  background: linear-gradient(135deg, #25D366 0%, #20ba5a 100%);
+  border-color: #25D366;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
+}
+
+.cart-checkbox-wrapper input[type="checkbox"]:checked + label::before {
+  content: '\2714';
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-checkbox-wrapper input[type="checkbox"]:checked + label::after {
+  content: 'Remove from Cart';
+}
+
+/* Animation on check */
+.cart-checkbox-wrapper input[type="checkbox"]:checked + label {
+  animation: checkPop 0.4s ease;
+}
+
+@keyframes checkPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .cart-checkbox-wrapper {
+    top: 8px;
+    right: 8px;
+  }
+  
+  .cart-checkbox-wrapper label {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .cart-checkbox-wrapper label::before {
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+  }
+  
+  /* Hide tooltip on mobile */
+  .cart-checkbox-wrapper label::after {
+    display: none;
+  }
+}
+
+/* Ensure the checkbox doesn't interfere with product card interactions */
+.product-listing-card {
+  position: relative;
+}
+
+.product-listing-card .product-image {
+  position: relative;
 }

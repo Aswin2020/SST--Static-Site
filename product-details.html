@@ -74,7 +74,11 @@
       box-shadow: var(--shadow-md);
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      aspect-ratio: 3/4;
+      aspect-ratio: 1/1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f5f5f5;
     }
 
     .main-product-image:hover {
@@ -85,8 +89,10 @@
     .main-product-image img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
+      padding: 12px;
+      box-sizing: border-box;
     }
 
     .additional-product-image {
@@ -96,7 +102,11 @@
       box-shadow: var(--shadow-md);
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      height: 100%;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f5f5f5;
     }
 
     .additional-product-image:hover {
@@ -107,8 +117,10 @@
     .additional-product-image img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
+      padding: 12px;
+      box-sizing: border-box;
     }
 
     /* Lightbox Modal Styles */
@@ -445,40 +457,67 @@
           'Available in large format for seamless look'
         ]
       },
-      'wood-grain': {
-        name: 'Wood Grain',
-        category: 'Floor Tiles - Size: 24x48 inches',
-        brand: 'Somany',
+      'gretex-beige': {
+        name: 'Gretex Beige',
+        category: 'Parking Tiles - Size: 16x16 inches',
+        brand: 'KAG',
         size: '',
-        oldPrice: 'Rs. 125.00',
-        currentPrice: 'Rs. 95.50 / sq ft',
-        mainImage: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80',
-        additionalImage: null,
-        description: 'Wood Grain tiles offer the natural beauty of wood with the durability of ceramic. Perfect for those who love the warmth of wood flooring without the maintenance concerns.',
+        oldPrice: 'Rs. 65.00',
+        currentPrice: 'Rs. 52.00 / sq ft',
+        mainImage: 'assets/images/products/Parking - KAG - 16-16/Gretex Beige.png',
+        additionalImage: 'assets/images/products/Parking - KAG - 16-16/Gretex-Beige image 2.jpeg',
+        description: 'Gretex Beige is a premium parking tile designed for outdoor durability and strength. Its elegant beige tone with textured surface provides excellent grip and slip resistance, making it ideal for driveways, parking areas, and outdoor spaces.',
         features: [
-          'Realistic wood texture',
-          'Highly durable ceramic material',
-          'Water resistant',
-          'Easy maintenance',
-          'Suitable for high traffic areas'
+          'Anti-skid textured surface for superior grip',
+          'High load-bearing capacity suitable for vehicles',
+          'Weather resistant and UV stable',
+          'Frost and freeze-thaw resistant',
+          'Low maintenance and easy to clean',
+          'Excellent drainage properties',
+          'Durable construction for long-lasting performance',
+          'Ideal for parking areas, driveways, and pathways'
         ]
       },
-      'polished-vitrified': {
-        name: 'Polished Vitrified',
-        category: 'Floor Tiles - Size: 32x32 inches',
-        brand: 'Kajaria',
+      'gretex-grey': {
+        name: 'Gretex Grey',
+        category: 'Parking Tiles - Size: 16x16 inches',
+        brand: 'KAG',
         size: '',
-        oldPrice: 'Rs. 99.00',
-        currentPrice: 'Rs. 75.25 / sq ft',
-        mainImage: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=80',
-        additionalImage: null,
-        description: 'Polished Vitrified tiles with a high-gloss finish that reflects light beautifully, making spaces appear larger and brighter.',
+        oldPrice: 'Rs. 65.00',
+        currentPrice: 'Rs. 52.00 / sq ft',
+        mainImage: 'assets/images/products/Parking - KAG - 16-16/Gretex Grey.png',
+        additionalImage: 'assets/images/products/Parking - KAG - 16-16/Gretex Grey image 2.jpeg',
+        description: 'Gretex Grey parking tiles offer a modern, sophisticated look combined with exceptional strength and durability. The grey textured finish provides excellent traction while adding contemporary elegance to any outdoor space.',
         features: [
-          'High gloss polished finish',
-          'Low porosity',
-          'Stain resistant',
-          'Durable and long-lasting',
-          'Easy to clean'
+          'Contemporary grey finish with textured surface',
+          'Superior anti-slip properties',
+          'High compressive strength for heavy-duty use',
+          'Weather and chemical resistant',
+          'UV stable - color remains vibrant',
+          'Low water absorption rate',
+          'Easy to install and maintain',
+          'Perfect for residential and commercial parking areas'
+        ]
+      },
+      'tera-brown': {
+        name: 'Tera Brown',
+        category: 'Parking Tiles - Size: 16x16 inches',
+        brand: 'KAG',
+        size: '',
+        oldPrice: 'Rs. 65.00',
+        currentPrice: 'Rs. 52.00 / sq ft',
+        mainImage: 'assets/images/products/Parking - KAG - 16-16/Tera Brown.png',
+        additionalImage: 'assets/images/products/Parking - KAG - 16-16/Tera Brown Image 2.jpeg',
+        description: 'Tera Brown parking tiles blend natural earthy tones with robust performance. The warm brown color with textured surface creates an inviting yet practical outdoor flooring solution for parking and high-traffic areas.',
+        features: [
+          'Rich brown color with natural texture',
+          'Excellent slip resistance in wet conditions',
+          'High load capacity for vehicle traffic',
+          'Resistant to oil, grease, and chemical stains',
+          'Weatherproof and frost resistant',
+          'Minimal maintenance required',
+          'Durable for heavy-duty outdoor use',
+          'Suitable for driveways, parking lots, and commercial spaces'
         ]
       }
     };

@@ -104,40 +104,143 @@
         <!-- ========== FILTERS SECTION ========== -->
       <div class="filters-section" data-aos="fade-down">
         <div class="filters-grid">
+          <!-- Category Multi-Select -->
           <div class="filter-group">
-            <label for="categoryFilter">Category</label>
-            <select id="categoryFilter">
-              <option value="all">All Categories</option>
-              <option value="floor">Floor Tiles</option>
-              <option value="wall">Wall Tiles</option>
-              <option value="bathroom">Bathroom Tiles</option>
-              <option value="kitchen">Kitchen Tiles</option>
-              <option value="parking">Parking Tiles</option>
-              <option value="roof">Cool Roof Tiles</option>
-            </select>
+            <label>Category</label>
+            <div class="custom-multiselect" id="categoryMultiSelect">
+              <div class="multiselect-trigger" onclick="toggleMultiSelect('categoryMultiSelect')">
+                <span class="multiselect-text">All Categories</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="multiselect-dropdown">
+                <label class="multiselect-option">
+                  <input type="checkbox" value="all" class="filter-checkbox category-filter" checked onchange="handleFilterChange('category')">
+                  <span>All Categories</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="parking" class="filter-checkbox category-filter" onchange="handleFilterChange('category')">
+                  <span>Parking</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="roofing" class="filter-checkbox category-filter" onchange="handleFilterChange('category')">
+                  <span>Roofing</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="floor" class="filter-checkbox category-filter" onchange="handleFilterChange('category')">
+                  <span>Floor</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="wall" class="filter-checkbox category-filter" onchange="handleFilterChange('category')">
+                  <span>Wall</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="bathfloor" class="filter-checkbox category-filter" onchange="handleFilterChange('category')">
+                  <span>Bath Floor</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="elevation" class="filter-checkbox category-filter" onchange="handleFilterChange('category')">
+                  <span>Elevation</span>
+                </label>
+              </div>
+            </div>
           </div>
 
+          <!-- Size Multi-Select -->
           <div class="filter-group">
-            <label for="brandFilter">Brand</label>
-            <select id="brandFilter">
-              <option value="all">All Brands</option>
-              <option value="kag">KAG Tiles</option>
-              <option value="somany">Somany</option>
-              <option value="kajaria">Kajaria</option>
-              <option value="nitco">Nitco</option>
-              <option value="orient">Orient Bell</option>
-            </select>
+            <label>Size</label>
+            <div class="custom-multiselect" id="sizeMultiSelect">
+              <div class="multiselect-trigger" onclick="toggleMultiSelect('sizeMultiSelect')">
+                <span class="multiselect-text">All Sizes</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="multiselect-dropdown">
+                <label class="multiselect-option">
+                  <input type="checkbox" value="all" class="filter-checkbox size-filter" checked onchange="handleFilterChange('size')">
+                  <span>All Sizes</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="16*16" class="filter-checkbox size-filter" onchange="handleFilterChange('size')">
+                  <span>16 * 16</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="1*1" class="filter-checkbox size-filter" onchange="handleFilterChange('size')">
+                  <span>1 * 1</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="20*20" class="filter-checkbox size-filter" onchange="handleFilterChange('size')">
+                  <span>20 * 20</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="4*2" class="filter-checkbox size-filter" onchange="handleFilterChange('size')">
+                  <span>4 * 2</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="15*10" class="filter-checkbox size-filter" onchange="handleFilterChange('size')">
+                  <span>15 * 10</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="18*10" class="filter-checkbox size-filter" onchange="handleFilterChange('size')">
+                  <span>18 * 10</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="2*1" class="filter-checkbox size-filter" onchange="handleFilterChange('size')">
+                  <span>2 * 1</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="18*12" class="filter-checkbox size-filter" onchange="handleFilterChange('size')">
+                  <span>18 * 12</span>
+                </label>
+              </div>
+            </div>
           </div>
 
+          <!-- Brand Multi-Select -->
           <div class="filter-group">
-            <label for="sizeFilter">Size</label>
-            <select id="sizeFilter">
-              <option value="all">All Sizes</option>
-              <option value="600x600">600 x 600 mm</option>
-              <option value="800x800">800 x 800 mm</option>
-              <option value="300x600">300 x 600 mm</option>
-              <option value="600x1200">600 x 1200 mm</option>
-            </select>
+            <label>Brand</label>
+            <div class="custom-multiselect" id="brandMultiSelect">
+              <div class="multiselect-trigger" onclick="toggleMultiSelect('brandMultiSelect')">
+                <span class="multiselect-text">All Brands</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="multiselect-dropdown">
+                <label class="multiselect-option">
+                  <input type="checkbox" value="all" class="filter-checkbox brand-filter" checked onchange="handleFilterChange('brand')">
+                  <span>All Brands</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="kag" class="filter-checkbox brand-filter" onchange="handleFilterChange('brand')">
+                  <span>KAG</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="kagrafale" class="filter-checkbox brand-filter" onchange="handleFilterChange('brand')">
+                  <span>KAG Rafale</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="stmulti" class="filter-checkbox brand-filter" onchange="handleFilterChange('brand')">
+                  <span>ST - Multi</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="kajaria" class="filter-checkbox brand-filter" onchange="handleFilterChange('brand')">
+                  <span>Kajaria</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="orientbell" class="filter-checkbox brand-filter" onchange="handleFilterChange('brand')">
+                  <span>Orient Bell</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="somany" class="filter-checkbox brand-filter" onchange="handleFilterChange('brand')">
+                  <span>Somany</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="suncore" class="filter-checkbox brand-filter" onchange="handleFilterChange('brand')">
+                  <span>Suncore</span>
+                </label>
+                <label class="multiselect-option">
+                  <input type="checkbox" value="nexted" class="filter-checkbox brand-filter" onchange="handleFilterChange('brand')">
+                  <span>Nexted</span>
+                </label>
+              </div>
+            </div>
           </div>
 
           <!-- PDF Download Button -->
@@ -154,9 +257,13 @@
       <div class="products-grid" id="productsGrid">
         
         <!-- Product 1: Marble Finish Floor Tile -->
-        <div class="product-listing-card" data-category="floor" data-brand="kag" data-size="600x600" data-aos="fade-up">
+        <div class="product-listing-card" data-category="floor" data-brand="kag" data-size="600x600" data-aos="fade-up" data-product-id="hill-creama" data-product-name="Hill Creama" data-product-category="Floor Tiles">
           <div class="product-image">
             <img src="assets/images/products/Hill creama.png" alt="Hill Creama" loading="lazy">
+            <div class="cart-checkbox-wrapper">
+              <input type="checkbox" class="product-cart-checkbox" id="cart-hill-creama" data-product-id="hill-creama">
+              <label for="cart-hill-creama" title="Add to WhatsApp Cart"></label>
+            </div>
           </div>
           <div class="product-details" style="padding: 0.8rem 0.8rem 1rem 0.8rem !important;">
             <h3 class="product-name" style="font-size: 1.1rem; margin: 0 0 0.15rem 0;">Hill Creama</h3>
@@ -172,201 +279,70 @@
           </div>
         </div>
 
-        <!-- Product 2: Wooden Texture Floor Tile -->
-        <div class="product-listing-card" data-category="floor" data-brand="somany" data-size="600x1200" data-aos="fade-up" data-aos-delay="100">
+        <!-- Product 2: Gretex Beige Parking Tile -->
+        <div class="product-listing-card" data-category="parking" data-brand="kag" data-size="16*16" data-aos="fade-up" data-aos-delay="100" data-product-id="gretex-beige" data-product-name="Gretex Beige" data-product-category="Parking Tiles">
           <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80" alt="Wood Grain" loading="lazy">
+            <img src="assets/images/products/Parking - KAG - 16-16/Gretex Beige.png" alt="Gretex Beige" loading="lazy">
+            <div class="cart-checkbox-wrapper">
+              <input type="checkbox" class="product-cart-checkbox" id="cart-gretex-beige" data-product-id="gretex-beige">
+              <label for="cart-gretex-beige" title="Add to WhatsApp Cart"></label>
+            </div>
           </div>
           <div class="product-details" style="padding: 0.8rem 0.8rem 1rem 0.8rem !important;">
-            <h3 class="product-name" style="font-size: 1.1rem; margin: 0 0 0.15rem 0;">Wood Grain</h3>
-            <p class="product-category" style="font-size: 0.85rem; margin: 0.1rem 0; color: #666;">Floor Tiles - Size: 24x48 inches</p>
-            <p class="product-brand" style="font-size: 0.85rem; margin: 0.1rem 0; font-weight: 600; color: #333;">Somany</p>
+            <h3 class="product-name" style="font-size: 1.1rem; margin: 0 0 0.15rem 0;">Gretex Beige</h3>
+            <p class="product-category" style="font-size: 0.85rem; margin: 0.1rem 0; color: #666;">Parking Tiles - Size: 16x16 inches</p>
+            <p class="product-brand" style="font-size: 0.85rem; margin: 0.1rem 0; font-weight: 600; color: #333;">KAG</p>
             <div class="product-pricing" style="margin: 0.15rem 0 0.3rem 0; display: flex; gap: 1.5rem; align-items: center;">
-              <span class="old-price" style="font-size: 0.85rem; text-decoration: line-through; color: #999;">Rs. 125.00</span>
-              <span class="current-price" style="font-size: 1rem; font-weight: 700; color: #e74c3c;">Rs. 95.50 / sq ft</span>
+              <span class="old-price" style="font-size: 0.85rem; text-decoration: line-through; color: #999;">Rs. 65.00</span>
+              <span class="current-price" style="font-size: 1rem; font-weight: 700; color: #e74c3c;">Rs. 52.00 / sq ft</span>
             </div>
-            <button class="btn-details" onclick="openProductDetails('wood-grain')" style="padding: 0.6rem 1rem; font-size: 0.85rem; margin: 0 -0.8rem 0 -0.8rem; width: calc(100% + 1.6rem); border-radius: 12px;">
+            <button class="btn-details" onclick="openProductDetails('gretex-beige')" style="padding: 0.6rem 1rem; font-size: 0.85rem; margin: 0 -0.8rem 0 -0.8rem; width: calc(100% + 1.6rem); border-radius: 12px;">
               Details
             </button>
           </div>
         </div>
 
-        <!-- Product 3: Vitrified Floor Tile -->
-        <div class="product-listing-card" data-category="floor" data-brand="kajaria" data-size="800x800" data-aos="fade-up" data-aos-delay="200">
+        <!-- Product 3: Gretex Grey Parking Tile -->
+        <div class="product-listing-card" data-category="parking" data-brand="kag" data-size="16*16" data-aos="fade-up" data-aos-delay="200" data-product-id="gretex-grey" data-product-name="Gretex Grey" data-product-category="Parking Tiles">
           <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=80" alt="Polished Vitrified" loading="lazy">
+            <img src="assets/images/products/Parking - KAG - 16-16/Gretex Grey.png" alt="Gretex Grey" loading="lazy">
+            <div class="cart-checkbox-wrapper">
+              <input type="checkbox" class="product-cart-checkbox" id="cart-gretex-grey" data-product-id="gretex-grey">
+              <label for="cart-gretex-grey" title="Add to WhatsApp Cart"></label>
+            </div>
           </div>
           <div class="product-details" style="padding: 0.8rem 0.8rem 1rem 0.8rem !important;">
-            <h3 class="product-name" style="font-size: 1.1rem; margin: 0 0 0.15rem 0;">Polished Vitrified</h3>
-            <p class="product-category" style="font-size: 0.85rem; margin: 0.1rem 0; color: #666;">Floor Tiles - Size: 32x32 inches</p>
-            <p class="product-brand" style="font-size: 0.85rem; margin: 0.1rem 0; font-weight: 600; color: #333;">Kajaria</p>
+            <h3 class="product-name" style="font-size: 1.1rem; margin: 0 0 0.15rem 0;">Gretex Grey</h3>
+            <p class="product-category" style="font-size: 0.85rem; margin: 0.1rem 0; color: #666;">Parking Tiles - Size: 16x16 inches</p>
+            <p class="product-brand" style="font-size: 0.85rem; margin: 0.1rem 0; font-weight: 600; color: #333;">KAG</p>
             <div class="product-pricing" style="margin: 0.15rem 0 0.3rem 0; display: flex; gap: 1.5rem; align-items: center;">
-              <span class="old-price" style="font-size: 0.85rem; text-decoration: line-through; color: #999;">Rs. 99.00</span>
-              <span class="current-price" style="font-size: 1rem; font-weight: 700; color: #e74c3c;">Rs. 75.25 / sq ft</span>
+              <span class="old-price" style="font-size: 0.85rem; text-decoration: line-through; color: #999;">Rs. 65.00</span>
+              <span class="current-price" style="font-size: 1rem; font-weight: 700; color: #e74c3c;">Rs. 52.00 / sq ft</span>
             </div>
-            <button class="btn-details" onclick="openProductDetails('polished-vitrified')" style="padding: 0.6rem 1rem; font-size: 0.85rem; margin: 0 -0.8rem 0 -0.8rem; width: calc(100% + 1.6rem); border-radius: 12px;">
+            <button class="btn-details" onclick="openProductDetails('gretex-grey')" style="padding: 0.6rem 1rem; font-size: 0.85rem; margin: 0 -0.8rem 0 -0.8rem; width: calc(100% + 1.6rem); border-radius: 12px;">
               Details
             </button>
           </div>
         </div>
 
-        <!-- Product 4: Designer Wall Tile -->
-        <div class="product-listing-card" data-category="wall" data-brand="nitco" data-size="300x600" data-aos="fade-up">
+        <!-- Product 4: Tera Brown Parking Tile -->
+        <div class="product-listing-card" data-category="parking" data-brand="kag" data-size="16*16" data-aos="fade-up" data-aos-delay="300" data-product-id="tera-brown" data-product-name="Tera Brown" data-product-category="Parking Tiles">
           <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" alt="Designer Wall Tile" loading="lazy">
+            <img src="assets/images/products/Parking - KAG - 16-16/Tera Brown.png" alt="Tera Brown" loading="lazy">
+            <div class="cart-checkbox-wrapper">
+              <input type="checkbox" class="product-cart-checkbox" id="cart-tera-brown" data-product-id="tera-brown">
+              <label for="cart-tera-brown" title="Add to WhatsApp Cart"></label>
+            </div>
           </div>
           <div class="product-details" style="padding: 0.8rem 0.8rem 1rem 0.8rem !important;">
-            <h3 class="product-name" style="font-size: 1.1rem; margin: 0 0 0.15rem 0;">Designer Wall Tile</h3>
-            <p class="product-category" style="font-size: 0.85rem; margin: 0.1rem 0; color: #666;">Wall Tiles - Size: 300 x 600 mm</p>
-            <p class="product-brand" style="font-size: 0.85rem; margin: 0.1rem 0; font-weight: 600; color: #333;">Nitco</p>
-            <div class="product-pricing" style="margin: 0.15rem 0 0.3rem 0;">
-              <span class="current-price" style="font-size: 1rem; font-weight: 700; color: #e74c3c;">₹65 / sq.ft</span>
+            <h3 class="product-name" style="font-size: 1.1rem; margin: 0 0 0.15rem 0;">Tera Brown</h3>
+            <p class="product-category" style="font-size: 0.85rem; margin: 0.1rem 0; color: #666;">Parking Tiles - Size: 16x16 inches</p>
+            <p class="product-brand" style="font-size: 0.85rem; margin: 0.1rem 0; font-weight: 600; color: #333;">KAG</p>
+            <div class="product-pricing" style="margin: 0.15rem 0 0.3rem 0; display: flex; gap: 1.5rem; align-items: center;">
+              <span class="old-price" style="font-size: 0.85rem; text-decoration: line-through; color: #999;">Rs. 65.00</span>
+              <span class="current-price" style="font-size: 1rem; font-weight: 700; color: #e74c3c;">Rs. 52.00 / sq ft</span>
             </div>
-            <button class="btn-details" onclick="openProductDetails('designer-wall-tile')" style="padding: 0.6rem 1rem; font-size: 0.85rem; margin: 0 -0.8rem 0 -0.8rem; width: calc(100% + 1.6rem); border-radius: 12px;">
-              Details
-            </button>
-          </div>
-        </div>
-
-        <!-- Product 5: 3D Pattern Wall Tile -->
-        <div class="product-listing-card" data-category="wall" data-brand="orient" data-size="300x600" data-aos="fade-up" data-aos-delay="100">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80" alt="3D Pattern Wall Tile" loading="lazy">
-          </div>
-          <div class="product-details" style="padding: 0.8rem 0.8rem 1rem 0.8rem !important;">
-            <h3 class="product-name" style="font-size: 1.1rem; margin: 0 0 0.15rem 0;">3D Pattern Wall Tile</h3>
-            <p class="product-category" style="font-size: 0.85rem; margin: 0.1rem 0; color: #666;">Wall Tiles - Size: 300 x 600 mm</p>
-            <p class="product-brand" style="font-size: 0.85rem; margin: 0.1rem 0; font-weight: 600; color: #333;">Orient Bell</p>
-            <div class="product-pricing" style="margin: 0.15rem 0 0.3rem 0;">
-              <span class="current-price" style="font-size: 1rem; font-weight: 700; color: #e74c3c;">₹75 / sq.ft</span>
-            </div>
-            <button class="btn-details" onclick="openProductDetails('3d-pattern-wall-tile')" style="padding: 0.6rem 1rem; font-size: 0.85rem; margin: 0 -0.8rem 0 -0.8rem; width: calc(100% + 1.6rem); border-radius: 12px;">
-              Details
-            </button>
-          </div>
-        </div>
-
-        <!-- Product 6: Marble Effect Wall Tile -->
-        <div class="product-listing-card" data-category="wall" data-brand="kag" data-size="600x600" data-aos="fade-up" data-aos-delay="200">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&q=80" alt="Marble Effect Wall Tile" loading="lazy">
-          </div>
-          <div class="product-details" style="padding: 0.8rem 0.8rem 1rem 0.8rem !important;">
-            <h3 class="product-name" style="font-size: 1.1rem; margin: 0 0 0.15rem 0;">Marble Effect Wall Tile</h3>
-            <p class="product-category" style="font-size: 0.85rem; margin: 0.1rem 0; color: #666;">Wall Tiles - Size: 600 x 600 mm</p>
-            <p class="product-brand" style="font-size: 0.85rem; margin: 0.1rem 0; font-weight: 600; color: #333;">KAG Tiles</p>
-            <div class="product-pricing" style="margin: 0.15rem 0 0.3rem 0;">
-              <span class="current-price" style="font-size: 1rem; font-weight: 700; color: #e74c3c;">₹90 / sq.ft</span>
-            </div>
-            <button class="btn-details" onclick="openProductDetails('marble-effect-wall-tile')" style="padding: 0.6rem 1rem; font-size: 0.85rem; margin: 0 -0.8rem 0 -0.8rem; width: calc(100% + 1.6rem); border-radius: 12px;">
-              Details
-            </button>
-          </div>
-        </div>
-
-        <!-- Product 7: Premium Bathroom Tile -->
-        <div class="product-listing-card" data-category="bathroom" data-brand="somany" data-size="300x600" data-aos="fade-up">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80" alt="Premium Bathroom Tile" loading="lazy">
-          </div>
-          <div class="product-details" style="padding: 0.8rem 0.8rem 1rem 0.8rem !important;">
-            <h3 class="product-name" style="font-size: 1.1rem; margin: 0 0 0.15rem 0;">Premium Bathroom Tile</h3>
-            <p class="product-category" style="font-size: 0.85rem; margin: 0.1rem 0; color: #666;">Bathroom Tiles - Size: 300 x 600 mm</p>
-            <p class="product-brand" style="font-size: 0.85rem; margin: 0.1rem 0; font-weight: 600; color: #333;">Somany</p>
-            <div class="product-pricing" style="margin: 0.15rem 0 0.3rem 0;">
-              <span class="current-price" style="font-size: 1rem; font-weight: 700; color: #e74c3c;">₹70 / sq.ft</span>
-            </div>
-            <button class="btn-details" onclick="openProductDetails('premium-bathroom-tile')" style="padding: 0.6rem 1rem; font-size: 0.85rem; margin: 0 -0.8rem 0 -0.8rem; width: calc(100% + 1.6rem); border-radius: 12px;">
-              Details
-            </button>
-          </div>
-        </div>
-
-        <!-- Product 8: Ceramic Bathroom Tile -->
-        <div class="product-listing-card" data-category="bathroom" data-brand="kajaria" data-size="300x600" data-aos="fade-up" data-aos-delay="100">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&q=80" alt="Ceramic Bathroom Tile" loading="lazy">
-          </div>
-          <div class="product-details" style="padding: 0.8rem 0.8rem 1rem 0.8rem !important;">
-            <h3 class="product-name" style="font-size: 1.1rem; margin: 0 0 0.15rem 0;">Ceramic Bathroom Tile</h3>
-            <p class="product-category" style="font-size: 0.85rem; margin: 0.1rem 0; color: #666;">Bathroom Tiles - Size: 300 x 600 mm</p>
-            <p class="product-brand" style="font-size: 0.85rem; margin: 0.1rem 0; font-weight: 600; color: #333;">Kajaria</p>
-            <div class="product-pricing" style="margin: 0.15rem 0 0.3rem 0;">
-              <span class="current-price" style="font-size: 1rem; font-weight: 700; color: #e74c3c;">₹55 / sq.ft</span>
-            </div>
-            <button class="btn-details" onclick="openProductDetails('ceramic-bathroom-tile')" style="padding: 0.6rem 1rem; font-size: 0.85rem; margin: 0 -0.8rem 0 -0.8rem; width: calc(100% + 1.6rem); border-radius: 12px;">
-              Details
-            </button>
-          </div>
-        </div>
-
-        <!-- Product 9: Kitchen Backsplash Tile -->
-        <div class="product-listing-card" data-category="kitchen" data-brand="nitco" data-size="300x600" data-aos="fade-up" data-aos-delay="200">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1556912998-c57cc6b63cd7?w=800&q=80" alt="Kitchen Backsplash Tile" loading="lazy">
-          </div>
-          <div class="product-details" style="padding: 0.8rem 0.8rem 1rem 0.8rem !important;">
-            <h3 class="product-name" style="font-size: 1.1rem; margin: 0 0 0.15rem 0;">Kitchen Backsplash Tile</h3>
-            <p class="product-category" style="font-size: 0.85rem; margin: 0.1rem 0; color: #666;">Kitchen Tiles - Size: 300 x 600 mm</p>
-            <p class="product-brand" style="font-size: 0.85rem; margin: 0.1rem 0; font-weight: 600; color: #333;">Nitco</p>
-            <div class="product-pricing" style="margin: 0.15rem 0 0.3rem 0;">
-              <span class="current-price" style="font-size: 1rem; font-weight: 700; color: #e74c3c;">₹68 / sq.ft</span>
-            </div>
-            <button class="btn-details" onclick="openProductDetails('kitchen-backsplash-tile')" style="padding: 0.6rem 1rem; font-size: 0.85rem; margin: 0 -0.8rem 0 -0.8rem; width: calc(100% + 1.6rem); border-radius: 12px;">
-              Details
-            </button>
-          </div>
-        </div>
-
-        <!-- Product 10: Subway Kitchen Tile -->
-        <div class="product-listing-card" data-category="kitchen" data-brand="orient" data-size="300x600" data-aos="fade-up">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?w=800&q=80" alt="Subway Kitchen Tile" loading="lazy">
-          </div>
-          <div class="product-details" style="padding: 0.8rem 0.8rem 1rem 0.8rem !important;">
-            <h3 class="product-name" style="font-size: 1.1rem; margin: 0 0 0.15rem 0;">Subway Kitchen Tile</h3>
-            <p class="product-category" style="font-size: 0.85rem; margin: 0.1rem 0; color: #666;">Kitchen Tiles - Size: 300 x 600 mm</p>
-            <p class="product-brand" style="font-size: 0.85rem; margin: 0.1rem 0; font-weight: 600; color: #333;">Orient Bell</p>
-            <div class="product-pricing" style="margin: 0.15rem 0 0.3rem 0;">
-              <span class="current-price" style="font-size: 1rem; font-weight: 700; color: #e74c3c;">₹60 / sq.ft</span>
-            </div>
-            <button class="btn-details" onclick="openProductDetails('subway-kitchen-tile')" style="padding: 0.6rem 1rem; font-size: 0.85rem; margin: 0 -0.8rem 0 -0.8rem; width: calc(100% + 1.6rem); border-radius: 12px;">
-              Details
-            </button>
-          </div>
-        </div>
-
-        <!-- Product 11: Heavy Duty Parking Tile -->
-        <div class="product-listing-card" data-category="parking" data-brand="kag" data-size="600x600" data-aos="fade-up" data-aos-delay="100">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1590725121839-892b458a74fe?w=800&q=80" alt="Heavy Duty Parking Tile" loading="lazy">
-          </div>
-          <div class="product-details" style="padding: 0.8rem 0.8rem 1rem 0.8rem !important;">
-            <h3 class="product-name" style="font-size: 1.1rem; margin: 0 0 0.15rem 0;">Heavy Duty Parking Tile</h3>
-            <p class="product-category" style="font-size: 0.85rem; margin: 0.1rem 0; color: #666;">Parking Tiles - Size: 600 x 600 mm</p>
-            <p class="product-brand" style="font-size: 0.85rem; margin: 0.1rem 0; font-weight: 600; color: #333;">KAG Tiles</p>
-            <div class="product-pricing" style="margin: 0.15rem 0 0.3rem 0;">
-              <span class="current-price" style="font-size: 1rem; font-weight: 700; color: #e74c3c;">₹78 / sq.ft</span>
-            </div>
-            <button class="btn-details" onclick="openProductDetails('heavy-duty-parking-tile')" style="padding: 0.6rem 1rem; font-size: 0.85rem; margin: 0 -0.8rem 0 -0.8rem; width: calc(100% + 1.6rem); border-radius: 12px;">
-              Details
-            </button>
-          </div>
-        </div>
-
-        <!-- Product 12: Cool Roof Tile -->
-        <div class="product-listing-card" data-category="roof" data-brand="somany" data-size="600x600" data-aos="fade-up" data-aos-delay="200">
-          <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1632225623126-59cb1a2ee2c3?w=800&q=80" alt="Cool Roof Tile" loading="lazy">
-          </div>
-          <div class="product-details" style="padding: 0.8rem 0.8rem 1rem 0.8rem !important;">
-            <h3 class="product-name" style="font-size: 1.1rem; margin: 0 0 0.15rem 0;">Cool Roof Tile</h3>
-            <p class="product-category" style="font-size: 0.85rem; margin: 0.1rem 0; color: #666;">Cool Roof Tiles - Size: 600 x 600 mm</p>
-            <p class="product-brand" style="font-size: 0.85rem; margin: 0.1rem 0; font-weight: 600; color: #333;">Somany</p>
-            <div class="product-pricing" style="margin: 0.15rem 0 0.3rem 0;">
-              <span class="current-price" style="font-size: 1rem; font-weight: 700; color: #e74c3c;">₹105 / sq.ft</span>
-            </div>
-            <button class="btn-details" onclick="openProductDetails('cool-roof-tile')" style="padding: 0.6rem 1rem; font-size: 0.85rem; margin: 0 -0.8rem 0 -0.8rem; width: calc(100% + 1.6rem); border-radius: 12px;">
+            <button class="btn-details" onclick="openProductDetails('tera-brown')" style="padding: 0.6rem 1rem; font-size: 0.85rem; margin: 0 -0.8rem 0 -0.8rem; width: calc(100% + 1.6rem); border-radius: 12px;">
               Details
             </button>
           </div>
@@ -487,6 +463,303 @@
   <script src="js/whatsapp-cart.js"></script>
 
   <script>
+  // ========== MULTI-SELECT DROPDOWN LOGIC ==========
+  
+  // Toggle dropdown visibility
+  function toggleMultiSelect(dropdownId) {
+    const dropdown = document.getElementById(dropdownId);
+    const allDropdowns = document.querySelectorAll('.custom-multiselect');
+    
+    // Close other dropdowns
+    allDropdowns.forEach(dd => {
+      if (dd.id !== dropdownId) {
+        dd.classList.remove('open');
+      }
+    });
+    
+    dropdown.classList.toggle('open');
+  }
+  
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.custom-multiselect') && !e.target.closest('.multiselect-trigger')) {
+      document.querySelectorAll('.custom-multiselect').forEach(dd => {
+        dd.classList.remove('open');
+      });
+    }
+  });
+  
+  // Handle filter change
+  function handleFilterChange(filterType) {
+    const filterClass = filterType + '-filter';
+    const checkboxes = document.querySelectorAll('.' + filterClass);
+    const allCheckbox = Array.from(checkboxes).find(cb => cb.value === 'all');
+    const otherCheckboxes = Array.from(checkboxes).filter(cb => cb.value !== 'all');
+    
+    // If "All" is clicked
+    if (event.target.value === 'all') {
+      if (event.target.checked) {
+        otherCheckboxes.forEach(cb => cb.checked = false);
+      }
+    } else {
+      // If any other option is clicked, uncheck "All"
+      if (event.target.checked) {
+        allCheckbox.checked = false;
+      }
+      
+      // If no option is checked, check "All"
+      const anyChecked = otherCheckboxes.some(cb => cb.checked);
+      if (!anyChecked) {
+        allCheckbox.checked = true;
+      }
+    }
+    
+    updateDropdownText(filterType);
+    updateDependentFilters();
+    filterProducts();
+  }
+  
+  // Update dropdown display text
+  function updateDropdownText(filterType) {
+    const filterClass = filterType + '-filter';
+    const checkboxes = document.querySelectorAll('.' + filterClass);
+    const selected = Array.from(checkboxes).filter(cb => cb.checked && cb.value !== 'all');
+    
+    let dropdownId, defaultText;
+    if (filterType === 'category') {
+      dropdownId = 'categoryMultiSelect';
+      defaultText = 'All Categories';
+    } else if (filterType === 'size') {
+      dropdownId = 'sizeMultiSelect';
+      defaultText = 'All Sizes';
+    } else if (filterType === 'brand') {
+      dropdownId = 'brandMultiSelect';
+      defaultText = 'All Brands';
+    }
+    
+    const textElement = document.querySelector('#' + dropdownId + ' .multiselect-text');
+    
+    if (selected.length === 0) {
+      textElement.textContent = defaultText;
+    } else if (selected.length === 1) {
+      textElement.textContent = selected[0].nextElementSibling.textContent;
+    } else {
+      textElement.textContent = selected.length + ' Selected';
+    }
+  }
+  
+  // Get selected values for each filter
+  function getSelectedValues(filterType) {
+    const filterClass = filterType + '-filter';
+    const checkboxes = document.querySelectorAll('.' + filterClass + ':checked');
+    const values = Array.from(checkboxes).map(cb => cb.value).filter(v => v !== 'all');
+    return values.length > 0 ? values : ['all'];
+  }
+  
+  // Update dependent filters based on selections
+  function updateDependentFilters() {
+    const selectedCategories = getSelectedValues('category');
+    const selectedSizes = getSelectedValues('size');
+    
+    // Update available sizes based on categories
+    updateAvailableSizes(selectedCategories);
+    
+    // Update available brands based on categories and sizes
+    updateAvailableBrands(selectedCategories, selectedSizes);
+  }
+  
+  // Update available sizes
+  function updateAvailableSizes(selectedCategories) {
+    const sizeCheckboxes = document.querySelectorAll('.size-filter');
+    const availableSizes = new Set();
+    
+    if (selectedCategories.includes('all')) {
+      // All sizes available
+      Object.values(filterMapping).forEach(cat => {
+        cat.sizes.forEach(size => availableSizes.add(size));
+      });
+    } else {
+      selectedCategories.forEach(cat => {
+        if (filterMapping[cat]) {
+          filterMapping[cat].sizes.forEach(size => availableSizes.add(size));
+        }
+      });
+    }
+    
+    sizeCheckboxes.forEach(cb => {
+      if (cb.value !== 'all') {
+        const option = cb.closest('.multiselect-option');
+        if (availableSizes.has(cb.value)) {
+          option.style.display = '';
+          cb.disabled = false;
+        } else {
+          option.style.display = 'none';
+          cb.disabled = true;
+          cb.checked = false;
+        }
+      }
+    });
+  }
+  
+  // Update available brands
+  function updateAvailableBrands(selectedCategories, selectedSizes) {
+    const brandCheckboxes = document.querySelectorAll('.brand-filter');
+    const availableBrands = new Set();
+    
+    if (selectedCategories.includes('all') && selectedSizes.includes('all')) {
+      // All brands available
+      Object.values(filterMapping).forEach(cat => {
+        Object.values(cat.brands).forEach(brandArray => {
+          brandArray.forEach(brand => availableBrands.add(brand));
+        });
+      });
+    } else if (selectedCategories.includes('all')) {
+      // Filter by size only
+      Object.values(filterMapping).forEach(cat => {
+        selectedSizes.forEach(size => {
+          if (cat.brands[size]) {
+            cat.brands[size].forEach(brand => availableBrands.add(brand));
+          }
+        });
+      });
+    } else if (selectedSizes.includes('all')) {
+      // Filter by category only
+      selectedCategories.forEach(cat => {
+        if (filterMapping[cat]) {
+          Object.values(filterMapping[cat].brands).forEach(brandArray => {
+            brandArray.forEach(brand => availableBrands.add(brand));
+          });
+        }
+      });
+    } else {
+      // Filter by both category and size
+      selectedCategories.forEach(cat => {
+        if (filterMapping[cat]) {
+          selectedSizes.forEach(size => {
+            if (filterMapping[cat].brands[size]) {
+              filterMapping[cat].brands[size].forEach(brand => availableBrands.add(brand));
+            }
+          });
+        }
+      });
+    }
+    
+    brandCheckboxes.forEach(cb => {
+      if (cb.value !== 'all') {
+        const option = cb.closest('.multiselect-option');
+        if (availableBrands.has(cb.value)) {
+          option.style.display = '';
+          cb.disabled = false;
+        } else {
+          option.style.display = 'none';
+          cb.disabled = true;
+          cb.checked = false;
+        }
+      }
+    });
+  }
+  
+  // Filter products based on selections
+  function filterProducts() {
+    const selectedCategories = getSelectedValues('category');
+    const selectedSizes = getSelectedValues('size');
+    const selectedBrands = getSelectedValues('brand');
+    
+    const products = document.querySelectorAll('.product-listing-card');
+    
+    products.forEach(product => {
+      const productCategory = product.dataset.category;
+      const productSize = product.dataset.size;
+      const productBrand = product.dataset.brand;
+      
+      let show = true;
+      
+      if (!selectedCategories.includes('all') && !selectedCategories.includes(productCategory)) {
+        show = false;
+      }
+      
+      if (!selectedSizes.includes('all') && !selectedSizes.includes(productSize)) {
+        show = false;
+      }
+      
+      if (!selectedBrands.includes('all') && !selectedBrands.includes(productBrand)) {
+        show = false;
+      }
+      
+      product.style.display = show ? '' : 'none';
+    });
+  }
+  
+  // ========== DEPENDENT FILTER LOGIC ==========
+  // Define the category-size-brand mapping based on your data table
+  const filterMapping = {
+    parking: {
+      sizes: ['16*16', '1*1', '20*20'],
+      brands: {
+        '16*16': ['kag', 'kagrafale', 'stmulti', 'kajaria'],
+        '1*1': ['kag', 'orientbell', 'kajaria'],
+        '20*20': ['stmulti', 'kag']
+      }
+    },
+    roofing: {
+      sizes: ['1*1'],
+      brands: {
+        '1*1': ['kag', 'stmulti']
+      }
+    },
+    floor: {
+      sizes: ['4*2', '2*2'],
+      brands: {
+        '4*2': ['kag', 'kagrafale', 'kajaria', 'somany', 'suncore', 'nexted', 'stmulti'],
+        '2*2': ['kag', 'stmulti']
+      }
+    },
+    wall: {
+      sizes: ['15*10', '18*10', '2*1'],
+      brands: {
+        '15*10': ['kag'],
+        '18*10': ['kag'],
+        '2*1': ['kag']
+      }
+    },
+    bathfloor: {
+      sizes: ['1*1'],
+      brands: {
+        '1*1': ['kag']
+      }
+    },
+    elevation: {
+      sizes: ['18*12'],
+      brands: {
+        '18*12': ['kag', 'kagrafale']
+      }
+    }
+  };
+
+  // Brand label mapping
+  const brandLabels = {
+    'kag': 'KAG',
+    'kagrafale': 'KAG Rafale',
+    'stmulti': 'ST - Multi',
+    'kajaria': 'Kajaria',
+    'orientbell': 'Orient Bell',
+    'somany': 'Somany',
+    'suncore': 'Suncore',
+    'nexted': 'Nexted'
+  };
+
+  // Size label mapping
+  const sizeLabels = {
+    '16*16': '16 * 16',
+    '1*1': '1 * 1',
+    '20*20': '20 * 20',
+    '4*2': '4 * 2',
+    '15*10': '15 * 10',
+    '18*10': '18 * 10',
+    '2*1': '2 * 1',
+    '18*12': '18 * 12'
+  };
+
   // Product Details Function
   function openProductDetails(productId) {
     window.location.href = 'product-details.html?product=' + productId;
@@ -511,6 +784,60 @@
     // Add active class to clicked tab
     event.target.closest('.category-tab').classList.add('active');
   }
+
+  // Initialize cart checkboxes
+  document.addEventListener('DOMContentLoaded', function() {
+    // Update checkbox states based on cart
+    updateCheckboxStates();
+    
+    // Handle checkbox change events
+    document.addEventListener('change', function(e) {
+      if (e.target.classList.contains('product-cart-checkbox')) {
+        handleCheckboxChange(e.target);
+      }
+    });
+  });
+
+  // Update all checkbox states based on current cart
+  function updateCheckboxStates() {
+    const cart = WhatsAppCart.getCart();
+    const cartIds = cart.map(item => item.id);
+    
+    document.querySelectorAll('.product-cart-checkbox').forEach(checkbox => {
+      const productId = checkbox.dataset.productId;
+      checkbox.checked = cartIds.includes(productId);
+    });
+  }
+
+  // Handle checkbox change
+  function handleCheckboxChange(checkbox) {
+    const productCard = checkbox.closest('.product-listing-card');
+    const productId = checkbox.dataset.productId;
+    
+    if (checkbox.checked) {
+      // Add to cart
+      const productImg = productCard.querySelector('.product-image img');
+      const product = {
+        id: productId,
+        name: productCard.dataset.productName,
+        category: productCard.dataset.productCategory,
+        images: [productImg.src],
+        pageUrl: 'product-details.html?product=' + productId
+      };
+      
+      WhatsAppCart.addToCart(product);
+    } else {
+      // Remove from cart
+      WhatsAppCart.removeFromCart(productId);
+    }
+  }
+
+  // Override WhatsApp cart's renderCartItems to update checkboxes
+  const originalRenderCartItems = WhatsAppCart.renderCartItems.bind(WhatsAppCart);
+  WhatsAppCart.renderCartItems = function() {
+    originalRenderCartItems();
+    updateCheckboxStates();
+  };
 
   // Force PDF Download Function
   function forceDownloadPDF(e, url) {

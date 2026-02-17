@@ -210,6 +210,7 @@ ul {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  overflow: visible;
 }
 
 .section {
@@ -504,15 +505,21 @@ ul {
 
 .product-image {
   position: relative;
-  height: 300px;
+  height: 280px;
   overflow: hidden;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.5s ease;
+  padding: 8px;
+  box-sizing: border-box;
 }
 
 .product-card:hover .product-image img {
@@ -581,6 +588,7 @@ ul {
   padding-top: 0;
   min-height: 100vh;
   background: var(--color-light-grey);
+  overflow: visible;
 }
 
 .page-header {
@@ -607,12 +615,21 @@ ul {
   margin: 0 0 30px 0;
   border-radius: 15px;
   box-shadow: var(--shadow-sm);
+  overflow: visible;
+  position: relative;
+  z-index: 10;
 }
 
 .filters-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
+  overflow: visible;
+}
+
+.filter-group {
+  position: relative;
+  overflow: visible;
 }
 
 .filter-group label {
@@ -1346,16 +1363,36 @@ ul {
 }
 
 @media (max-width: 768px) {
+  .nav-container {
+    height: auto;
+    min-height: 70px;
+    padding: 10px 15px;
+  }
+
+  .logo {
+    gap: 8px;
+  }
+
+  .logo-image {
+    height: 45px;
+  }
+
+  .shop-name {
+    font-size: 1rem;
+    max-width: 150px;
+    line-height: 1.2;
+  }
+
   .mobile-toggle {
     display: flex;
   }
 
   .nav-menu {
     position: fixed;
-    top: 80px;
+    top: 70px;
     left: -100%;
     width: 100%;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 70px);
     background: var(--color-white);
     flex-direction: column;
     justify-content: flex-start;
@@ -1381,24 +1418,53 @@ ul {
   }
 
   .nav-actions {
-    flex-direction: column;
-    width: 100%;
-    margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 12px 15px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    flex-direction: row;
+    gap: 10px;
   }
 
   .btn-call,
   .btn-whatsapp {
-    width: 100%;
+    flex: 1;
     justify-content: center;
+    padding: 12px 10px;
+    font-size: 0.85rem;
+    gap: 5px;
+  }
+
+  .btn-call span,
+  .btn-whatsapp span {
+    display: none;
+  }
+
+  .btn-call i,
+  .btn-whatsapp i {
+    font-size: 1.2rem;
+    margin: 0;
   }
 
   .hero-section {
-    margin-top: 80px;
+    margin-top: 70px;
     min-height: 500px;
   }
 
   .section {
-    padding: 60px 0;
+    padding: 60px 0 80px;
+  }
+
+  .products-page {
+    padding-bottom: 80px;
+  }
+
+  footer {
+    padding-bottom: 70px;
   }
 
   .products-grid {
@@ -1437,8 +1503,138 @@ ul {
 
   .product-image,
   .product-listing-card .product-image {
-    height: 250px;
+    height: 240px;
   }
+}
+
+/* ========== MULTI-SELECT DROPDOWN STYLES ========== */
+.custom-multiselect {
+  position: relative;
+  width: 100%;
+  z-index: 100;
+}
+
+.custom-multiselect.open {
+  z-index: 9999;
+}
+
+.multiselect-trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  background-color: #f8f8f8;
+  border: 1.5px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #333;
+  transition: all 0.3s ease;
+  user-select: none;
+  z-index: 1;
+}
+
+.multiselect-trigger:hover {
+  border-color: var(--color-gold);
+  background-color: #fff;
+}
+
+.multiselect-trigger i {
+  font-size: 0.8rem;
+  color: var(--color-gold);
+  transition: transform 0.3s ease;
+}
+
+.custom-multiselect.open .multiselect-trigger i {
+  transform: rotate(180deg);
+}
+
+.multiselect-text {
+  flex: 1;
+  text-align: left;
+}
+
+.multiselect-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1.5px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  z-index: 9999;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.custom-multiselect.open .multiselect-dropdown {
+  max-height: 300px;
+  overflow-y: auto;
+  border-top: 1px solid #ddd;
+}
+
+.multiselect-option {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f5f5f5;
+  user-select: none;
+}
+
+.multiselect-option:last-child {
+  border-bottom: none;
+}
+
+.multiselect-option:hover {
+  background-color: #f9f9f9;
+}
+
+.multiselect-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 0.8rem;
+  cursor: pointer;
+  accent-color: var(--color-gold);
+}
+
+.multiselect-option span {
+  flex: 1;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.multiselect-option input[type="checkbox"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.multiselect-option input[type="checkbox"]:disabled + span {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Scrollbar styling */
+.multiselect-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.multiselect-dropdown::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.multiselect-dropdown::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 3px;
+}
+
+.multiselect-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #c49a2e;
 }
 
 /* ========== ANIMATIONS ========== */

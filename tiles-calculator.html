@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 <meta name="description" content="Professional tile calculator for accurate area and box estimation. Calculate tiles needed for your space.">
 <title>Tiles Calculator | Shri Selvam Tiles & Granites</title>
 
@@ -30,6 +30,7 @@
         background: #1a1a2e;
         color: #000;
         overflow: hidden;
+        zoom: 100%;
     }
 
     .calculator-container {
@@ -65,6 +66,429 @@
         padding: 20px;
         position: relative;
         z-index: 1;
+    }
+
+    /* =============== SEGMENT TABS =============== */
+    .segment-tabs {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 20px 0;
+        position: relative;
+        z-index: 2;
+    }
+
+    .segment-tab {
+        background: rgba(255, 255, 255, 0.12);
+        color: #FFFFFF;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 14px;
+        padding: 10px 18px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        letter-spacing: 0.3px;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(10px);
+    }
+
+    .segment-tab:hover {
+        transform: translateY(-2px);
+        border-color: rgba(76, 175, 80, 0.6);
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+    }
+
+    .segment-tab.active {
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        border-color: rgba(76, 175, 80, 0.8);
+        box-shadow: 0 10px 22px rgba(76, 175, 80, 0.4);
+    }
+
+    .segment-panel {
+        display: none;
+    }
+
+    .segment-panel.active {
+        display: block;
+    }
+
+    .quotation-container {
+        grid-template-columns: 1fr;
+    }
+
+    .quotation-container .step-panel {
+        overflow-y: auto;
+    }
+
+    .quotation-container .panel-content {
+        padding-bottom: 20px;
+    }
+
+    .quotation-note {
+        color: #FFFFFF;
+        font-size: 0.95rem;
+        text-align: center;
+        margin: 5px 0 15px;
+        opacity: 0.9;
+    }
+
+    .quotation-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0 15px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .quotation-table .type-col {
+        min-width: 180px;
+    }
+
+    .quotation-table th,
+    .quotation-table td {
+        padding: 6px 4px;
+        text-align: center;
+        color: #FFFFFF;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .quotation-table th {
+        font-size: 0.85rem;
+        font-weight: 700;
+        background: rgba(76, 175, 80, 0.25);
+        letter-spacing: 0.2px;
+    }
+
+    .quotation-table td {
+        font-size: 0.85rem;
+    }
+
+    .quotation-input {
+        width: 100%;
+        height: 50px;
+        padding: 6px 8px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(76, 175, 80, 0.3);
+        border-radius: 10px;
+        color: #FFFFFF;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-align: center;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .quotation-input:focus {
+        outline: none;
+        border-color: #4CAF50;
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+    }
+
+    .quotation-input:read-only {
+        background: rgba(255, 255, 255, 0.9);
+        color: #1a1a2e;
+        border-color: rgba(255, 255, 255, 0.4);
+        font-weight: 700;
+    }
+
+    .quotation-input.user-entry {
+        background: rgba(0, 0, 0, 0.55);
+        border-color: rgba(255, 193, 7, 0.6);
+        color: #FFFFFF;
+    }
+
+    .quotation-input.user-entry:focus {
+        border-color: rgba(255, 193, 7, 0.95);
+        box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.25);
+    }
+
+    .quotation-input.compact {
+        width: 80px;
+        padding: 6px 6px;
+        font-size: 0.85rem;
+    }
+
+    .quotation-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .quotation-totals {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 10px;
+    }
+
+    .quotation-totals .summary-item {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 10px;
+    }
+
+    /* =============== DETAILED ESTIMATE =============== */
+    .detail-container {
+        grid-template-columns: 1fr;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .detail-container .step-panel {
+        overflow-y: hidden;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        height: 100%;
+    }
+
+    .detail-container .panel-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow-y: hidden;
+        padding-bottom: 10px;
+    }
+
+    .detail-section {
+        margin-bottom: 6px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid;
+        position: relative;
+    }
+
+    .detail-section::before {
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        position: absolute;
+        top: -16px;
+        left: 0;
+    }
+
+    .detail-section-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-bottom: 6px;
+    }
+
+    .detail-section-row:last-child {
+        margin-bottom: 0;
+    }
+
+    .detail-section-tiles {
+        background: linear-gradient(135deg, rgba(210, 140, 80, 0.15) 0%, rgba(180, 120, 60, 0.1) 100%);
+        border-left-color: #D18B4A;
+        border: 1px solid rgba(210, 140, 80, 0.3);
+    }
+
+    .detail-section-tiles::before {
+        content: 'Tiles Details';
+        color: #D18B4A;
+    }
+
+    .detail-section-tiles > .detail-section-row:first-child::before {
+        display: none;
+    }
+
+    .detail-section-customer {
+        background: linear-gradient(135deg, rgba(100, 200, 100, 0.15) 0%, rgba(80, 180, 80, 0.1) 100%);
+        border-left-color: #64C864;
+        border: 1px solid rgba(100, 200, 100, 0.3);
+    }
+
+    .detail-section-customer::before {
+        content: 'Customer & Box';
+        color: #64C864;
+    }
+
+    .detail-section-customer > .detail-section-row:first-child::before {
+        display: none;
+    }
+
+    .detail-section-pricing {
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 195, 0, 0.1) 100%);
+        border-left-color: #FFD700;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .detail-section-pricing::before {
+        content: 'Pricing Info';
+        color: #FFD700;
+    }
+
+    .detail-section-pricing > .detail-section-row:first-child::before {
+        display: none;
+    }
+
+    .detail-section-totals {
+        background: linear-gradient(135deg, rgba(30, 150, 255, 0.15) 0%, rgba(0, 120, 255, 0.1) 100%);
+        border-left-color: #1E96FF;
+        border: 1px solid rgba(30, 150, 255, 0.3);
+    }
+
+    .detail-section-totals::before {
+        content: 'Final Totals';
+        color: #1E96FF;
+    }
+
+    .detail-section-totals > .detail-section-row:first-child::before {
+        display: none;
+    }
+
+    .detail-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 6px;
+    }
+
+    .detail-field {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 3px;
+    }
+
+    .detail-field .form-label {
+        align-self: flex-start;
+        line-height: 1.1;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .detail-field .form-input {
+        width: 100%;
+        height: 38px;
+        font-size: 0.85rem;
+        padding: 6px 8px;
+    }
+
+    .detail-field .form-input.readonly {
+        background: rgba(255, 255, 255, 0.95);
+        color: #1a1a2e;
+        font-weight: 700;
+    }
+
+    .detail-field select#detailTileType,
+    .detail-field select#detailTileBrand,
+    .detail-field input#detailCustomerSqft,
+    .detail-field input#detailRoundBox,
+    .detail-field input#detailFinalPrice {
+        background: rgba(0, 0, 0, 0.55);
+        border-color: rgba(255, 193, 7, 0.6);
+        color: #FFFFFF;
+    }
+
+    #detailMrpRate {
+        height: 36px !important;
+        font-size: 0.75rem !important;
+        padding: 6px 4px !important;
+    }
+
+    .detail-field select#detailTileType:focus,
+    .detail-field select#detailTileBrand:focus,
+    .detail-field input#detailCustomerSqft:focus,
+    .detail-field input#detailRoundBox:focus,
+    .detail-field input#detailFinalPrice:focus {
+        border-color: rgba(255, 193, 7, 0.95);
+        box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.25);
+    }
+
+    input#detailFinalAmount {
+        font-size: 1rem;
+        font-weight: 800;
+    }
+
+    input#detailFinalAmount,
+    input#detailTotalKg {
+        font-size: 0.95rem;
+        letter-spacing: 0.3px;
+    }
+
+    .detail-actions {
+        display: flex;
+        gap: 6px;
+        margin-top: 6px;
+        justify-content: flex-end;
+    }
+
+    .detail-actions .btn {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+        height: auto;
+    }
+
+
+    .detail-whatsapp-modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 10000;
+    }
+
+    .detail-whatsapp-modal.active {
+        display: flex;
+    }
+
+    .detail-whatsapp-card {
+        background: #1a1a2e;
+        color: #FFFFFF;
+        width: 90%;
+        max-width: 420px;
+        border-radius: 14px;
+        padding: 18px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .detail-whatsapp-card h4 {
+        margin: 0 0 10px;
+        font-size: 1.05rem;
+        font-weight: 700;
+    }
+
+    .detail-whatsapp-card p {
+        margin: 0 0 12px;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .detail-whatsapp-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 12px;
+        justify-content: flex-end;
+    }
+
+
+    @media (max-width: 1100px) {
+        .detail-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .detail-row-3,
+        .detail-total-row {
+            grid-row: auto;
+        }
+    }
+
+    @media (max-width: 720px) {
+        .detail-grid {
+            grid-template-columns: 1fr;
+        }
     }
 
     /* =============== STEP PANELS =============== */
@@ -213,7 +637,7 @@
 
     .form-input {
         width: 110px;
-        height: 50px;
+        height: 60px;
         padding: 10px;
         background: rgba(255, 255, 255, 0.12);
         backdrop-filter: blur(10px);
@@ -264,7 +688,7 @@
 
     #tileSize {
         width: 160px;
-        height: 50px;
+        height: 60px;
         padding: 10px;
         background: rgba(255, 255, 255, 0.12);
         backdrop-filter: blur(10px);
@@ -514,7 +938,7 @@
     .distribution-input {
         width: 100%;
         max-width: 90px;
-        height: 36px;
+        height: 45px;
         padding: 6px;
         background: rgba(76, 175, 80, 0.25);
         backdrop-filter: blur(10px);
@@ -539,7 +963,7 @@
     .distribution-output {
         width: 100%;
         max-width: 90px;
-        height: 36px;
+        height: 45px;
         padding: 6px;
         background: rgba(255, 255, 255, 0.95);
         border: 1.5px solid rgba(255, 255, 255, 0.5);
@@ -588,7 +1012,7 @@
     .summary-input {
         width: 100%;
         max-width: 90px;
-        height: 36px;
+        height: 45px;
         padding: 6px;
         background: rgba(255, 255, 255, 0.95);
         border: 1.5px solid rgba(255, 255, 255, 0.5);
@@ -624,7 +1048,7 @@
 
     .sqft-input {
         width: 110px;
-        height: 36px;
+        height: 45px;
         padding: 6px;
         background: rgba(255, 255, 255, 0.95);
         border: 1.5px solid rgba(255, 255, 255, 0.5);
@@ -747,6 +1171,59 @@
         h3 {
             font-size: 1.1rem;
         }
+
+        /* Detail section responsive styles */
+        .detail-section-row {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .detail-section {
+            padding: 12px;
+            margin-bottom: 2px;
+        }
+
+        .detail-field .form-label {
+            font-size: 0.85rem;
+        }
+
+        /* Tablet-specific quotation table styles */
+        .quotation-table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 10px 0;
+        }
+
+        .quotation-table {
+            min-width: 900px;
+            font-size: 0.8rem;
+        }
+
+        .quotation-table th {
+            font-size: 0.75rem;
+            padding: 5px 3px;
+        }
+
+        .quotation-table td {
+            font-size: 0.8rem;
+            padding: 5px 3px;
+        }
+
+        .quotation-input {
+            height: 35px;
+            padding: 5px 6px;
+            font-size: 0.8rem;
+        }
+
+        .quotation-actions .btn {
+            padding: 10px 12px;
+            font-size: 0.9rem;
+            min-height: 44px;
+        }
+
+        .quotation-totals {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
     }
     
     @media (max-width: 480px) {
@@ -793,6 +1270,119 @@
         .summary-value {
             font-size: 1.1rem;
         }
+
+        /* Mobile-specific quotation table styles */
+        .quotation-table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 10px 0;
+        }
+
+        .quotation-table {
+            min-width: 1000px;
+            font-size: 0.75rem;
+        }
+
+        .quotation-table th,
+        .quotation-table td {
+            padding: 4px 2px;
+            min-width: 60px;
+        }
+
+        .quotation-table th {
+            font-size: 0.7rem;
+            white-space: nowrap;
+        }
+
+        .quotation-table td {
+            font-size: 0.75rem;
+        }
+
+        .quotation-input {
+            height: 42px;
+            padding: 4px 4px;
+            font-size: 0.75rem;
+        }
+
+        .quotation-actions {
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .quotation-actions .btn {
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            min-height: 44px;
+            flex: 1 1 calc(50% - 3px);
+            min-width: 120px;
+        }
+
+        .quotation-totals {
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .summary-item {
+            padding: 8px;
+        }
+
+        .summary-label {
+            font-size: 0.8rem;
+        }
+
+        .summary-input {
+            font-size: 0.9rem;
+            height: 42px;
+            max-width: 90px;
+        }
+
+        .customer-container {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .customer-field {
+            width: 100% !important;
+            font-size: 0.85rem;
+        }
+
+        .customer-field input {
+            height: 48px;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile detail section styles */
+        .detail-section-row {
+            grid-template-columns: 1fr;
+        }
+
+        .detail-section {
+            padding: 10px;
+            margin-bottom: 2px;
+        }
+
+        .detail-field .form-label {
+            font-size: 0.8rem;
+        }
+
+        .detail-field .form-input {
+            height: 42px;
+            font-size: 0.85rem;
+            padding: 6px 8px;
+        }
+
+        .detail-actions {
+            flex-wrap: wrap;
+        }
+
+        .detail-actions .btn {
+            flex: 1 1 calc(50% - 5px);
+            min-width: 100px;
+            padding: 8px;
+            font-size: 0.8rem;
+        }
     }
 
     /* Hide old elements */
@@ -835,7 +1425,14 @@
 </header>
 
 <div class="calculator-container">
-<div class="main-container">
+    <div class="segment-tabs">
+        <button class="segment-tab active" data-segment="bath-kitchen">Bath / Kitchen Calculation</button>
+        <button class="segment-tab" data-segment="quotation">Quotation Calculation</button>
+        <button class="segment-tab" data-segment="detailed-estimate">Detailed Estimate</button>
+    </div>
+
+    <div class="segment-panel active" id="segment-bath-kitchen">
+    <div class="main-container">
     
     <!-- =============== STEP 1 - LEFT PANEL =============== -->
     <div class="left-panel step-panel">
@@ -955,6 +1552,231 @@
     </div>
 
 </div>
+    </div>
+
+    <div class="segment-panel" id="segment-quotation">
+        <div class="main-container quotation-container">
+            <div class="left-panel step-panel">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 30px; margin-bottom: 20px;">
+                    <div class="step-header" style="position: relative; top: 0; left: 0;">Quotation</div>
+                    <div style="display: flex; gap: 20px; align-items: center;">
+                        <div class="form-group" style="margin: 0;">
+                            <label class="form-label" style="color: #FFFFFF !important; margin-bottom: 5px; font-size: 0.85rem;">Customer Name</label>
+                            <input type="text" id="QuoteCustomerName" class="form-input" placeholder="" style="width: 180px; height: 50px;">
+                        </div>
+                        <div class="form-group" style="margin: 0;">
+                            <label class="form-label" style="color: #FFFFFF !important; margin-bottom: 5px; font-size: 0.85rem;">Customer Phone</label>
+                            <input type="text" id="QuoteCustomerPhone" class="form-input" placeholder="91XXXXXXXXXX" style="width: 180px; height: 50px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-content" style="margin-top: 0;">
+
+                    <div class="quotation-table-wrapper">
+                        <table class="quotation-table">
+                        <thead>
+                            <tr>
+                                <th style="min-width: 180px; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: #ffffff; font-weight: 800;">Tiles Name</th>
+                                <th style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: #ffffff;">Tile Type / Size</th>
+                                <th style="min-width: 150px; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: #ffffff;">Tiles Brand</th>
+                                <th style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: #ffffff;">Box sq ft</th>
+                                <th style="min-width: 80px; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: #ffffff;">MRP Sq ft rate</th>
+                                <th style="min-width: 80px; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: #ffffff;">Offer price</th>
+                                <th style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: #ffffff;">Customer Sq Ft</th>
+                                <th style="min-width: 100px; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: #ffffff;">Actual Box</th>
+                                <th style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: #ffffff;">Final Box</th>
+                                <th style="min-width: 80px; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: #ffffff;">Final sq ft</th>
+                                <th style="min-width: 80px; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: #ffffff;">Total sq ft Rate on MRP</th>
+                                <th style="max-width: 80px; width: 80px; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: #ffffff;">Discounted Sq Rate</th>
+                                <th style="min-width: 80px; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: #ffffff;">Discount Total</th>
+                                <th style="min-width: 100px; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); color: #ffffff;">Total Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="quotationRows"></tbody>
+                    </table>
+                    </div>
+
+                    <div class="quotation-totals">
+                        <div class="summary-item">
+                            <div class="summary-label">Total Final Box</div>
+                            <input type="text" id="QuoteTotalFinalBox" class="summary-input" readonly>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Total sq ft Rate on MRP</div>
+                            <input type="text" id="QuoteTotalMrpRate" class="summary-input" readonly>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Discount Total</div>
+                            <input type="text" id="QuoteDiscountTotal" class="summary-input" readonly>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Total Amount</div>
+                            <input type="text" id="QuoteTotalSqRate" class="summary-input" readonly>
+                        </div>
+                    </div>
+
+                    <div class="quotation-actions">
+                        <button class="btn btn-calculate" onclick="addQuotationRow()">Add</button>
+                        <button class="btn btn-clear" onclick="clearQuotation()">Clear</button>
+                        <button class="btn btn-final" onclick="printQuotation()">Print</button>
+                        <button class="btn btn-calculate" onclick="sendQuotationWhatsApp()">Send WhatsApp</button>
+                        <button class="btn btn-calculate" onclick="downloadQuotationPdf()">Download PDF</button>
+                        <button class="btn btn-calculate" onclick="previewQuotationImage()" style="background-color: #667eea;">Preview Image</button>
+                        <button class="btn btn-calculate" onclick="downloadQuotationImage()" style="background-color: #764ba2;">Download Image</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="segment-panel" id="segment-detailed-estimate">
+        <div class="main-container detail-container">
+            <div class="left-panel step-panel">
+                <div class="panel-content">
+                    <div class="detail-grid">
+                        <!-- Section 1: Tiles Type/Size and Specifications -->
+                        <div class="detail-section detail-section-tiles">
+                            <div class="detail-section-row">
+                                <div class="detail-field">
+                                    <label class="form-label">Tiles - Type/Size</label>
+                                    <select id="detailTileType" class="form-input">
+                                        <option value="">Select</option>
+                                        <option value="Parking 16 * 16">Parking 16 * 16</option>
+                                        <option value="Parking 1 * 1">Parking 1 * 1</option>
+                                        <option value="Parking 20 * 20">Parking 20 * 20</option>
+                                        <option value="Cool Roof 1 * 1">Cool Roof 1 * 1</option>
+                                        <option value="Floor 4 * 2">Floor 4 * 2</option>
+                                        <option value="Floor 2 * 2">Floor 2 * 2</option>
+                                        <option value="Wall 15 * 10">Wall 15 * 10</option>
+                                        <option value="Wall 18 * 12">Wall 18 * 12</option>
+                                        <option value="Wall 2 * 1">Wall 2 * 1</option>
+                                        <option value="Bath Floor 1 * 1">Bath Floor 1 * 1</option>
+                                        <option value="Elevation 18 * 12">Elevation 18 * 12</option>
+                                    </select>
+                                </div>
+                                <div class="detail-field">
+                                    <label class="form-label">Box Sq Ft</label>
+                                    <input type="text" id="detailBoxSqft" class="form-input readonly" readonly>
+                                </div>
+                                <div class="detail-field">
+                                    <label class="form-label">Box Per Pcs</label>
+                                    <input type="text" id="detailBoxPcs" class="form-input readonly" readonly>
+                                </div>
+                                <div class="detail-field">
+                                    <label class="form-label">Weight per Box</label>
+                                    <input type="text" id="detailWeightPerBox" class="form-input readonly" readonly>
+                                </div>
+                            </div>
+                            <div class="detail-section-row">
+                                <div class="detail-field">
+                                    <label class="form-label">Brand / Model</label>
+                                    <select id="detailTileBrand" class="form-input">
+                                        <option value="">Select</option>
+                                        <option value="KAG">KAG</option>
+                                        <option value="KAG Rafale">KAG Rafale</option>
+                                        <option value="St Landford">St Landford</option>
+                                        <option value="Kajaria H">Kajaria H</option>
+                                        <option value="Kajaria L">Kajaria L</option>
+                                        <option value="Kajaria">Kajaria</option>
+                                        <option value="Orient Bell">Orient Bell</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Customer and Box Information -->
+                        <div class="detail-section detail-section-customer">
+                            <div class="detail-section-row">
+                                <div class="detail-field">
+                                    <label class="form-label">Customer Sq Ft</label>
+                                    <input type="text" id="detailCustomerSqft" class="form-input" inputmode="decimal" pattern="[0-9]*[.]?[0-9]*">
+                                </div>
+                                <div class="detail-field">
+                                    <label class="form-label">Actual Box</label>
+                                    <input type="text" id="detailActualBox" class="form-input readonly" readonly>
+                                </div>
+                                <div class="detail-field"></div>
+                                <div class="detail-field">
+                                    <label class="form-label">Total KG</label>
+                                    <input type="text" id="detailTotalKg" class="form-input readonly" readonly>
+                                </div>
+                            </div>
+                            <div class="detail-section-row">
+                                <div class="detail-field">
+                                    <label class="form-label">Final Box</label>
+                                    <input type="text" id="detailRoundBox" class="form-input" inputmode="numeric" pattern="[0-9]*">
+                                </div>
+                                <div class="detail-field">
+                                    <label class="form-label">Final sq ft</label>
+                                    <input type="text" id="detailActualSqft" class="form-input readonly" readonly>
+                                </div>
+                                <div class="detail-field">
+                                    <label class="form-label">Final sq ft</label>
+                                    <input type="text" class="form-input readonly" readonly style="visibility: hidden;">
+                                </div>
+                                <div class="detail-field"></div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3: Pricing Information -->
+                        <div class="detail-section detail-section-pricing">
+                            <div class="detail-section-row">
+                                <div class="detail-field" style="grid-column: span 1;">
+                                    <label class="form-label">Customer Final Price per sq ft</label>
+                                    <input type="text" id="detailFinalPrice" class="form-input" inputmode="decimal" pattern="[0-9]*[.]?[0-9]*">
+                                </div>
+                                <div class="detail-field">
+                                    <label class="form-label">Offer Price</label>
+                                    <input type="text" id="detailOfferPrice" class="form-input readonly" readonly>
+                                </div>
+                                <div class="detail-field" style="grid-column: span 1;">
+                                    <label class="form-label">MRP Sq Ft Rate</label>
+                                    <input type="text" id="detailMrpRate" class="form-input readonly" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 4: Final Totals -->
+                        <div class="detail-section detail-section-totals">
+                            <div class="detail-section-row">
+                                <div class="detail-field">
+                                    <label class="form-label">Total sq ft Rate on MRP</label>
+                                    <input type="text" id="detailTotalMrpRate" class="form-input readonly" readonly>
+                                </div>
+                                <div class="detail-field">
+                                    <label class="form-label">Discount</label>
+                                    <input type="text" id="detailDiscount" class="form-input readonly" readonly>
+                                </div>
+                                <div class="detail-field" style="grid-column: span 1;">
+                                    <label class="form-label">Total Amount</label>
+                                    <input type="text" id="detailFinalAmount" class="form-input readonly" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detail-actions">
+                        <button class="btn btn-clear" id="detailClearBtn" type="button">Clear</button>
+                        <button class="btn btn-calculate" id="detailDownloadImageBtn" type="button">Download Image</button>
+                        <button class="btn btn-calculate" id="detailWhatsAppBtn" type="button">Send WhatsApp</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-whatsapp-modal" id="detailWhatsAppModal" aria-hidden="true">
+        <div class="detail-whatsapp-card">
+            <h4>Send WhatsApp</h4>
+            <p>Enter the mobile number with country code.</p>
+            <input type="text" id="detailWhatsAppNumber" class="form-input" inputmode="numeric" pattern="[0-9]*" placeholder="919876543210">
+            <div class="detail-whatsapp-actions">
+                <button class="btn btn-clear" id="detailWhatsAppCancel" type="button">Cancel</button>
+                <button class="btn btn-calculate" id="detailWhatsAppSend" type="button">Send</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Footer and Scroll button hidden on calculator page -->
@@ -1065,7 +1887,1013 @@ function clearAll() {
     updateTileSelection("15 * 10");
 }
 
+function clearQuotation() {
+    const rows = document.getElementById("quotationRows");
+    rows.innerHTML = "";
+    for (let i = 0; i < 4; i += 1) {
+        addQuotationRow();
+    }
+    updateQuotationTotals();
+}
+
 const tileSizeEl = document.getElementById("tileSize");
+
+function initSegmentTabs() {
+    const tabs = document.querySelectorAll('.segment-tab');
+    const panels = document.querySelectorAll('.segment-panel');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.getAttribute('data-segment');
+
+            tabs.forEach(btn => btn.classList.remove('active'));
+            panels.forEach(panel => panel.classList.remove('active'));
+
+            tab.classList.add('active');
+            const activePanel = document.getElementById(`segment-${target}`);
+            if (activePanel) activePanel.classList.add('active');
+
+            if (target === 'quotation') {
+                const verfBoxes = document.getElementById("TotalVerfBox1");
+                const totalBox = document.getElementById("TotalBox");
+                const rows = document.querySelectorAll('.quotation-row');
+                if (rows.length > 0) {
+                    const firstRowBox = rows[0].querySelector('[data-field="customerSqft"]');
+                    if (firstRowBox && !firstRowBox.value) {
+                        if (verfBoxes && verfBoxes.value) {
+                            firstRowBox.value = verfBoxes.value;
+                        } else if (totalBox && totalBox.value) {
+                            firstRowBox.value = totalBox.value;
+                        }
+                        updateRowCalculations(rows[0]);
+                    }
+                }
+            }
+        });
+    });
+}
+
+initSegmentTabs();
+
+const quotationData = [
+    { type: 'Parking 16 * 16', brand: 'KAG', boxSqft: 8.61, mrpRate: 70, offerPrice: 59 },
+    { type: 'Parking 16 * 16', brand: 'KAG Rafale', boxSqft: 8.61, mrpRate: 65, offerPrice: 55 },
+    { type: 'Parking 16 * 16', brand: 'ST-Landford', boxSqft: 8.61, mrpRate: 51, offerPrice: 47 },
+    { type: 'Parking 16 * 16', brand: 'Kajaria H', boxSqft: 8.61, mrpRate: 81, offerPrice: 66 },
+    { type: 'Parking 16 * 16', brand: 'Kajaria L', boxSqft: 8.61, mrpRate: 76, offerPrice: 63 },
+    { type: 'Parking 1 * 1', brand: 'KAG', boxSqft: 7.75, mrpRate: 56, offerPrice: 50 },
+    { type: 'Parking 1 * 1', brand: 'Orient Bell', boxSqft: 9.7, mrpRate: 60, offerPrice: 51 },
+    { type: 'Parking 1 * 1', brand: 'Kajaria', boxSqft: 7.75, mrpRate: 87, offerPrice: 74 },
+    { type: 'Parking 20 * 20', brand: 'ST-Shreem', boxSqft: 8.07, mrpRate: 65, offerPrice: 53 },
+    { type: 'Parking 20 * 20', brand: 'KAG', boxSqft: 8.07, mrpRate: 83, offerPrice: 65 },
+    { type: 'Cool Roof 1 * 1', brand: 'KAG', boxSqft: 8.72, mrpRate: 52, offerPrice: 47 },
+    { type: 'Cool Roof 1 * 1', brand: 'ST-Sanariya', boxSqft: 7.75, mrpRate: 50, offerPrice: 40 },
+    { type: 'Floor 4 * 2', brand: 'KAG-Rafale-69', boxSqft: 15.5, mrpRate: 69, offerPrice: 57 },
+    { type: 'Floor 4 * 2', brand: 'KAG - 74', boxSqft: 15.5, mrpRate: 74, offerPrice: 60 },
+    { type: 'Floor 4 * 2', brand: 'KAG - 79', boxSqft: 15.5, mrpRate: 79, offerPrice: 63 },
+    { type: 'Floor 4 * 2', brand: 'KAG - 92', boxSqft: 15.5, mrpRate: 92, offerPrice: 71 },
+    { type: 'Floor 4 * 2', brand: 'Kajaria - L', boxSqft: 15.5, mrpRate: 99, offerPrice: 80 },
+    { type: 'Floor 4 * 2', brand: 'Kajaria - H', boxSqft: 15.5, mrpRate: 103, offerPrice: 84 },
+    { type: 'Floor 4 * 2', brand: 'Somany', boxSqft: 15.5, mrpRate: 86, offerPrice: 70 },
+    { type: 'Floor 4 * 2', brand: 'Suncore', boxSqft: 15.5, mrpRate: 74, offerPrice: 60 },
+    { type: 'Floor 4 * 2', brand: 'Nexted', boxSqft: 15.5, mrpRate: 74, offerPrice: 60 },
+    { type: 'Floor 4 * 2', brand: 'ST-Rare', boxSqft: 15.5, mrpRate: 58, offerPrice: 47 },
+    { type: 'Floor 4 * 2', brand: 'ST-Shreem', boxSqft: 15.5, mrpRate: 60, offerPrice: 49 },
+    { type: 'Floor 4 * 2', brand: 'ST-Sh carving / Ltile', boxSqft: 15.5, mrpRate: 65, offerPrice: 53 },
+    { type: 'Floor 2 * 2', brand: 'KAG-Nano', boxSqft: 15.5, mrpRate: 59, offerPrice: 59 },
+    { type: 'Floor 2 * 2', brand: 'KAG-Matt', boxSqft: 15.5, mrpRate: 63, offerPrice: 63 },
+    { type: 'Floor 2 * 2', brand: 'KAG-Rafale Matt', boxSqft: 15.5, mrpRate: 59, offerPrice: 59 },
+    { type: 'Floor 2 * 2', brand: 'KAG-DC-Light', boxSqft: 15.5, mrpRate: 70, offerPrice: 70 },
+    { type: 'Floor 2 * 2', brand: 'KAG-DC-Dark', boxSqft: 15.5, mrpRate: 77, offerPrice: 77 },
+    { type: 'Wall 15 * 10', brand: 'KAG', boxSqft: 8.07, mrpRate: 42, offerPrice: 42 },
+    { type: 'Wall 18 * 12', brand: 'KAG', boxSqft: 8.72, mrpRate: 50, offerPrice: 50 },
+    { type: 'Wall 18 * 12', brand: 'KAG-Rafale', boxSqft: 8.72, mrpRate: 43, offerPrice: 43 },
+    { type: 'Wall 2 * 1', brand: 'KAG', boxSqft: 9.69, mrpRate: 69, offerPrice: 69 },
+    { type: 'Bath Floor 1 * 1', brand: 'KAG', boxSqft: 8.72, mrpRate: 56, offerPrice: 56 },
+    { type: 'Bath Floor 1 * 1', brand: 'KAG-Rafale', boxSqft: 8.72, mrpRate: 49, offerPrice: 49 },
+    { type: 'Elevation 18 * 12', brand: 'KAG', boxSqft: 8.72, mrpRate: 53, offerPrice: 53 },
+    { type: 'Elevation 18 * 12', brand: 'KAG-Rafale', boxSqft: 8.72, mrpRate: 49, offerPrice: 49 }
+];
+
+const detailedEstimateData = {
+    combinations: [
+        { type: 'Parking 16 * 16', brand: 'KAG', boxSqft: 8.61, boxPcs: 5, mrpRate: 70, offerPrice: 59, weightPerBox: 18.8 },
+        { type: 'Parking 16 * 16', brand: 'KAG Rafale', boxSqft: 8.61, boxPcs: 5, mrpRate: 65, offerPrice: 55, weightPerBox: 18.8 },
+        { type: 'Parking 16 * 16', brand: 'ST - Landford', boxSqft: 8.61, boxPcs: 5, mrpRate: 51, offerPrice: 47, weightPerBox: 18.8 },
+        { type: 'Parking 16 * 16', brand: 'Kajaria H', boxSqft: 8.61, boxPcs: 5, mrpRate: 81, offerPrice: 66, weightPerBox: 18.8 },
+        { type: 'Parking 16 * 16', brand: 'Kajaria L', boxSqft: 8.61, boxPcs: 5, mrpRate: 76, offerPrice: 63, weightPerBox: 18.8 },
+        { type: 'Parking 1 * 1', brand: 'KAG', boxSqft: 7.75, boxPcs: 8, mrpRate: 56, offerPrice: 50, weightPerBox: 13.4 },
+        { type: 'Parking 1 * 1', brand: 'Orient Bell', boxSqft: 9.7, boxPcs: 10, mrpRate: 60, offerPrice: 51, weightPerBox: 13.4 },
+        { type: 'Parking 1 * 1', brand: 'Kajaria', boxSqft: 7.75, boxPcs: 8, mrpRate: 87, offerPrice: 74, weightPerBox: 13.4 },
+        { type: 'Parking 20 * 20', brand: 'ST - Shreem', boxSqft: 8.07, boxPcs: 3, mrpRate: '', offerPrice: '', weightPerBox: 17 },
+        { type: 'Parking 20 * 20', brand: 'KAG', boxSqft: 8.07, boxPcs: 3, mrpRate: 83, offerPrice: '', weightPerBox: 17 },
+        { type: 'Cool Roof 1 * 1', brand: 'KAG', boxSqft: 8.72, boxPcs: 9, mrpRate: 52, offerPrice: 47, weightPerBox: 12 },
+        { type: 'Cool Roof 1 * 1', brand: 'ST - Sanariya', boxSqft: 7.75, boxPcs: 8, mrpRate: 40, offerPrice: 40, weightPerBox: 11 },
+        { type: 'Floor 4 * 2', brand: 'KAG Rafale - 68.5', boxSqft: 15.5, boxPcs: 2, mrpRate: 69, offerPrice: 57, weightPerBox: 27 },
+        { type: 'Floor 4 * 2', brand: 'KAG - 74', boxSqft: 15.5, boxPcs: 2, mrpRate: 74, offerPrice: 60, weightPerBox: 27 },
+        { type: 'Floor 4 * 2', brand: 'KAG - 79', boxSqft: 15.5, boxPcs: 2, mrpRate: 79, offerPrice: 63, weightPerBox: 27 },
+        { type: 'Floor 4 * 2', brand: 'KAG - 92', boxSqft: 15.5, boxPcs: 2, mrpRate: 92, offerPrice: 71, weightPerBox: 27 },
+        { type: 'Floor 4 * 2', brand: 'Kajaria - L', boxSqft: 15.5, boxPcs: 2, mrpRate: '', offerPrice: 80, weightPerBox: 27 },
+        { type: 'Floor 4 * 2', brand: 'Kajaria - H', boxSqft: 15.5, boxPcs: 2, mrpRate: '', offerPrice: 84, weightPerBox: 27 },
+        { type: 'Floor 4 * 2', brand: 'Somany', boxSqft: 15.5, boxPcs: 2, mrpRate: '', offerPrice: 70, weightPerBox: 27 },
+        { type: 'Floor 4 * 2', brand: 'Suncore', boxSqft: 15.5, boxPcs: 2, mrpRate: '', offerPrice: 60, weightPerBox: 27 },
+        { type: 'Floor 4 * 2', brand: 'Nexted', boxSqft: 15.5, boxPcs: 2, mrpRate: '', offerPrice: 60, weightPerBox: 27 },
+        { type: 'Floor 4 * 2', brand: 'ST - Rare', boxSqft: 15.5, boxPcs: 2, mrpRate: '', offerPrice: 47, weightPerBox: 27 },
+        { type: 'Floor 4 * 2', brand: 'ST - Shreem', boxSqft: 15.5, boxPcs: 2, mrpRate: '', offerPrice: 49, weightPerBox: 27 },
+        { type: 'Floor 4 * 2', brand: 'ST - Sh carving / Ltile', boxSqft: 15.5, boxPcs: 2, mrpRate: '', offerPrice: 53, weightPerBox: 27 },
+        { type: 'Floor 2 * 2', brand: 'KAG - Nano', boxSqft: 15.5, boxPcs: 4, mrpRate: 59, offerPrice: 59, weightPerBox: 27 },
+        { type: 'Floor 2 * 2', brand: 'KAG - Matt', boxSqft: 15.5, boxPcs: 4, mrpRate: 63, offerPrice: 63, weightPerBox: 27 },
+        { type: 'Floor 2 * 2', brand: 'KAG - Rafale Matt', boxSqft: 15.5, boxPcs: 4, mrpRate: 59, offerPrice: 59, weightPerBox: 27 },
+        { type: 'Floor 2 * 2', brand: 'KAG - DC - Light', boxSqft: 15.5, boxPcs: 4, mrpRate: 70, offerPrice: 70, weightPerBox: 27 },
+        { type: 'Floor 2 * 2', brand: 'KAG - DC - Dark', boxSqft: 15.5, boxPcs: 4, mrpRate: 77, offerPrice: 77, weightPerBox: 27 },
+        { type: 'Wall 15 * 10', brand: 'KAG', boxSqft: 8.07, boxPcs: 8, mrpRate: 42, offerPrice: 42, weightPerBox: 8.7 },
+        { type: 'Wall 18 * 12', brand: 'KAG', boxSqft: 8.72, boxPcs: 6, mrpRate: 50, offerPrice: 50, weightPerBox: 10.5 },
+        { type: 'Wall 18 * 12', brand: 'KAG - Rafale', boxSqft: 8.72, boxPcs: 6, mrpRate: 43, offerPrice: 43, weightPerBox: 10.5 },
+        { type: 'Wall 2 * 1', brand: 'KAG', boxSqft: 9.69, boxPcs: 5, mrpRate: 69, offerPrice: 69, weightPerBox: 13.3 },
+        { type: 'Bath Floor 1 * 1', brand: 'KAG', boxSqft: 8.72, boxPcs: 9, mrpRate: 56, offerPrice: 56, weightPerBox: 10.5 },
+        { type: 'Bath Floor 1 * 1', brand: 'KAG - Rafale', boxSqft: 8.72, boxPcs: 9, mrpRate: 49, offerPrice: 49, weightPerBox: 10.5 },
+        { type: 'Elevation 18 * 12', brand: 'KAG', boxSqft: 8.72, boxPcs: 6, mrpRate: 53, offerPrice: 53, weightPerBox: 10.5 },
+        { type: 'Elevation 18 * 12', brand: 'KAG - Rafale', boxSqft: 8.72, boxPcs: 6, mrpRate: 49, offerPrice: 49, weightPerBox: 10.5 }
+    ]
+};
+
+function updateDetailedCalculations() {
+    const boxSqft = Number(document.getElementById('detailBoxSqft')?.value || 0);
+    const customerSqft = Number(document.getElementById('detailCustomerSqft')?.value || 0);
+    const roundBox = Number(document.getElementById('detailRoundBox')?.value || 0);
+    const finalPrice = Number(document.getElementById('detailFinalPrice')?.value || 0);
+    const mrpRate = Number(document.getElementById('detailMrpRate')?.value || 0);
+    const weightPerBox = Number(document.getElementById('detailWeightPerBox')?.value || 0);
+
+    const actualBox = boxSqft > 0 ? customerSqft / boxSqft : 0;
+    const rawActualSqft = boxSqft > 0 ? roundBox * boxSqft : 0;
+    const frac = rawActualSqft % 1;
+    const roundedActualSqft = rawActualSqft > 0
+        ? (frac >= 0.5 ? Math.ceil(rawActualSqft) : Math.floor(rawActualSqft))
+        : 0;
+    const finalAmount = roundedActualSqft > 0 ? roundedActualSqft * finalPrice : 0;
+    const totalKg = roundBox > 0 && weightPerBox > 0 ? roundBox * weightPerBox : 0;
+    const totalMrpRate = roundedActualSqft > 0 && mrpRate > 0 ? roundedActualSqft * mrpRate : 0;
+    const discount = totalMrpRate > 0 ? totalMrpRate - finalAmount : 0;
+
+    const actualBoxEl = document.getElementById('detailActualBox');
+    const actualSqftEl = document.getElementById('detailActualSqft');
+    const finalAmountEl = document.getElementById('detailFinalAmount');
+    const totalKgEl = document.getElementById('detailTotalKg');
+    const totalMrpRateEl = document.getElementById('detailTotalMrpRate');
+    const discountEl = document.getElementById('detailDiscount');
+
+    if (actualBoxEl) actualBoxEl.value = actualBox ? actualBox.toFixed(2) : '';
+    if (actualSqftEl) actualSqftEl.value = roundedActualSqft ? roundedActualSqft.toFixed(2) : '';
+    if (finalAmountEl) finalAmountEl.value = finalAmount ? finalAmount.toFixed(2) : '';
+    if (totalKgEl) totalKgEl.value = totalKg ? totalKg.toFixed(2) : '';
+    if (totalMrpRateEl) totalMrpRateEl.value = totalMrpRate ? totalMrpRate.toFixed(2) : '';
+    if (discountEl) discountEl.value = discount ? discount.toFixed(2) : '';
+}
+
+function renderDetailedEstimateImage() {
+    const fields = [
+        { label: 'Tiles - Type/Size', value: document.getElementById('detailTileType')?.value || '-' },
+        { label: 'Brand / Model', value: document.getElementById('detailTileBrand')?.value || '-' },
+        { label: 'Final Box', value: document.getElementById('detailRoundBox')?.value || '-' },
+        { label: 'Final sq ft', value: document.getElementById('detailActualSqft')?.value || '-' },
+        { label: 'Customer Final Price per sq ft', value: document.getElementById('detailFinalPrice')?.value || '-' },
+        { label: 'Total sq ft Rate on MRP', value: document.getElementById('detailTotalMrpRate')?.value || '-' },
+        { label: 'Discount', value: document.getElementById('detailDiscount')?.value || '-' },
+        { label: 'Total Amount', value: document.getElementById('detailFinalAmount')?.value || '-' },
+        { label: 'Weight per Box', value: document.getElementById('detailWeightPerBox')?.value || '-' },
+        { label: 'Total KG', value: document.getElementById('detailTotalKg')?.value || '-' }
+    ];
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 620;
+    canvas.height = 440;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return '';
+
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#111111';
+    ctx.font = 'bold 18px Arial';
+    ctx.fillText('Detailed Estimate', 20, 32);
+
+    ctx.fillStyle = '#d4af37';
+    ctx.fillRect(20, 44, canvas.width - 40, 2);
+
+    ctx.font = '14px Arial';
+    ctx.fillStyle = '#333333';
+
+    let y = 76;
+    const rowGap = 38;
+    fields.forEach((item) => {
+        ctx.fillText(item.label, 20, y);
+        ctx.font = 'bold 14px Arial';
+        ctx.fillText(String(item.value), 320, y);
+        ctx.font = '14px Arial';
+        y += rowGap;
+    });
+
+    return canvas.toDataURL('image/png');
+}
+
+async function shareDetailedEstimateImage(phone) {
+    if (!phone) return;
+    const cleanPhone = phone.replace(/[^0-9]/g, '');
+    if (!cleanPhone) return;
+
+    const fields = [
+        { label: 'Tiles - Type/Size', value: document.getElementById('detailTileType')?.value || '-' },
+        { label: 'Brand / Model', value: document.getElementById('detailTileBrand')?.value || '-' },
+        { label: 'Final Box', value: document.getElementById('detailRoundBox')?.value || '-' },
+        { label: 'Final sq ft', value: document.getElementById('detailActualSqft')?.value || '-' },
+        { label: 'Customer Final Price per sq ft', value: document.getElementById('detailFinalPrice')?.value || '-' },
+        { label: 'Total sq ft Rate on MRP', value: document.getElementById('detailTotalMrpRate')?.value || '-' },
+        { label: 'Discount', value: document.getElementById('detailDiscount')?.value || '-' },
+        { label: 'Total Amount', value: document.getElementById('detailFinalAmount')?.value || '-' },
+        { label: 'Weight per Box', value: document.getElementById('detailWeightPerBox')?.value || '-' },
+        { label: 'Total KG', value: document.getElementById('detailTotalKg')?.value || '-' }
+    ];
+
+    const lines = ['Hi,', 'Your quotation is ready', ''];
+    fields.forEach((item) => {
+        lines.push(`${item.label}: ${item.value}`);
+    });
+
+    const message = encodeURIComponent(lines.join('\n'));
+    window.open(`https://wa.me/${cleanPhone}?text=${message}`, '_blank');
+}
+
+function initDetailedEstimate() {
+    const tileTypeEl = document.getElementById('detailTileType');
+    const brandEl = document.getElementById('detailTileBrand');
+    const boxSqftEl = document.getElementById('detailBoxSqft');
+    const boxPcsEl = document.getElementById('detailBoxPcs');
+    const weightPerBoxEl = document.getElementById('detailWeightPerBox');
+    const mrpRateEl = document.getElementById('detailMrpRate');
+    const offerPriceEl = document.getElementById('detailOfferPrice');
+    const customerSqftEl = document.getElementById('detailCustomerSqft');
+    const roundBoxEl = document.getElementById('detailRoundBox');
+    const finalPriceEl = document.getElementById('detailFinalPrice');
+    const clearBtn = document.getElementById('detailClearBtn');
+    const downloadBtn = document.getElementById('detailDownloadImageBtn');
+    const whatsappBtn = document.getElementById('detailWhatsAppBtn');
+    const whatsappModal = document.getElementById('detailWhatsAppModal');
+    const whatsappNumber = document.getElementById('detailWhatsAppNumber');
+    const whatsappCancel = document.getElementById('detailWhatsAppCancel');
+    const whatsappSend = document.getElementById('detailWhatsAppSend');
+
+    if (!tileTypeEl || !brandEl) return;
+
+    const updateDetailBrandOptions = () => {
+        const typeValue = tileTypeEl.value;
+        const options = detailedEstimateData.combinations
+            .filter(item => item.type === typeValue)
+            .map(item => item.brand);
+        const uniqueBrands = Array.from(new Set(options));
+
+        brandEl.innerHTML = '';
+        const placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = 'Select';
+        brandEl.appendChild(placeholder);
+
+        uniqueBrands.forEach((brand) => {
+            const opt = document.createElement('option');
+            opt.value = brand;
+            opt.textContent = brand;
+            brandEl.appendChild(opt);
+        });
+    };
+
+    const updateDetailSelection = () => {
+        const match = detailedEstimateData.combinations.find(
+            item => item.type === tileTypeEl.value && item.brand === brandEl.value
+        );
+
+        if (!match) {
+            if (boxSqftEl) boxSqftEl.value = '';
+            if (boxPcsEl) boxPcsEl.value = '';
+            if (weightPerBoxEl) weightPerBoxEl.value = '';
+            if (mrpRateEl) mrpRateEl.value = '';
+            if (offerPriceEl) offerPriceEl.value = '';
+            updateDetailedCalculations();
+            return;
+        }
+
+        if (boxSqftEl) boxSqftEl.value = match.boxSqft.toFixed(2);
+        if (boxPcsEl) boxPcsEl.value = String(match.boxPcs);
+        if (weightPerBoxEl) weightPerBoxEl.value = match.weightPerBox.toFixed(1);
+        if (mrpRateEl) mrpRateEl.value = String(match.mrpRate);
+        if (offerPriceEl) offerPriceEl.value = String(match.offerPrice);
+        updateDetailedCalculations();
+    };
+
+    tileTypeEl.addEventListener('change', () => {
+        updateDetailBrandOptions();
+        brandEl.value = '';
+        updateDetailSelection();
+    });
+    brandEl.addEventListener('change', updateDetailSelection);
+
+    [customerSqftEl, roundBoxEl, finalPriceEl].forEach(input => {
+        if (!input) return;
+        input.addEventListener('input', updateDetailedCalculations);
+    });
+
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            if (tileTypeEl) tileTypeEl.value = '';
+            if (brandEl) brandEl.value = '';
+            if (boxSqftEl) boxSqftEl.value = '';
+            if (boxPcsEl) boxPcsEl.value = '';
+            if (weightPerBoxEl) weightPerBoxEl.value = '';
+            if (mrpRateEl) mrpRateEl.value = '';
+            if (offerPriceEl) offerPriceEl.value = '';
+            if (customerSqftEl) customerSqftEl.value = '';
+            if (roundBoxEl) roundBoxEl.value = '';
+            if (finalPriceEl) finalPriceEl.value = '';
+            const totalKgEl = document.getElementById('detailTotalKg');
+            if (totalKgEl) totalKgEl.value = '';
+            updateDetailedCalculations();
+        });
+    }
+
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', () => {
+            const dataUrl = renderDetailedEstimateImage();
+            if (!dataUrl) return;
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = 'detailed-estimate.png';
+            link.click();
+        });
+    }
+
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', () => {
+            if (!whatsappModal) return;
+            whatsappModal.classList.add('active');
+            whatsappModal.setAttribute('aria-hidden', 'false');
+            if (whatsappNumber) whatsappNumber.focus();
+        });
+    }
+
+    if (whatsappCancel) {
+        whatsappCancel.addEventListener('click', () => {
+            if (!whatsappModal) return;
+            whatsappModal.classList.remove('active');
+            whatsappModal.setAttribute('aria-hidden', 'true');
+            if (whatsappNumber) whatsappNumber.value = '';
+        });
+    }
+
+    if (whatsappSend) {
+        whatsappSend.addEventListener('click', async () => {
+            if (!whatsappNumber) return;
+            try {
+                await shareDetailedEstimateImage(whatsappNumber.value);
+            } catch (error) {
+                console.warn('WhatsApp share failed:', error);
+            }
+            if (whatsappModal) {
+                whatsappModal.classList.remove('active');
+                whatsappModal.setAttribute('aria-hidden', 'true');
+            }
+            whatsappNumber.value = '';
+        });
+    }
+
+
+}
+
+function getUniqueValues(key, filterFn) {
+    const values = quotationData
+        .filter(filterFn || (() => true))
+        .map(item => item[key]);
+    return Array.from(new Set(values));
+}
+
+function createSelect(options, dataField) {
+    const select = document.createElement('select');
+    select.className = 'quotation-input';
+    select.setAttribute('data-field', dataField);
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = 'Select';
+    select.appendChild(placeholder);
+    options.forEach(value => {
+        const opt = document.createElement('option');
+        opt.value = String(value);
+        opt.textContent = String(value);
+        select.appendChild(opt);
+    });
+    return select;
+}
+
+function createInput(dataField, readOnly) {
+    const input = document.createElement('input');
+    input.type = 'number';
+    input.className = 'quotation-input';
+    input.setAttribute('data-field', dataField);
+    if (readOnly) {
+        input.readOnly = true;
+        input.type = 'text';
+    }
+    return input;
+}
+
+function updateRowOptions(row) {
+    const typeSelect = row.querySelector('[data-field="type"]');
+    const brandSelect = row.querySelector('[data-field="brand"]');
+    const boxSqftInput = row.querySelector('[data-field="boxSqft"]');
+    const mrpRateInput = row.querySelector('[data-field="mrpRate"]');
+    const offerPriceInput = row.querySelector('[data-field="offerPrice"]');
+
+    const selectedType = typeSelect.value;
+    const brandOptions = selectedType
+        ? getUniqueValues('brand', item => item.type === selectedType)
+        : [];
+
+    const currentBrand = brandSelect.value;
+    brandSelect.innerHTML = '';
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = 'Select';
+    brandSelect.appendChild(placeholder);
+
+    brandOptions.forEach(brand => {
+        const opt = document.createElement('option');
+        opt.value = brand;
+        opt.textContent = brand;
+        brandSelect.appendChild(opt);
+    });
+
+    brandSelect.value = brandOptions.includes(currentBrand) ? currentBrand : '';
+
+    const selectedBrand = brandSelect.value;
+    const match = quotationData.find(item => item.type === selectedType && item.brand === selectedBrand);
+
+    if (!match) {
+        boxSqftInput.value = '';
+        mrpRateInput.value = '';
+        offerPriceInput.value = '';
+        updateRowCalculations(row);
+        return;
+    }
+
+    boxSqftInput.value = match.boxSqft.toFixed(2);
+    mrpRateInput.value = String(match.mrpRate);
+    offerPriceInput.value = String(match.offerPrice);
+}
+
+function updateRowCalculations(row) {
+    const customerSqft = Number(row.querySelector('[data-field="customerSqft"]').value || 0);
+    const boxSqft = Number(row.querySelector('[data-field="boxSqft"]').value || 0);
+    const finalBox = Number(row.querySelector('[data-field="finalBox"]').value || 0);
+    const mrpRate = Number(row.querySelector('[data-field="mrpRate"]').value || 0);
+    const discountedSqRate = Number(row.querySelector('[data-field="discountedSqRate"]').value || 0);
+
+    const actualBox = boxSqft > 0 ? customerSqft / boxSqft : 0;
+    const rawFinalSqft = boxSqft > 0 ? finalBox * boxSqft : 0;
+    const finalSqft = rawFinalSqft > 0 ? Math.ceil(rawFinalSqft) : 0;
+    const totalMrpRate = finalSqft > 0 && mrpRate > 0 ? Math.ceil(finalSqft * mrpRate) : 0;
+    const totalSqRate = finalSqft > 0 && discountedSqRate > 0 ? Math.ceil(finalSqft * discountedSqRate) : 0;
+    const discountAmount = totalMrpRate > 0 ? Math.ceil(totalMrpRate - totalSqRate) : 0;
+
+    row.querySelector('[data-field="actualBox"]').value = actualBox ? actualBox.toFixed(2) : '';
+    row.querySelector('[data-field="finalSqft"]').value = finalSqft ? finalSqft.toFixed(0) : '';
+    row.querySelector('[data-field="totalMrpRate"]').value = totalMrpRate ? totalMrpRate.toFixed(0) : '';
+    row.querySelector('[data-field="discountAmount"]').value = discountAmount ? discountAmount.toFixed(0) : '';
+    row.querySelector('[data-field="totalSqRate"]').value = totalSqRate ? totalSqRate.toFixed(0) : '';
+
+    updateQuotationTotals();
+}
+
+function updateQuotationTotals() {
+    const totals = getQuotationTotals();
+
+    document.getElementById("QuoteTotalFinalBox").value = totals.totalFinalBox ? totals.totalFinalBox.toFixed(2) : '';
+    document.getElementById("QuoteTotalMrpRate").value = totals.totalMrpRate ? totals.totalMrpRate.toFixed(0) : '';
+    document.getElementById("QuoteDiscountTotal").value = totals.discountTotal ? totals.discountTotal.toFixed(0) : '';
+    document.getElementById("QuoteTotalSqRate").value = totals.totalSqRate ? totals.totalSqRate.toFixed(0) : '';
+}
+
+function addQuotationRow() {
+    const rows = document.getElementById("quotationRows");
+    const row = document.createElement('tr');
+    row.className = 'quotation-row';
+
+    const typeOptions = getUniqueValues('type');
+
+    const tilesNameInput = createInput('tilesName');
+    tilesNameInput.type = 'text';
+    const typeSelect = createSelect(typeOptions, 'type');
+    const brandSelect = createSelect([], 'brand');
+    const boxSqftInput = createInput('boxSqft', true);
+    const mrpRateInput = createInput('mrpRate', true);
+    const offerPriceInput = createInput('offerPrice', true);
+    const customerSqftInput = createInput('customerSqft');
+    const actualBoxInput = createInput('actualBox', true);
+    const finalBoxInput = createInput('finalBox');
+    const finalSqftInput = createInput('finalSqft', true);
+    const totalMrpRateInput = createInput('totalMrpRate', true);
+    const discountedSqRateInput = createInput('discountedSqRate');
+    const discountAmountInput = createInput('discountAmount', true);
+    const totalSqRateInput = createInput('totalSqRate', true);
+
+    tilesNameInput.classList.add('user-entry');
+    typeSelect.classList.add('user-entry');
+    customerSqftInput.classList.add('user-entry');
+    finalBoxInput.classList.add('user-entry');
+    discountedSqRateInput.classList.add('user-entry');
+    boxSqftInput.classList.add('compact');
+    customerSqftInput.classList.add('compact');
+    finalBoxInput.classList.add('compact');
+    discountedSqRateInput.classList.add('compact');
+
+    customerSqftInput.type = 'text';
+    finalBoxInput.type = 'text';
+    discountedSqRateInput.type = 'text';
+    customerSqftInput.inputMode = 'decimal';
+    finalBoxInput.inputMode = 'numeric';
+    discountedSqRateInput.inputMode = 'decimal';
+
+    const columns = [
+        { element: tilesNameInput },
+        { element: typeSelect, className: 'type-col' },
+        { element: brandSelect },
+        { element: boxSqftInput },
+        { element: mrpRateInput },
+        { element: offerPriceInput },
+        { element: customerSqftInput },
+        { element: actualBoxInput },
+        { element: finalBoxInput },
+        { element: finalSqftInput },
+        { element: totalMrpRateInput },
+        { element: discountedSqRateInput },
+        { element: discountAmountInput },
+        { element: totalSqRateInput }
+    ];
+
+    columns.forEach(({ element, className }) => {
+        const cell = document.createElement('td');
+        if (className) cell.classList.add(className);
+        cell.appendChild(element);
+        row.appendChild(cell);
+    });
+
+    const onTypeChange = () => {
+        updateRowOptions(row);
+        updateRowCalculations(row);
+    };
+
+    const onBrandChange = () => {
+        updateRowOptions(row);
+        updateRowCalculations(row);
+    };
+
+    typeSelect.addEventListener('change', onTypeChange);
+    brandSelect.addEventListener('change', onBrandChange);
+    customerSqftInput.addEventListener('input', () => updateRowCalculations(row));
+    finalBoxInput.addEventListener('input', () => updateRowCalculations(row));
+    discountedSqRateInput.addEventListener('input', () => updateRowCalculations(row));
+
+    rows.appendChild(row);
+    updateRowOptions(row);
+    updateRowCalculations(row);
+}
+
+function getQuotationRowsData() {
+    const rows = Array.from(document.querySelectorAll('.quotation-row'));
+    return rows
+        .map(row => ({
+            tilesName: row.querySelector('[data-field="tilesName"]').value.trim(),
+            type: row.querySelector('[data-field="type"]').value.trim(),
+            brand: row.querySelector('[data-field="brand"]').value.trim(),
+            boxSqft: row.querySelector('[data-field="boxSqft"]').value.trim(),
+            mrpRate: row.querySelector('[data-field="mrpRate"]').value.trim(),
+            offerPrice: row.querySelector('[data-field="offerPrice"]').value.trim(),
+            customerSqft: row.querySelector('[data-field="customerSqft"]').value.trim(),
+            actualBox: row.querySelector('[data-field="actualBox"]').value.trim(),
+            finalBox: row.querySelector('[data-field="finalBox"]').value.trim(),
+            finalSqft: row.querySelector('[data-field="finalSqft"]').value.trim(),
+            totalMrpRate: row.querySelector('[data-field="totalMrpRate"]').value.trim(),
+            discountedSqRate: row.querySelector('[data-field="discountedSqRate"]').value.trim(),
+            discountAmount: row.querySelector('[data-field="discountAmount"]').value.trim(),
+            totalSqRate: row.querySelector('[data-field="totalSqRate"]').value.trim()
+        }))
+        .filter(item => item.tilesName !== '');
+}
+
+function getQuotationTotals() {
+    const rows = document.querySelectorAll('.quotation-row');
+    let totalFinalBox = 0;
+    let totalFinalSqft = 0;
+    let totalMrpRate = 0;
+    let discountTotal = 0;
+    let totalSqRate = 0;
+
+    rows.forEach(row => {
+        totalFinalBox += Number(row.querySelector('[data-field="finalBox"]').value || 0);
+        totalFinalSqft += Number(row.querySelector('[data-field="finalSqft"]').value || 0);
+        totalMrpRate += Number(row.querySelector('[data-field="totalMrpRate"]').value || 0);
+        discountTotal += Number(row.querySelector('[data-field="discountAmount"]').value || 0);
+        totalSqRate += Number(row.querySelector('[data-field="totalSqRate"]').value || 0);
+    });
+
+    return {
+        totalFinalBox,
+        totalFinalSqft,
+        totalMrpRate,
+        discountTotal,
+        totalSqRate
+    };
+}
+
+function printQuotation() {
+    const customerName = document.getElementById('QuoteCustomerName').value.trim();
+    const rows = getQuotationRowsData();
+    const totals = getQuotationTotals();
+
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
+
+    const rowsHtml = rows.length
+        ? rows.map((row, index) => `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${row.tilesName}</td>
+                <td>${row.type || '-'}/${row.brand || '-'}</td>
+                <td>${row.finalBox || '-'}</td>
+                <td>${row.finalSqft || '-'}</td>
+                <td>${row.totalMrpRate || '-'}</td>
+                <td>${row.discountedSqRate || '-'}</td>
+                <td>${row.discountAmount || '-'}</td>
+                <td>${row.totalSqRate || '-'}</td>
+            </tr>
+        `).join('')
+        : '<tr><td colspan="9" style="text-align:center;">No items</td></tr>';
+
+    printWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Quotation</title>
+            <style>
+                body { font-family: Arial, sans-serif; padding: 24px; color: #111; }
+                h1 { font-size: 20px; margin: 0 0 10px; }
+                .meta { margin-bottom: 16px; }
+                table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+                th, td { border: 1px solid #ddd; padding: 8px; font-size: 12px; }
+                th { background: #f2f2f2; text-align: left; }
+                tfoot td { font-weight: bold; }
+            </style>
+        </head>
+        <body>
+            <h1>Quotation</h1>
+            <div class="meta">Customer Name: ${customerName || '-'} </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tiles Name</th>
+                        <th>Type/Brand</th>
+                        <th>Final Box</th>
+                        <th>Final sq ft</th>
+                        <th>Total sq ft Rate on MRP</th>
+                        <th>Discounted Sq Rate</th>
+                        <th>Discount Total</th>
+                        <th>Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${rowsHtml}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">Overall Total</td>
+                        <td></td>
+                        <td>${totals.discountTotal ? totals.discountTotal.toFixed(0) : '0'}</td>
+                        <td>${totals.totalSqRate ? totals.totalSqRate.toFixed(0) : '0'}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+}
+
+const QUOTATION_SAVE_URL = 'http://localhost:5000/save-quotation';
+
+function buildQuotationFileName(customerName) {
+    const baseName = (customerName || 'customer')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-');
+    const cleanBase = baseName.replace(/^-+|-+$/g, '') || 'customer';
+    const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+    return `quotation-${cleanBase}-${stamp}.pdf`;
+}
+
+function buildPublicUrl(relativePath) {
+    if (!relativePath) return '';
+
+    if (window.location.origin && window.location.origin !== 'null') {
+        try {
+            return new URL(relativePath, window.location.origin).toString();
+        } catch (error) {
+            console.warn('Unable to build public URL:', error);
+        }
+    }
+
+    return relativePath;
+}
+
+function buildQuotationPdfDoc(customerName, rows, totals) {
+    const doc = new window.jspdf.jsPDF();
+    let y = 12;
+
+    doc.setFontSize(16);
+    doc.text('Quotation', 14, y);
+    y += 8;
+
+    doc.setFontSize(11);
+    doc.text(`Customer Name: ${customerName || '-'}`, 14, y);
+    y += 8;
+
+    doc.setFontSize(9);
+    doc.text('Tiles Name', 14, y);
+    doc.text('Type/Brand', 50, y);
+    doc.text('Box', 95, y);
+    doc.text('Sqft', 115, y);
+    doc.text('Total MRP', 135, y);
+    doc.text('D.SqRate', 155, y);
+    doc.text('Disc Total', 175, y);
+    doc.text('Total', 195, y);
+    y += 4;
+
+    doc.line(14, y, 195, y);
+    y += 5;
+
+    if (rows.length === 0) {
+        doc.text('No items entered.', 14, y);
+        y += 6;
+    } else {
+        rows.forEach(row => {
+            if (y > 280) {
+                doc.addPage();
+                y = 12;
+            }
+
+            doc.text(String(row.tilesName || '-'), 14, y);
+            doc.text(String(`${row.type || '-'}/${row.brand || '-'}`), 50, y);
+            doc.text(String(row.finalBox || '-'), 95, y);
+            doc.text(String(row.finalSqft || '-'), 115, y);
+            doc.text(String(row.totalMrpRate || '-'), 135, y);
+            doc.text(String(row.discountedSqRate || '-'), 155, y);
+            doc.text(String(row.discountAmount || '-'), 175, y);
+            doc.text(String(row.totalSqRate || '-'), 195, y);
+            y += 6;
+        });
+    }
+
+    y += 4;
+    doc.line(14, y, 195, y);
+    y += 6;
+
+    doc.setFontSize(10);
+    doc.text(`Total MRP Rate: ${totals.totalMrpRate ? totals.totalMrpRate.toFixed(0) : '0'}`, 14, y);
+    y += 5;
+    doc.text(`Discount Total: ${totals.discountTotal ? totals.discountTotal.toFixed(0) : '0'}`, 14, y);
+    y += 5;
+    doc.text(`Total Amount: ${totals.totalSqRate ? totals.totalSqRate.toFixed(0) : '0'}`, 14, y);
+
+    return doc;
+}
+
+async function saveQuotationPdf(doc, customerName) {
+    if (!QUOTATION_SAVE_URL) return '';
+
+    const dataUrl = doc.output('datauristring');
+    const fileName = buildQuotationFileName(customerName);
+
+    try {
+        const response = await fetch(QUOTATION_SAVE_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                dataUrl,
+                fileName
+            })
+        });
+
+        if (!response.ok) {
+            return '';
+        }
+
+        const result = await response.json();
+        return result.publicPath || '';
+    } catch (error) {
+        console.warn('Unable to save quotation PDF:', error);
+        return '';
+    }
+}
+
+async function sendQuotationWhatsApp() {
+    const customerName = document.getElementById('QuoteCustomerName').value.trim();
+    const rows = getQuotationRowsData();
+    const totals = getQuotationTotals();
+    const phoneNumber = document.getElementById('QuoteCustomerPhone').value.trim();
+
+    if (!phoneNumber) {
+        alert('Please enter the customer phone number.');
+        return;
+    }
+
+    let pdfUrl = '';
+    if (window.jspdf && window.jspdf.jsPDF) {
+        const doc = buildQuotationPdfDoc(customerName, rows, totals);
+        const publicPath = await saveQuotationPdf(doc, customerName);
+        pdfUrl = buildPublicUrl(publicPath);
+    }
+
+    const today = new Date();
+    const dateLabel = today.toLocaleDateString('en-IN');
+    const lines = [
+        'Quotation',
+        `Customer Name: ${customerName || '-'}`,
+        `Date: ${dateLabel}`,
+        ''
+    ];
+
+    if (rows.length === 0) {
+        lines.push('No items entered.');
+    } else {
+        rows.forEach((row, index) => {
+            lines.push(`${index + 1}) ${row.tilesName || '-'}`);
+            lines.push(
+                `   Type/Brand: ${row.type || '-'}/${row.brand || '-'} | Box: ${row.finalBox || '-'} | Sqft: ${row.finalSqft || '-'}`
+            );
+            lines.push(
+                `   Total MRP: ${row.totalMrpRate || '-'} | D.SqRate: ${row.discountedSqRate || '-'} | Discount: ${row.discountAmount || '-'}`
+            );
+            lines.push(
+                `   Total Amount: ${row.totalSqRate || '-'}`
+            );
+            lines.push('');
+        });
+        lines.push(`Total MRP Rate: ${totals.totalMrpRate ? totals.totalMrpRate.toFixed(0) : '0'}`);
+        lines.push(`Discount Total: ${totals.discountTotal ? totals.discountTotal.toFixed(0) : '0'}`);
+        lines.push(`Total Amount: ${totals.totalSqRate ? totals.totalSqRate.toFixed(0) : '0'}`);
+    }
+
+    if (pdfUrl) {
+        lines.push('');
+        lines.push(`Quotation PDF: ${pdfUrl}`);
+    }
+
+    const message = encodeURIComponent(lines.join('\n'));
+    const whatsappUrl = `https://wa.me/${encodeURIComponent(phoneNumber)}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+async function downloadQuotationPdf() {
+    if (!window.jspdf || !window.jspdf.jsPDF) {
+        alert('PDF library is not available. Please refresh and try again.');
+        return;
+    }
+
+    const customerName = document.getElementById('QuoteCustomerName').value.trim();
+    const rows = getQuotationRowsData();
+    const totals = getQuotationTotals();
+
+    const doc = buildQuotationPdfDoc(customerName, rows, totals);
+    await saveQuotationPdf(doc, customerName);
+    doc.save('quotation.pdf');
+}
+
+function renderQuotationImage() {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = 800;
+    canvas.height = 900;
+    
+    const bgColor = '#ffffff';
+    const textColor = '#000000';
+    const accentColor = '#d4af37';
+    const padding = 20;
+    const lineHeight = 22;
+    
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    let y = padding + 30;
+    
+    ctx.fillStyle = accentColor;
+    ctx.fillRect(0, 0, canvas.width, 60);
+    
+    ctx.fillStyle = '#1a1a1a';
+    ctx.font = 'bold 32px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('QUOTATION', canvas.width / 2, 40);
+    
+    ctx.fillStyle = textColor;
+    ctx.textAlign = 'left';
+    ctx.font = '16px Arial';
+    
+    const customerName = document.getElementById('QuoteCustomerName').value.trim() || 'Customer';
+    const today = new Date().toLocaleDateString('en-IN');
+    
+    ctx.fillText(`Customer: ${customerName}`, padding, y);
+    y += lineHeight;
+    ctx.fillText(`Date: ${today}`, padding, y);
+    y += lineHeight * 1.5;
+    
+    ctx.fillStyle = '#666666';
+    ctx.font = 'bold 12px monospace';
+    ctx.fillText('Tiles Name', padding, y);
+    ctx.fillText('Type/Brand', padding + 150, y);
+    ctx.fillText('Box', padding + 270, y);
+    ctx.fillText('Sqft', padding + 320, y);
+    ctx.fillText('Total MRP', padding + 370, y);
+    ctx.fillText('D.SqRate', padding + 430, y);
+    ctx.fillText('Disc', padding + 490, y);
+    ctx.fillText('Total', padding + 540, y);
+    y += 8;
+    
+    ctx.fillStyle = accentColor;
+    ctx.fillRect(padding, y - 2, canvas.width - 2 * padding, 1);
+    y += lineHeight;
+    
+    ctx.fillStyle = textColor;
+    ctx.font = '11px monospace';
+    
+    const rows = getQuotationRowsData();
+    rows.forEach(row => {
+        const itemName = (row.tilesName || '-').substring(0, 20);
+        const typeBrand = `${row.type || '-'}/${row.brand || '-'}`;
+        const box = String(row.finalBox || '-');
+        const sqft = String(row.finalSqft || '-');
+        const totalMrp = String(row.totalMrpRate || '-');
+        const discSqRate = String(row.discountedSqRate || '-');
+        const disc = String(row.discountAmount || '-');
+        const total = String(row.totalSqRate || '-');
+        
+        ctx.textAlign = 'left';
+        ctx.fillText(itemName, padding, y);
+        ctx.fillText(typeBrand, padding + 150, y);
+        ctx.fillText(box, padding + 270, y);
+        ctx.fillText(sqft, padding + 320, y);
+        ctx.fillText(totalMrp, padding + 370, y);
+        ctx.fillText(discSqRate, padding + 430, y);
+        ctx.fillText(disc, padding + 490, y);
+        ctx.fillText(total, padding + 540, y);
+        y += lineHeight;
+    });
+    
+    y += 8;
+    ctx.fillStyle = accentColor;
+    ctx.fillRect(padding, y - 2, canvas.width - 2 * padding, 2);
+    y += lineHeight;
+    
+    const totals = getQuotationTotals();
+    ctx.fillStyle = '#1a1a1a';
+    ctx.font = 'bold 12px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText(`Total MRP Rate: ${totals.totalMrpRate ? totals.totalMrpRate.toFixed(0) : '0'}`, padding, y);
+    y += lineHeight;
+    ctx.fillText(`Discount Total: ${totals.discountTotal ? totals.discountTotal.toFixed(0) : '0'}`, padding, y);
+    y += lineHeight;
+    ctx.fillText(`Total Amount: ${totals.totalSqRate ? totals.totalSqRate.toFixed(0) : '0'}`, padding, y);
+    
+    return canvas;
+}
+
+function previewQuotationImage() {
+    const canvas = renderQuotationImage();
+    const imgWindow = window.open();
+    imgWindow.document.write('<img src="' + canvas.toDataURL() + '" style="max-width:100%;">');
+    imgWindow.document.close();
+}
+
+function downloadQuotationImage() {
+    const canvas = renderQuotationImage();
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/png');
+    link.download = `quotation-${document.getElementById('QuoteCustomerName').value.trim() || 'customer'}.png`;
+    link.click();
+}
+
+clearQuotation();
+initDetailedEstimate();
 
 // ========================================
 // UI ENHANCEMENTS - Interactive Features
@@ -1096,6 +2924,9 @@ numberInputs.forEach(input => {
 <!-- ========== ADDITIONAL SCRIPTS ========== -->
 <!-- AOS Animation Library -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<!-- jsPDF for client-side PDF download -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <!-- Custom JavaScript -->
 <script src="js/main.js"></script>
