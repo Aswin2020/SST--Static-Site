@@ -40,7 +40,7 @@ SMTP_SERVER = os.getenv('SMTP_SERVER', 'smtp.gmail.com')
 SMTP_PORT = int(os.getenv('SMTP_PORT', 587))
 SMTP_USERNAME = os.getenv('SMTP_USERNAME', '')
 SMTP_PASSWORD = os.getenv('SMTP_PASSWORD', '')
-RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL', 'info@shriselvamtiles.com')
+RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL', 'shriselvamtiles@gmail.com')
 
 @app.route('/')
 def home():
@@ -172,7 +172,7 @@ def send_email(name, mobile, email, message):
         if not SMTP_USERNAME or not SMTP_PASSWORD:
             print("Warning: SMTP credentials not configured. Email not sent.")
             print(f"Enquiry details: Name: {name}, Mobile: {mobile}, Email: {email}")
-            return True  # Return True for testing without actual email
+            return False
         
         with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
             server.starttls()

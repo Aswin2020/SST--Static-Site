@@ -165,7 +165,7 @@ function initContactForm() {
   
   if (!contactForm) return; // Not on contact page
 
-  contactForm.addEventListener('submit', async function(e) {
+  contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
 
     const submitBtn = document.getElementById('submitBtn');
@@ -179,40 +179,32 @@ function initContactForm() {
       message: document.getElementById('message').value
     };
 
-    // Disable submit button
+    // Disable submit button briefly while opening WhatsApp
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Opening WhatsApp...';
 
-    try {
-      // Send to backend
-      const response = await fetch('http://localhost:5000/send-enquiry', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
+    const whatsappUrl = buildEnquiryWhatsAppUrl(formData);
+    window.open(whatsappUrl, '_blank');
 
-      const result = await response.json();
+    showMessage(formMessage, 'success', 'Redirected to WhatsApp with your enquiry details.');
+    contactForm.reset();
 
-      if (response.ok) {
-        // Success
-        showMessage(formMessage, 'success', 'Thank you! Your enquiry has been sent successfully. We will contact you soon.');
-        contactForm.reset();
-      } else {
-        // Error from server
-        showMessage(formMessage, 'error', result.message || 'Failed to send enquiry. Please try again.');
-      }
-    } catch (error) {
-      // Network error - show alternative contact methods
-      showMessage(formMessage, 'error', 'Unable to send enquiry online. Please call us at +91 98765 43210 or WhatsApp us.');
-      console.error('Form submission error:', error);
-    } finally {
-      // Re-enable submit button
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Enquiry';
-    }
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Enquiry';
   });
+}
+
+function buildEnquiryWhatsAppUrl(formData) {
+  const enquiryText = [
+    'Hi Shri Selvam Tiles & Granites,',
+    '',
+    'I want to send an enquiry:',
+    `Name: ${formData.name || ''}`,
+    `Mobile: ${formData.mobile || ''}`,
+    `Message: ${formData.message || 'No message provided'}`
+  ].join('\n');
+
+  return `https://wa.me/919942929527?text=${encodeURIComponent(enquiryText)}`;
 }
 
 // ========== ENQUIRY BUTTONS (Products Page) ========== 

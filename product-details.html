@@ -102,7 +102,7 @@
       box-shadow: var(--shadow-md);
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      height: 300px;
+      height: 420px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -119,7 +119,7 @@
       height: 100%;
       object-fit: contain;
       display: block;
-      padding: 12px;
+      padding: 6px;
       box-sizing: border-box;
     }
 
@@ -301,6 +301,10 @@
         gap: 15px;
       }
 
+      .additional-product-image {
+        height: 280px;
+      }
+
       .product-detail-grid {
         padding: 25px;
       }
@@ -423,6 +427,7 @@
   <!-- ========== SCRIPTS ========== -->
   <script src="js/main.js"></script>
   <script src="js/whatsapp-cart.js"></script>
+  <script src="js/rates-config.js"></script>
 
   <script>
     // Function to add current product to WhatsApp cart
@@ -436,6 +441,16 @@
     }
 
     // Product data configuration
+    const parkingKag16x16Rate = window.RateConfig?.getParkingKag16x16Rate?.() || {
+      oldPrice: 'Rs. 70.00',
+      currentPrice: 'Rs. 59.00 / sq ft'
+    };
+
+    const parkingKagRafale16x16Rate = window.RateConfig?.getParkingKagRafale16x16Rate?.() || {
+      oldPrice: 'Rs. 65.00',
+      currentPrice: 'Rs. 55.00 / sq ft'
+    };
+
     const productData = {
       'hill-creama': {
         name: 'Hill Creama',
@@ -462,8 +477,8 @@
         category: 'Parking Tiles - Size: 16x16 inches',
         brand: 'KAG',
         size: '',
-        oldPrice: 'Rs. 65.00',
-        currentPrice: 'Rs. 52.00 / sq ft',
+        oldPrice: parkingKag16x16Rate.oldPrice,
+        currentPrice: parkingKag16x16Rate.currentPrice,
         mainImage: 'assets/images/products/Parking - KAG - 16-16/Gretex Beige.png',
         additionalImage: 'assets/images/products/Parking - KAG - 16-16/Gretex-Beige image 2.jpeg',
         description: 'Gretex Beige is a premium parking tile designed for outdoor durability and strength. Its elegant beige tone with textured surface provides excellent grip and slip resistance, making it ideal for driveways, parking areas, and outdoor spaces.',
@@ -483,8 +498,8 @@
         category: 'Parking Tiles - Size: 16x16 inches',
         brand: 'KAG',
         size: '',
-        oldPrice: 'Rs. 65.00',
-        currentPrice: 'Rs. 52.00 / sq ft',
+        oldPrice: parkingKag16x16Rate.oldPrice,
+        currentPrice: parkingKag16x16Rate.currentPrice,
         mainImage: 'assets/images/products/Parking - KAG - 16-16/Gretex Grey.png',
         additionalImage: 'assets/images/products/Parking - KAG - 16-16/Gretex Grey image 2.jpeg',
         description: 'Gretex Grey parking tiles offer a modern, sophisticated look combined with exceptional strength and durability. The grey textured finish provides excellent traction while adding contemporary elegance to any outdoor space.',
@@ -504,8 +519,8 @@
         category: 'Parking Tiles - Size: 16x16 inches',
         brand: 'KAG',
         size: '',
-        oldPrice: 'Rs. 65.00',
-        currentPrice: 'Rs. 52.00 / sq ft',
+        oldPrice: parkingKag16x16Rate.oldPrice,
+        currentPrice: parkingKag16x16Rate.currentPrice,
         mainImage: 'assets/images/products/Parking - KAG - 16-16/Tera Brown.png',
         additionalImage: 'assets/images/products/Parking - KAG - 16-16/Tera Brown Image 2.jpeg',
         description: 'Tera Brown parking tiles blend natural earthy tones with robust performance. The warm brown color with textured surface creates an inviting yet practical outdoor flooring solution for parking and high-traffic areas.',
@@ -518,6 +533,142 @@
           'Minimal maintenance required',
           'Durable for heavy-duty outdoor use',
           'Suitable for driveways, parking lots, and commercial spaces'
+        ]
+      },
+      'rhp-1601': {
+        name: 'RHP 1601',
+        category: 'Parking Tiles - Size: 16x16 inches',
+        brand: 'KAG Rafale',
+        size: '',
+        oldPrice: parkingKagRafale16x16Rate.oldPrice,
+        currentPrice: parkingKagRafale16x16Rate.currentPrice,
+        mainImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1601.png',
+        additionalImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1601 image 2.png',
+        description: 'RHP 1601 is a KAG Rafale 16x16 parking tile designed for durable outdoor flooring with reliable anti-skid performance and a clean premium look.',
+        features: [
+          'KAG Rafale 16x16 parking tile',
+          'Anti-skid textured finish',
+          'Suitable for parking and driveway use',
+          'Weather-resistant outdoor performance'
+        ]
+      },
+      'rhp-1602': {
+        name: 'RHP 1602',
+        category: 'Parking Tiles - Size: 16x16 inches',
+        brand: 'KAG Rafale',
+        size: '',
+        oldPrice: parkingKagRafale16x16Rate.oldPrice,
+        currentPrice: parkingKagRafale16x16Rate.currentPrice,
+        mainImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1602.png',
+        additionalImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1602 image 2.png',
+        description: 'RHP 1602 is a KAG Rafale 16x16 parking tile designed for durable outdoor flooring with reliable anti-skid performance and a clean premium look.',
+        features: [
+          'KAG Rafale 16x16 parking tile',
+          'Anti-skid textured finish',
+          'Suitable for parking and driveway use',
+          'Weather-resistant outdoor performance'
+        ]
+      },
+      'rhp-1603': {
+        name: 'RHP 1603',
+        category: 'Parking Tiles - Size: 16x16 inches',
+        brand: 'KAG Rafale',
+        size: '',
+        oldPrice: parkingKagRafale16x16Rate.oldPrice,
+        currentPrice: parkingKagRafale16x16Rate.currentPrice,
+        mainImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1603.png',
+        additionalImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1603 image 2.png',
+        description: 'RHP 1603 is a KAG Rafale 16x16 parking tile designed for durable outdoor flooring with reliable anti-skid performance and a clean premium look.',
+        features: [
+          'KAG Rafale 16x16 parking tile',
+          'Anti-skid textured finish',
+          'Suitable for parking and driveway use',
+          'Weather-resistant outdoor performance'
+        ]
+      },
+      'rhp-1604': {
+        name: 'RHP 1604',
+        category: 'Parking Tiles - Size: 16x16 inches',
+        brand: 'KAG Rafale',
+        size: '',
+        oldPrice: parkingKagRafale16x16Rate.oldPrice,
+        currentPrice: parkingKagRafale16x16Rate.currentPrice,
+        mainImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1604.png',
+        additionalImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1604 image 2.png',
+        description: 'RHP 1604 is a KAG Rafale 16x16 parking tile designed for durable outdoor flooring with reliable anti-skid performance and a clean premium look.',
+        features: [
+          'KAG Rafale 16x16 parking tile',
+          'Anti-skid textured finish',
+          'Suitable for parking and driveway use',
+          'Weather-resistant outdoor performance'
+        ]
+      },
+      'rhp-1605': {
+        name: 'RHP 1605',
+        category: 'Parking Tiles - Size: 16x16 inches',
+        brand: 'KAG Rafale',
+        size: '',
+        oldPrice: parkingKagRafale16x16Rate.oldPrice,
+        currentPrice: parkingKagRafale16x16Rate.currentPrice,
+        mainImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1605.png',
+        additionalImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1605 image 2.png',
+        description: 'RHP 1605 is a KAG Rafale 16x16 parking tile designed for durable outdoor flooring with reliable anti-skid performance and a clean premium look.',
+        features: [
+          'KAG Rafale 16x16 parking tile',
+          'Anti-skid textured finish',
+          'Suitable for parking and driveway use',
+          'Weather-resistant outdoor performance'
+        ]
+      },
+      'rhp-1606': {
+        name: 'RHP 1606',
+        category: 'Parking Tiles - Size: 16x16 inches',
+        brand: 'KAG Rafale',
+        size: '',
+        oldPrice: parkingKagRafale16x16Rate.oldPrice,
+        currentPrice: parkingKagRafale16x16Rate.currentPrice,
+        mainImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1606.png',
+        additionalImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1606 image 2.png',
+        description: 'RHP 1606 is a KAG Rafale 16x16 parking tile designed for durable outdoor flooring with reliable anti-skid performance and a clean premium look.',
+        features: [
+          'KAG Rafale 16x16 parking tile',
+          'Anti-skid textured finish',
+          'Suitable for parking and driveway use',
+          'Weather-resistant outdoor performance'
+        ]
+      },
+      'rhp-1607': {
+        name: 'RHP 1607',
+        category: 'Parking Tiles - Size: 16x16 inches',
+        brand: 'KAG Rafale',
+        size: '',
+        oldPrice: parkingKagRafale16x16Rate.oldPrice,
+        currentPrice: parkingKagRafale16x16Rate.currentPrice,
+        mainImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1607.png',
+        additionalImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1607 image 2.png',
+        description: 'RHP 1607 is a KAG Rafale 16x16 parking tile designed for durable outdoor flooring with reliable anti-skid performance and a clean premium look.',
+        features: [
+          'KAG Rafale 16x16 parking tile',
+          'Anti-skid textured finish',
+          'Suitable for parking and driveway use',
+          'Weather-resistant outdoor performance'
+        ]
+      },
+      'rhp-1613': {
+        name: 'RHP 1613',
+        category: 'Parking Tiles - Size: 16x16 inches',
+        brand: 'KAG Rafale',
+        size: '',
+        oldPrice: parkingKagRafale16x16Rate.oldPrice,
+        currentPrice: parkingKagRafale16x16Rate.currentPrice,
+        mainImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1613.png',
+        additionalImage: 'assets/images/products/Parking - KAG Rafale - 16-16/RHP 1613 image 2.png',
+        description: 'RHP 1613 is a KAG Rafale 16x16 parking tile designed for durable outdoor flooring with reliable anti-skid performance and a clean premium look.',
+        features: [
+          'KAG Rafale 16x16 parking tile',
+          'Anti-skid textured finish',
+          'Suitable for parking and driveway use',
+          'Weather-resistant outdoor performance'
         ]
       }
     };

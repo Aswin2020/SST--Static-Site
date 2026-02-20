@@ -118,6 +118,12 @@
         grid-template-columns: 1fr;
     }
 
+    .tiles-chart-table-wrapper {
+        max-height: calc(100vh - 250px);
+        overflow: auto;
+        border-radius: 16px;
+    }
+
     .quotation-container .step-panel {
         overflow-y: auto;
     }
@@ -1392,10 +1398,93 @@
     .calculator-section {
         display: none;
     }
+
+    .calc-auth-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 10, 20, 0.92);
+        backdrop-filter: blur(6px);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .calc-auth-overlay.hidden {
+        display: none;
+    }
+
+    .calc-auth-card {
+        width: 100%;
+        max-width: 420px;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+        padding: 24px;
+    }
+
+    .calc-auth-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin-bottom: 8px;
+    }
+
+    .calc-auth-subtitle {
+        color: #4a4a68;
+        font-size: 0.92rem;
+        margin-bottom: 16px;
+    }
+
+    .calc-auth-input {
+        width: 100%;
+        height: 44px;
+        border: 1px solid #d6d6e4;
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+    }
+
+    .calc-auth-input:focus {
+        outline: none;
+        border-color: #4CAF50;
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15);
+    }
+
+    .calc-auth-btn {
+        width: 100%;
+        height: 44px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        color: #fff;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .calc-auth-error {
+        min-height: 18px;
+        color: #c62828;
+        font-size: 0.85rem;
+        margin-top: 10px;
+    }
 </style>
 </head>
 
 <body>
+
+<div class="calc-auth-overlay" id="calculatorAuthOverlay" aria-hidden="false">
+    <form class="calc-auth-card" id="calculatorAuthForm" autocomplete="off">
+        <div class="calc-auth-title">Employee Access</div>
+        <div class="calc-auth-subtitle">Tiles Calculator is restricted to employees.</div>
+        <input type="text" id="calculatorAuthUsername" class="calc-auth-input" placeholder="Username" required>
+        <input type="password" id="calculatorAuthPassword" class="calc-auth-input" placeholder="Password" required>
+        <button type="submit" class="calc-auth-btn">Login</button>
+        <div class="calc-auth-error" id="calculatorAuthError"></div>
+    </form>
+</div>
 
 <!-- ========== HEADER & NAVIGATION ========== -->
 <header class="header">
@@ -1429,6 +1518,7 @@
         <button class="segment-tab active" data-segment="bath-kitchen">Bath / Kitchen Calculation</button>
         <button class="segment-tab" data-segment="quotation">Quotation Calculation</button>
         <button class="segment-tab" data-segment="detailed-estimate">Detailed Estimate</button>
+        <button class="segment-tab" data-segment="tiles-chart">Tiles chart</button>
     </div>
 
     <div class="segment-panel active" id="segment-bath-kitchen">
@@ -1766,6 +1856,33 @@
         </div>
     </div>
 
+    <div class="segment-panel" id="segment-tiles-chart">
+        <div class="main-container quotation-container">
+            <div class="left-panel step-panel">
+                <div class="step-header" style="position: relative; top: 0; left: 0; margin-bottom: 12px;">Tiles chart</div>
+                <div class="panel-content" style="margin-top: 0;">
+                    <div class="quotation-note">Tiles price reference chart</div>
+                    <div class="quotation-table-wrapper tiles-chart-table-wrapper">
+                        <table class="quotation-table">
+                            <thead>
+                                <tr>
+                                    <th>Tile Type / Size</th>
+                                    <th>Tiles Brand</th>
+                                    <th>Box sq ft</th>
+                                    <th>Box per pcs</th>
+                                    <th>Weight per Box</th>
+                                    <th>MRP Sq ft rate</th>
+                                    <th>Offer price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tilesChartRows"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="detail-whatsapp-modal" id="detailWhatsAppModal" aria-hidden="true">
         <div class="detail-whatsapp-card">
             <h4>Send WhatsApp</h4>
@@ -1787,6 +1904,48 @@
 // ========================================
 // CALCULATION LOGIC - DO NOT MODIFY
 // ========================================
+
+const CALCULATOR_AUTH_SESSION_KEY = 'tiles-calculator-employee-auth';
+
+function initCalculatorAccessControl() {
+    const overlay = document.getElementById('calculatorAuthOverlay');
+    const authForm = document.getElementById('calculatorAuthForm');
+    const usernameInput = document.getElementById('calculatorAuthUsername');
+    const passwordInput = document.getElementById('calculatorAuthPassword');
+    const errorBox = document.getElementById('calculatorAuthError');
+
+    if (!overlay || !authForm || !usernameInput || !passwordInput || !errorBox) {
+        return;
+    }
+
+    const isAuthenticated = sessionStorage.getItem(CALCULATOR_AUTH_SESSION_KEY) === '1';
+    if (isAuthenticated) {
+        overlay.classList.add('hidden');
+        overlay.setAttribute('aria-hidden', 'true');
+        return;
+    }
+
+    authForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value;
+
+        if (username === 'win' && password === 'win') {
+            sessionStorage.setItem(CALCULATOR_AUTH_SESSION_KEY, '1');
+            overlay.classList.add('hidden');
+            overlay.setAttribute('aria-hidden', 'true');
+            errorBox.textContent = '';
+            return;
+        }
+
+        errorBox.textContent = 'Invalid username or password.';
+        passwordInput.value = '';
+        passwordInput.focus();
+    });
+}
+
+initCalculatorAccessControl();
 
 function executeCalc() {
     const tileSize = document.getElementById("tileSize").value;
@@ -2016,6 +2175,34 @@ const detailedEstimateData = {
         { type: 'Elevation 18 * 12', brand: 'KAG - Rafale', boxSqft: 8.72, boxPcs: 6, mrpRate: 49, offerPrice: 49, weightPerBox: 10.5 }
     ]
 };
+
+function formatChartValue(value) {
+    if (value === undefined || value === null || value === '') {
+        return '-';
+    }
+    return value;
+}
+
+function renderTilesChartRows() {
+    const tbody = document.getElementById('tilesChartRows');
+    if (!tbody || !detailedEstimateData?.combinations) {
+        return;
+    }
+
+    tbody.innerHTML = detailedEstimateData.combinations.map(item => `
+        <tr>
+            <td>${formatChartValue(item.type)}</td>
+            <td>${formatChartValue(item.brand)}</td>
+            <td>${formatChartValue(item.boxSqft)}</td>
+            <td>${formatChartValue(item.boxPcs)}</td>
+            <td>${formatChartValue(item.weightPerBox)}</td>
+            <td>${formatChartValue(item.mrpRate)}</td>
+            <td>${formatChartValue(item.offerPrice)}</td>
+        </tr>
+    `).join('');
+}
+
+renderTilesChartRows();
 
 function updateDetailedCalculations() {
     const boxSqft = Number(document.getElementById('detailBoxSqft')?.value || 0);
